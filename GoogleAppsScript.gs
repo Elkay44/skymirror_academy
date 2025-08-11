@@ -1,263 +1,211 @@
 // Google Apps Script code for handling form submissions
 
-// Configuration
-const ADMIN_EMAIL = 'contact@skymirror.eu';
+// A project by Skymirror (www.skymirror.eu)
+//
+// This script is designed to be deployed as a web app to handle form submissions from a website.
+// It performs the following actions:
+// 1. Receives form data via a POST request.
+// 2. Validates the presence of required fields.
+// 3. Saves the application data to a new row in a Google Sheet named "Applications".
+// 4. Sends a confirmation email to the applicant.
+// 5. Sends a notification email to the site administrators.
+// 6. Handles CORS preflight requests to allow cross-domain communication.
+
+// --- CONFIGURATION ---
+// Set the email addresses for notifications.
+const ADMIN_EMAIL = 'lukmanibrahim1998@gmail.com';
 const COPY_EMAIL = 'lukman.ibrahim@skymirror.eu';
+
+// Set the website URL for use in email footers.
 const WEBSITE_URL = 'https://www.skymirror.academy';
+
+// Function to initialize the spreadsheet
+function initializeSpreadsheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  if (!ss) {
+    throw new Error('No spreadsheet found. Please create a new spreadsheet and share it with this script.');
+  }
+  
+  // Create or get the applications sheet
+  let sheet = ss.getSheetByName('Applications');
+  if (!sheet) {
+    sheet = ss.insertSheet('Applications');
+    // Add headers
+    const headers = ['Timestamp', 'Name', 'Email', 'Phone', 'Program', 'Background', 'Why Interested', 'Vanguard Cohort Interest'];
+    sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+  }
+  
+  // Set permissions
+  const me = Session.getActiveUser().getEmail();
+  const editors = ss.getEditors();
+  if (!editors.some(editor => editor === me)) {
+    ss.addEditor(me);
+  }
+  
+  return ss;
+}
 
 // Entry point for form submissions
 function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(30000); // Wait up to 30 seconds to prevent concurrent writes.
+
   try {
-    // Log incoming request
-    Logger.log('Received form submission');
-    
-    // Get the form data from the request
-    const formData = e.postData.contents;
-    if (!formData) {
-      throw new Error('No form data received');
-    }
-    
-    // Decode and parse the JSON data
-    const data = JSON.parse(decodeURIComponent(formData.split('data=')[1]));
-    
-    // Validate required fields
+    Logger.log('Received POST request.');
+
+    // Parse the JSON data from the request body.
+    const data = JSON.parse(e.postData.contents);
+
+    // Validate that all required fields are present.
     const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'program', 'background'];
     for (const field of requiredFields) {
       if (!data[field]) {
         throw new Error(`Missing required field: ${field}`);
       }
     }
-    
-    // Save to Google Sheets
+
+    // Process the data.
     saveToSheet(data);
-    
-    // Send confirmation email to applicant
     sendConfirmationEmail(data);
-    
-    // Send notification to admin
     sendAdminNotification(data);
-    
-    // Prepare success response
-    const response = ContentService.createTextOutput(JSON.stringify({ 
+
+    // Return a success response.
+    return createJsonResponse({
       status: 'success',
-      message: 'Application received successfully'
-    }));
-    
-    // Add CORS headers
-    const headers = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Accept'
-    };
-    
-    // Set headers
-    response.setMimeType(ContentService.MimeType.JSON);
-    
-    // Set headers using PropertiesService
-    const userProperties = PropertiesService.getUserProperties();
-    for (const header in headers) {
-      userProperties.setProperty(header, headers[header]);
-    }
-    
-    return response;
+      message: 'Application received successfully.'
+    });
+
   } catch (error) {
-    Logger.log('Error processing form submission: ' + error.toString());
-    
-    // Prepare error response
-    const response = ContentService.createTextOutput(JSON.stringify({ 
+    Logger.log(`Error processing form submission: ${error.toString()}`);
+    // Return an error response.
+    return createJsonResponse({
       status: 'error',
-      message: error.toString(),
-      timestamp: new Date().toISOString()
-    }));
-    
-    // Add CORS headers to error response
-    const headers = {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Accept'
-    };
-    
-    response.setMimeType(ContentService.MimeType.JSON);
-    
-    // Set headers using PropertiesService
-    const userProperties = PropertiesService.getUserProperties();
-    for (const header in headers) {
-      userProperties.setProperty(header, headers[header]);
-    }
-    
-    return response;
-  }
-  } catch (error) {
-    Logger.log('Error: ' + error.toString());
-    const response = ContentService.createTextOutput(JSON.stringify({ 
-      status: 'error', 
-      message: error.toString() 
-    }));
-    response.setMimeType(ContentService.MimeType.JSON);
-    return response;
+      message: error.toString()
+    }, 500); // Use a 500 status code for server errors.
+  } finally {
+    lock.releaseLock(); // Always release the lock.
   }
 }
 
-// Handle CORS preflight requests
-function doGet(e) {
-  const response = ContentService.createTextOutput(JSON.stringify({ status: 'ok' }));
-  response.setMimeType(ContentService.MimeType.JSON);
-  
-  // Add CORS headers
-  const headers = {
+function doOptions() {
+  Logger.log('Received OPTIONS preflight request.');
+  return createJsonResponse({}, 200, {
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
-    'Access-Control-Allow-Headers': 'Content-Type, Accept'
-  };
-  
-  // Set headers
-  response.setHeaders(headers);
-  
-  return response;
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  });
 }
 
 function saveToSheet(data) {
   try {
-    // Get or create the spreadsheet
-    const ss = SpreadsheetApp.getActiveSpreadsheet();
-    if (!ss) {
-      throw new Error('No spreadsheet found');
-    }
-    
-    // Get or create the sheet
-    let sheet = ss.getSheetByName('Applications');
+    const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('Applications');
     if (!sheet) {
-      sheet = ss.insertSheet('Applications');
-      // Add headers if this is a new sheet
-      const headers = ['Timestamp', 'Name', 'Email', 'Phone', 'Program', 'Background', 'Why Interested', 'Vanguard Cohort Interest'];
-      sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+        // If the sheet doesn't exist, create it and add headers.
+        const newSheet = SpreadsheetApp.getActiveSpreadsheet().insertSheet('Applications');
+        const headers = ['Timestamp', 'Name', 'Email', 'Phone', 'Program', 'Background', 'Reason for Interest', 'Vanguard Cohort Interest'];
+        newSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
     }
-    
-    // Get next row
-    const row = sheet.getLastRow() + 1;
-    
-    // Add timestamp
-    sheet.getRange(row, 1).setValue(new Date());
-    
-    // Add form data
-    sheet.getRange(row, 2).setValue(data.firstName + ' ' + data.lastName);
-    sheet.getRange(row, 3).setValue(data.email);
-    sheet.getRange(row, 4).setValue(data.phone);
-    sheet.getRange(row, 5).setValue(data.program);
-    sheet.getRange(row, 6).setValue(data.background);
-    sheet.getRange(row, 7).setValue(data.whyInterested);
-    sheet.getRange(row, 8).setValue(data.VanguardCohortInterest);
-    
-    // Log success
-    Logger.log('Saved application to row ' + row);
-    return true;
+
+    // Append the new application data as a new row.
+    sheet.appendRow([
+      new Date(), // Timestamp
+      `${data.firstName} ${data.lastName}`,
+      data.email,
+      data.phone,
+      data.program,
+      data.background,
+      data.whyInterested || 'N/A', // Use 'N/A' if optional field is empty
+      data.VanguardCohortInterest ? 'Yes' : 'No'
+    ]);
+    Logger.log('Application data saved to Google Sheet.');
   } catch (error) {
-    Logger.log('Error saving to sheet: ' + error.toString());
-    throw error;
+    Logger.log(`Error saving to sheet: ${error.toString()}`);
+    throw new Error('Could not save data to the spreadsheet.'); // Propagate error
   }
 }
 
 function sendConfirmationEmail(data) {
   try {
+    const subject = 'Application Received - Skymirror Academy';
     const htmlTemplate = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #ddd; padding: 20px;">
         <h1 style="color: #7C3AED;">Thank you for your application!</h1>
-        <p>Dear ${data.firstName} ${data.lastName},</p>
-        <p>Thank you for applying to Skymirror Academy. We've received your application and will review it shortly.</p>
-        <p>Here's a summary of your application:</p>
-        <ul style="list-style-type: none; padding: 0;">
+        <p>Dear ${data.firstName},</p>
+        <p>We have successfully received your application for Skymirror Academy and will review it shortly. We appreciate your interest in joining our program.</p>
+        <p><strong>Here's a summary of your submission:</strong></p>
+        <ul style="list-style-type: none; padding-left: 0;">
           <li><strong>Program:</strong> ${data.program}</li>
-          <li><strong>Background:</strong> ${data.background}</li>
           <li><strong>Interest in Vanguard Cohort:</strong> ${data.VanguardCohortInterest ? 'Yes' : 'No'}</li>
         </ul>
+        <p>If you have any questions, please feel free to contact us by replying to this email.</p>
         <p>Best regards,<br>The Skymirror Academy Team</p>
+        <hr style="border: none; border-top: 1px solid #eee;">
         <p style="font-size: 0.9em; color: #666;">
           ${WEBSITE_URL}<br>
-          Budapest President Centre<br>
-          Kálmán Imre utca 1<br>
-          1054 Budapest, Hungary<br>
-          contact@skymirror.eu
+          Kálmán Imre utca 1, 1054 Budapest, Hungary<br>
+          ${ADMIN_EMAIL}
         </p>
-      </div>
-    `;
-    
+      </div>`;
+
     MailApp.sendEmail({
       to: data.email,
-      subject: 'Application Received - Skymirror Academy',
+      subject: subject,
       htmlBody: htmlTemplate,
       replyTo: ADMIN_EMAIL
     });
-    
-    Logger.log('Sent confirmation email to ' + data.email);
-    return true;
+    Logger.log(`Confirmation email sent to ${data.email}.`);
   } catch (error) {
-    Logger.log('Error sending confirmation email: ' + error.toString());
-    throw error;
+    Logger.log(`Error sending confirmation email: ${error.toString()}`);
+    // Decide if you want to throw an error here. The main process might still be considered a success.
   }
-}
 }
 
 function sendAdminNotification(data) {
   try {
+    const subject = `New Application Received: ${data.firstName} ${data.lastName}`;
     const htmlTemplate = `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 20px auto; border: 1px solid #ddd; padding: 20px;">
         <h1 style="color: #7C3AED;">New Application Received</h1>
-        <p>New application from ${data.firstName} ${data.lastName} (${data.email})</p>
-        <p>Details:</p>
-        <ul style="list-style-type: none; padding: 0;">
+        <p>A new application has been submitted through the website.</p>
+        <p><strong>Applicant Details:</strong></p>
+        <ul style="list-style-type: none; padding-left: 0;">
+          <li><strong>Name:</strong> ${data.firstName} ${data.lastName}</li>
+          <li><strong>Email:</strong> ${data.email}</li>
+          <li><strong>Phone:</strong> ${data.phone}</li>
+        </ul>
+        <p><strong>Application Information:</strong></p>
+        <ul style="list-style-type: none; padding-left: 0;">
           <li><strong>Program:</strong> ${data.program}</li>
           <li><strong>Background:</strong> ${data.background}</li>
-          <li><strong>Phone:</strong> ${data.phone}</li>
+          <li><strong>Reason for Interest:</strong> ${data.whyInterested || 'N/A'}</li>
           <li><strong>Interest in Vanguard Cohort:</strong> ${data.VanguardCohortInterest ? 'Yes' : 'No'}</li>
-          <li><strong>Why Interested:</strong> ${data.whyInterested}</li>
         </ul>
-        <p style="font-size: 0.9em; color: #666;">
-          ${WEBSITE_URL}<br>
-          Budapest President Centre<br>
-          Kálmán Imre utca 1<br>
-          1054 Budapest, Hungary<br>
-          contact@skymirror.eu
-        </p>
-      </div>
-    `;
+      </div>`;
 
-    // Send to contact@skymirror.eu (main contact email)
-    MailApp.sendEmail({
-      to: ADMIN_EMAIL,
-      subject: 'New Application Received - Skymirror Academy',
-      htmlBody: htmlTemplate,
-      replyTo: ADMIN_EMAIL
-    });
+    // Send email to the primary admin and the copy recipient
+    MailApp.sendEmail(ADMIN_EMAIL, subject, '', { htmlBody: htmlTemplate, replyTo: data.email });
+    MailApp.sendEmail(COPY_EMAIL, subject, '', { htmlBody: htmlTemplate, replyTo: data.email });
 
-    // Send copy to lukman.ibrahim@skymirror.eu
-    MailApp.sendEmail({
-      to: COPY_EMAIL,
-      subject: 'New Application Copy - Skymirror Academy',
-      htmlBody: htmlTemplate,
-      replyTo: ADMIN_EMAIL
-    });
-
-    Logger.log('Sent admin notification emails');
-    return true;
+    Logger.log('Admin notification emails sent.');
   } catch (error) {
-    Logger.log('Error sending admin notification: ' + error.toString());
-    throw error;
+    Logger.log(`Error sending admin notification: ${error.toString()}`);
   }
 }
-  });
 
-  // Send copy to lukman.ibrahim@skymirror.eu
-  MailApp.sendEmail({
-    to: COPY_EMAIL,
-    subject: 'New Application Copy - Skymirror Academy',
-    htmlBody: htmlTemplate
+function createJsonResponse(payload, statusCode = 200, headers = {}) {
+  const response = ContentService.createTextOutput(JSON.stringify(payload))
+    .setMimeType(ContentService.MimeType.JSON);
+    
+  // While Google Apps Script doesn't truly support status codes, it's good practice.
+  // The CORS headers are the most important part for the browser.
+  response.setHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    ...headers
   });
   
-  MailApp.sendEmail({
-    to: ADMIN_EMAIL,
-    subject: 'New Application Received - Skymirror Academy',
-    htmlBody: htmlTemplate
-  });
+  return response;
 }
 
 // Function to create a web app URL
