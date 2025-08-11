@@ -312,69 +312,23 @@
                                 form.addEventListener('submit', async (e) => {
                                     e.preventDefault();
                                     
-                                    const formData = new FormData(form);
-                                    const formObject = Object.fromEntries(formData.entries());
+                                    const form = document.getElementById('application-form');
+                                    const formObject = Object.fromEntries(new FormData(form).entries());
                                     
-                                    // Enhanced email template
-                                    const emailTemplate = `
-                                        <!DOCTYPE html>
-                                        <html>
-                                        <head>
-                                            <style>
-                                                body { font-family: 'Inter', Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 0 auto; }
-                                                .header { background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%); padding: 30px 20px; text-align: center; }
-                                                .content { padding: 30px 20px; }
-                                                .button { display: inline-block; background: linear-gradient(135deg, #7C3AED 0%, #3B82F6 100%); color: white; text-decoration: none; padding: 12px 30px; border-radius: 50px; font-weight: 600; margin: 20px 0; }
-                                                .footer { margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #666; }
-                                            </style>
-                                        </head>
-                                        <body>
-                                            <div class="header">
-                                                <h1 style="color: white; margin: 0; font-size: 28px;">Welcome to Skymirror Academy, ${formObject['first-name']}!</h1>
-                                            </div>
-                                            <div class="content">
-                                                <h2 style="color: #1F2937; margin-top: 0;">Your Application Has Been Received</h2>
-                                                <p>Thank you for applying to Skymirror Academy! We're thrilled you're considering us for your tech education journey.</p>
-                                                
-                                                <h3 style="color: #4B5563; margin-top: 25px;">What's Next?</h3>
-                                                <ol>
-                                                    <li>Our admissions team will review your application within 3-5 business days.</li>
-                                                    <li>If your application meets our criteria, we'll invite you for a short video interview.</li>
-                                                    <li>Successful candidates will receive an acceptance letter with program details.</li>
-                                                </ol>
-                                                
-                                                <p><strong>Application Reference:</strong> #${Math.random().toString(36).substr(2, 9).toUpperCase()}</p>
-                                                
-                                                <p>In the meantime, feel free to explore our <a href="https://www.skymirror.academy/programs" style="color: #7C3AED; text-decoration: none; font-weight: 500;">programs</a> and prepare for an exciting learning journey!</p>
-                                                
-                                                <a href="https://www.skymirror.academy" class="button">Visit Our Website</a>
-                                                
-                                                <p>Best regards,<br>The Skymirror Academy Team</p>
-                                            </div>
-                                            <div class="footer">
-                                                <p>&copy; 2025 Skymirror Academy. All rights reserved.<br>
-                                                Budapest President Centre<br>
-                                                Kálmán Imre utca 1<br>
-                                                1054 Budapest, Hungary<br>
-                                                <a href="mailto:contact@skymirror.eu" style="color: #7C3AED;">contact@skymirror.eu</a><br>
-                                                <a href="https://www.skymirror.academy" style="color: #7C3AED;">www.skymirror.academy</a></p>
-                                            </div>
-                                        </body>
-                                        </html>
-                                    `;
-                                    
-                                    // Add the email content to form data
                                     // Prepare data for Google Apps Script
-                                    const data = {
+                                    const submissionData = {
+                                        firstName: formObject['first-name'],
+                                        lastName: formObject['last-name'],
                                         email: formObject.email,
-                                        name: formObject.name,
-                                        background: formObject.background,
+                                        phone: formObject.phone,
                                         program: formObject.program,
-                                        message: formObject.message
+                                        background: formObject.background,
+                                        whyInterested: formObject['why-interested'],
+                                        VanguardCohortInterest: formObject['Vanguard Cohort-interest']
                                     };
                                     
-                                    // Convert data to JSON
-                                    const jsonData = JSON.stringify(data);
+                                    // Convert form data to JSON
+                                    const submissionJson = JSON.stringify(submissionData);
                                     
                                     try {
                                         // Google Apps Script URL
@@ -382,7 +336,7 @@
                                         
                                         const response = await fetch(scriptUrl, {
                                             method: 'POST',
-                                            body: jsonData,
+                                            body: submissionJson,
                                             headers: {
                                                 'Accept': 'application/json',
                                                 'Content-Type': 'application/json'
@@ -391,7 +345,7 @@
                                         
                                         const result = await response.json();
                                         
-                                        if (response.ok && result.ok) {
+                                        if (response.ok && result.status === 'success') {
                                             form.reset();
                                             formSuccess.classList.remove('hidden');
                                             form.scrollIntoView({ behavior: 'smooth' });
@@ -410,6 +364,7 @@
                                         console.error('Form submission error:', error);
                                         alert(`Error: ${error.message || 'There was a problem submitting your application. Please try again or contact us at contact@skymirror.eu'}
                                             \n\nIf you're still having issues, please send an email directly to contact@skymirror.eu`);
+                                        console.error('Form submission error:', error);
                                     }
                                 });
                             </script>
