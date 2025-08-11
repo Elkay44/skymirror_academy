@@ -1,6 +1,59 @@
+const ADMIN_EMAIL = 'contact@skymirror.eu';
+
+/**
+ * Handles CORS preflight requests
+ */
+function doOptions(e) {
+  return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+    .setMimeType(ContentService.MimeType.JSON)
+    .setHeader("Access-Control-Allow-Origin", "*")
+    .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
+    .setHeader("Access-Control-Allow-Headers", "Content-Type");
+}
+
+/**
+ * Main function that handles form submissions
+ * @param {Object} e The event object containing the form data
+ */
+function doPost(e) {
+  try {
+    const data = JSON.parse(e.postData.contents);
+    
+    // Process form data
+    const sheet = SpreadsheetApp.getActiveSheet();
+    const row = sheet.getLastRow() + 1;
+    
+    // Add headers if they don't exist
+    if (sheet.getLastRow() === 0) {
+      const headers = Object.keys(data);
+      sheet.appendRow(headers);
+    }
+    
+    // Add data to sheet
+    const values = Object.values(data);
+    sheet.appendRow(values);
+    
+    // Send confirmation email
+    sendConfirmationEmail(data);
+    
+    // Return success response with CORS headers
+    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*")
+      .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
+      .setHeader("Access-Control-Allow-Headers", "Content-Type");
+  } catch (error) {
+    Logger.log('Error in doPost: ' + error.toString());
+    return ContentService.createTextOutput(JSON.stringify({error: error.toString()}))
+      .setMimeType(ContentService.MimeType.JSON)
+      .setHeader("Access-Control-Allow-Origin", "*")
+      .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
+      .setHeader("Access-Control-Allow-Headers", "Content-Type");
+  }
+}
+
 /**
  * Sends a templated confirmation email to the applicant.
- * This version includes a detailed message about the review process and next steps.
  * @param {Object} data The parsed JSON data from the form.
  */
 function sendConfirmationEmail(data) {
@@ -31,15 +84,19 @@ function sendConfirmationEmail(data) {
       </div>
     `
   });
-    MailApp.sendEmail({
-      to: data.email,
-      subject: subject,
-      htmlBody: htmlBody,
-      replyTo: ADMIN_EMAIL
-    });
-    Logger.log(`Detailed confirmation email sent to ${data.email}.`);
-  } catch (error) {
-    Logger.log(`Error sending confirmation email: ${error.toString()}`);
-    // We don't throw an error here because the main submission might have succeeded.
-  }
+  
+  // Send notification to admin
+  MailApp.sendEmail({
+    to: ADMIN_EMAIL,
+    subject: 'New Skymirror Academy Application',
+    htmlBody: `
+      <div style="font-family: Arial, sans-serif;">
+        <h2>New Application Received</h2>
+        <p>Application received from: ${data.firstName} ${data.lastName}</p>
+        <p>Email: ${data.email}</p>
+      </div>
+    `
+  });
+  
+  Logger.log(`Detailed confirmation email sent to ${data.email}.`);
 }
