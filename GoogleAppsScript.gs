@@ -17,8 +17,8 @@ function doPost(e) {
       throw new Error('No form data received');
     }
     
-    // Parse the JSON data
-    const data = JSON.parse(formData);
+    // Decode and parse the JSON data
+    const data = JSON.parse(decodeURIComponent(formData.split('data=')[1]));
     
     // Validate required fields
     const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'program', 'background'];
