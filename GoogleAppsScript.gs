@@ -52,7 +52,12 @@ function doPost(e) {
     
     // Set headers
     response.setMimeType(ContentService.MimeType.JSON);
-    response.setHeaders(headers);
+    
+    // Set headers using PropertiesService
+    const userProperties = PropertiesService.getUserProperties();
+    for (const header in headers) {
+      userProperties.setProperty(header, headers[header]);
+    }
     
     return response;
   } catch (error) {
@@ -73,7 +78,12 @@ function doPost(e) {
     };
     
     response.setMimeType(ContentService.MimeType.JSON);
-    response.setHeaders(headers);
+    
+    // Set headers using PropertiesService
+    const userProperties = PropertiesService.getUserProperties();
+    for (const header in headers) {
+      userProperties.setProperty(header, headers[header]);
+    }
     
     return response;
   }
