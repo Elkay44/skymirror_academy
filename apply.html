@@ -312,44 +312,40 @@
                                 form.addEventListener('submit', async (e) => {
                                     e.preventDefault();
                                     
-                                    const form = document.getElementById('application-form');
-                                    const formObject = Object.fromEntries(new FormData(form).entries());
-                                    
-                                    // Prepare data for Google Apps Script
-                                    const submissionData = {
-                                        firstName: formObject['first-name'],
-                                        lastName: formObject['last-name'],
-                                        email: formObject.email,
-                                        phone: formObject.phone,
-                                        program: formObject.program,
-                                        background: formObject.background,
-                                        whyInterested: formObject['why-interested'],
-                                        VanguardCohortInterest: formObject['Vanguard Cohort-interest']
-                                    };
-                                    
-                                    // Convert form data to JSON
-                                    const submissionJson = JSON.stringify(submissionData);
-                                    
                                     try {
+                                        const formObject = Object.fromEntries(new FormData(form).entries());
+                                        
+                                        // Build the submission data
+                                        const submissionData = {
+                                            firstName: formObject.firstName,
+                                            lastName: formObject.lastName,
+                                            email: formObject.email,
+                                            phone: formObject.phone,
+                                            background: formObject.background,
+                                            program: formObject.program,
+                                            whyInterested: formObject.whyInterested,
+                                            VanguardCohortInterest: formObject.VanguardCohortInterest === 'on'
+                                        };
+
+                                        const submissionJson = JSON.stringify(submissionData);
+                                        
                                         // Google Apps Script URL
                                         const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1f5_Wu991JmIk1A1AqcmUj-q1Ejp1-8ie0N_QjotEOmcRMjNkAKzva3FrCDW63Z-76A/exec';
                                         
                                         // Prepare the request body
-                                        const requestBody = {
-                                            data: submissionJson
-                                        };
+                                        const formData = new FormData();
+                                        formData.append('data', submissionJson);
 
                                         const response = await fetch(scriptUrl, {
                                             method: 'POST',
-                                            body: JSON.stringify(requestBody),
+                                            body: formData,
                                             headers: {
-                                                'Content-Type': 'application/x-www-form-urlencoded',
                                                 'Accept': 'application/json'
                                             }
                                         });
-                                        
+
                                         const serverResponse = await response.json();
-                                        
+
                                         if (response.ok && serverResponse.status === 'success') {
                                             form.reset();
                                             formSuccess.classList.remove('hidden');
@@ -361,15 +357,14 @@
                                             }, 10000);
                                             
                                             // Log successful submission
-                                            console.log('Form submitted successfully');
+                                            console.log('Application submitted successfully');
                                         } else {
-                                            throw new Error(result.error || 'Form submission failed');
+                                            throw new Error(serverResponse.message || 'Form submission failed');
                                         }
                                     } catch (error) {
                                         console.error('Form submission error:', error);
                                         alert(`Error: ${error.message || 'There was a problem submitting your application. Please try again or contact us at contact@skymirror.eu'}
                                             \n\nIf you're still having issues, please send an email directly to contact@skymirror.eu`);
-                                        console.error('Form submission error:', error);
                                     }
                                 });
                             </script>

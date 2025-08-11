@@ -57,25 +57,26 @@ function saveToSheet(data) {
   sheet.getRange(row, 1).setValue(new Date());
   
   // Add form data
-  sheet.getRange(row, 2).setValue(data.email);
-  sheet.getRange(row, 3).setValue(data.name);
-  sheet.getRange(row, 4).setValue(data.background);
+  sheet.getRange(row, 2).setValue(data.firstName + ' ' + data.lastName);
+  sheet.getRange(row, 3).setValue(data.email);
+  sheet.getRange(row, 4).setValue(data.phone);
   sheet.getRange(row, 5).setValue(data.program);
-  sheet.getRange(row, 6).setValue(data.message);
-  
-  // Add more fields as needed
+  sheet.getRange(row, 6).setValue(data.background);
+  sheet.getRange(row, 7).setValue(data.whyInterested);
+  sheet.getRange(row, 8).setValue(data.VanguardCohortInterest);
 }
 
 function sendConfirmationEmail(data) {
   const htmlTemplate = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h1 style="color: #7C3AED;">Thank you for your application!</h1>
-      <p>Dear ${data.name},</p>
+      <p>Dear ${data.firstName} ${data.lastName},</p>
       <p>Thank you for applying to Skymirror Academy. We've received your application and will review it shortly.</p>
       <p>Here's a summary of your application:</p>
       <ul style="list-style-type: none; padding: 0;">
         <li><strong>Program:</strong> ${data.program}</li>
         <li><strong>Background:</strong> ${data.background}</li>
+        <li><strong>Interest in Vanguard Cohort:</strong> ${data.VanguardCohortInterest ? 'Yes' : 'No'}</li>
       </ul>
       <p>Best regards,<br>The Skymirror Academy Team</p>
       <p style="font-size: 0.9em; color: #666;">
@@ -100,12 +101,14 @@ function sendAdminNotification(data) {
   const htmlTemplate = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
       <h1 style="color: #7C3AED;">New Application Received</h1>
-      <p>New application from ${data.name} (${data.email})</p>
+      <p>New application from ${data.firstName} ${data.lastName} (${data.email})</p>
       <p>Details:</p>
       <ul style="list-style-type: none; padding: 0;">
         <li><strong>Program:</strong> ${data.program}</li>
         <li><strong>Background:</strong> ${data.background}</li>
-        <li><strong>Message:</strong> ${data.message}</li>
+        <li><strong>Phone:</strong> ${data.phone}</li>
+        <li><strong>Interest in Vanguard Cohort:</strong> ${data.VanguardCohortInterest ? 'Yes' : 'No'}</li>
+        <li><strong>Why Interested:</strong> ${data.whyInterested}</li>
       </ul>
     </div>
   `;
