@@ -29,13 +29,13 @@ function doPost(e) {
     }
     
     // Save to Google Sheets
-    await saveToSheet(data);
+    saveToSheet(data);
     
     // Send confirmation email to applicant
-    await sendConfirmationEmail(data);
+    sendConfirmationEmail(data);
     
     // Send notification to admin
-    await sendAdminNotification(data);
+    sendAdminNotification(data);
     
     // Prepare success response
     const response = ContentService.createTextOutput(JSON.stringify({ 
