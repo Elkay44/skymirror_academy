@@ -7,7 +7,14 @@ const WEBSITE_URL = 'https://www.skymirror.academy';
 // Entry point for form submissions
 function doPost(e) {
   try {
-    const data = JSON.parse(e.postData.contents);
+    // Get the raw request body
+    const content = e.parameter.data;
+    if (!content) {
+      throw new Error('No data received in request');
+    }
+    
+    // Parse the JSON data
+    const data = JSON.parse(content);
     
     // Save to Google Sheets
     saveToSheet(data);
@@ -18,7 +25,10 @@ function doPost(e) {
     // Send notification to admin
     sendAdminNotification(data);
     
-    const response = ContentService.createTextOutput(JSON.stringify({ status: 'success' }));
+    const response = ContentService.createTextOutput(JSON.stringify({ 
+      status: 'success',
+      message: 'Application received successfully'
+    }));
     response.setMimeType(ContentService.MimeType.JSON);
     return response;
   } catch (error) {

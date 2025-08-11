@@ -334,24 +334,23 @@
                                         // Google Apps Script URL
                                         const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1f5_Wu991JmIk1A1AqcmUj-q1Ejp1-8ie0N_QjotEOmcRMjNkAKzva3FrCDW63Z-76A/exec';
                                         
-                                        // Add CORS headers
-                                        const headers = {
-                                            'Accept': 'application/json',
-                                            'Content-Type': 'application/json',
-                                            'Origin': window.location.origin
+                                        // Prepare the request body
+                                        const requestBody = {
+                                            data: submissionJson
                                         };
 
                                         const response = await fetch(scriptUrl, {
                                             method: 'POST',
-                                            body: submissionJson,
-                                            headers: headers,
-                                            mode: 'cors',
-                                            credentials: 'include'
+                                            body: JSON.stringify(requestBody),
+                                            headers: {
+                                                'Content-Type': 'application/x-www-form-urlencoded',
+                                                'Accept': 'application/json'
+                                            }
                                         });
                                         
-                                        const result = await response.json();
+                                        const serverResponse = await response.json();
                                         
-                                        if (response.ok && result.status === 'success') {
+                                        if (response.ok && serverResponse.status === 'success') {
                                             form.reset();
                                             formSuccess.classList.remove('hidden');
                                             form.scrollIntoView({ behavior: 'smooth' });
