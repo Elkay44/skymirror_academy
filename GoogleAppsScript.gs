@@ -18,11 +18,25 @@ function doPost(e) {
     // Send notification to admin
     sendAdminNotification(data);
     
-    return ContentService.createTextOutput(JSON.stringify({ status: 'success' })).setMimeType(ContentService.MimeType.JSON);
+    const response = ContentService.createTextOutput(JSON.stringify({ status: 'success' }));
+    response.setMimeType(ContentService.MimeType.JSON);
+    return response;
   } catch (error) {
     Logger.log('Error: ' + error.toString());
-    return ContentService.createTextOutput(JSON.stringify({ status: 'error', message: error.toString() })).setMimeType(ContentService.MimeType.JSON);
+    const response = ContentService.createTextOutput(JSON.stringify({ 
+      status: 'error', 
+      message: error.toString() 
+    }));
+    response.setMimeType(ContentService.MimeType.JSON);
+    return response;
   }
+}
+
+// Handle CORS preflight requests
+function doGet(e) {
+  const response = ContentService.createTextOutput(JSON.stringify({ status: 'ok' }));
+  response.setMimeType(ContentService.MimeType.JSON);
+  return response;
 }
 
 function saveToSheet(data) {
@@ -100,4 +114,14 @@ function getWebAppUrl() {
   Logger.log('Script ID: ' + scriptId);
   Logger.log('Web App URL: ' + url);
   return url;
+}
+
+// Enable CORS
+function enableCors() {
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type'
+  };
+  return headers;
 }
