@@ -340,7 +340,7 @@
                                         // Google Apps Script URL
                                         const scriptUrl = 'https://script.google.com/macros/s/AKfycbx23SbSz1V8hnIK6GVZP_mMJYWTphplttjhQlF0r3JHHjGksN6_hoVKpuw0vCkSA3FZ/exec';
                                         
-                                        // Prepare the request with CORS settings
+                                        // Prepare the request with proper encoding
                                         const response = await fetch(scriptUrl, {
                                             method: 'POST',
                                             mode: 'cors',
@@ -348,10 +348,9 @@
                                             headers: {
                                                 'Content-Type': 'application/json',
                                                 'Accept': 'application/json',
-                                                'Origin': window.location.origin,
-                                                'Access-Control-Request-Method': 'POST'
+                                                'Origin': window.location.origin
                                             },
-                                            body: submissionJson
+                                            body: `data=${encodeURIComponent(submissionJson)}`
                                         });
 
                                         const serverResponse = await response.json();
