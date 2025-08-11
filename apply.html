@@ -220,7 +220,7 @@
                         <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
                             <h2 class="text-2xl font-bold mb-6">Start Your Application</h2>
                             
-                            <form action="https://formspree.io/f/xvgqdnjl" method="POST" id="application-form" class="space-y-6" enctype="multipart/form-data">
+                            <form id="application-form" class="space-y-6" enctype="multipart/form-data">
                                 <!-- Success Message (initially hidden) -->
                                 <div id="form-success" class="hidden p-4 mb-6 bg-green-900 bg-opacity-30 border border-green-500 rounded-lg">
                                     <div class="flex items-center">
@@ -364,21 +364,28 @@
                                     `;
                                     
                                     // Add the email content to form data
-                                    formData.append('_replyto', formObject.email);
-                                    formData.append('_subject', `Application Received - Skymirror Academy`);
-                                    formData.append('_template', 'table');
-                                    formData.append('_next', 'https://www.skymirror.academy/thank-you');
-                                    formData.append('_cc', 'lukman.ibrahim@skymirror.eu');
+                                    // Prepare data for Google Apps Script
+                                    const data = {
+                                        email: formObject.email,
+                                        name: formObject.name,
+                                        background: formObject.background,
+                                        program: formObject.program,
+                                        message: formObject.message
+                                    };
                                     
-                                    // Add the autoresponse email template
-                                    formData.append('_autoresponse', emailTemplate);
+                                    // Convert data to JSON
+                                    const jsonData = JSON.stringify(data);
                                     
                                     try {
-                                        const response = await fetch(form.action, {
+                                        // Google Apps Script URL
+                                        const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1f5_Wu991JmIk1A1AqcmUj-q1Ejp1-8ie0N_QjotEOmcRMjNkAKzva3FrCDW63Z-76A/exec';
+                                        
+                                        const response = await fetch(scriptUrl, {
                                             method: 'POST',
-                                            body: formData,
+                                            body: jsonData,
                                             headers: {
-                                                'Accept': 'application/json'
+                                                'Accept': 'application/json',
+                                                'Content-Type': 'application/json'
                                             }
                                         });
                                         
