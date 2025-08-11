@@ -59,31 +59,37 @@ function doPost(e) {
 function sendConfirmationEmail(data) {
   const email = data.email;
   const firstName = data.firstName;
+  const noReplyEmail = 'no-reply@skymirror.eu';  // Update this to your domain's no-reply email
   
-  // Send single confirmation email to applicant
-  MailApp.sendEmail({
-    to: email,
-    subject: 'Skymirror Academy Application Received',
-    htmlBody: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1 style="color: #3b82f6; text-align: center;">Thank you for your application!</h1>
-        <p style="color: #1f2937; line-height: 1.6;">Dear ${firstName},</p>
-        <p style="color: #1f2937; line-height: 1.6;">We've received your application for Skymirror Academy's program. Here's what happens next:</p>
-        <ol style="color: #1f2937; line-height: 1.6;">
-          <li>Our team will review your application.</li>
-          <li>We'll contact you within 7-10 business days.</li>
-          <li>Next steps will be shared via email.</li>
-        </ol>
-        <p style="color: #1f2937; line-height: 1.6;">If you have any questions, feel free to reach out to us at contact@skymirror.eu.</p>
-        <p style="color: #1f2937; line-height: 1.6;">Best regards,<br>The Skymirror Academy Team</p>
-        <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 30px;">
-          This email was sent from Skymirror Academy<br>
-          Website: https://skymirror.eu<br>
-          Contact: contact@skymirror.eu
-        </p>
-      </div>
-    `
-  });
+  // Send single confirmation email to applicant from no-reply address
+  GmailApp.sendEmail(email, 
+    'Skymirror Academy Application Received',
+    '', // Empty body for HTML only
+    {
+      from: `Skymirror Academy <${noReplyEmail}>`,
+      replyTo: ADMIN_EMAIL, // Replies will go to admin email
+      name: 'Skymirror Academy',
+      htmlBody: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h1 style="color: #3b82f6; text-align: center;">Thank you for your application!</h1>
+          <p style="color: #1f2937; line-height: 1.6;">Dear ${firstName},</p>
+          <p style="color: #1f2937; line-height: 1.6;">We've received your application for Skymirror Academy's program. Here's what happens next:</p>
+          <ol style="color: #1f2937; line-height: 1.6;">
+            <li>Our team will review your application.</li>
+            <li>We'll contact you within 7-10 business days.</li>
+            <li>Next steps will be shared via email.</li>
+          </ol>
+          <p style="color: #1f2937; line-height: 1.6;">If you have any questions, please reply to this email or contact us at ${ADMIN_EMAIL}.</p>
+          <p style="color: #1f2937; line-height: 1.6;">Best regards,<br>The Skymirror Academy Team</p>
+          <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 30px;">
+            This is an automated message. Please do not reply to this email.<br>
+            Website: https://skymirror.eu<br>
+            Contact: ${ADMIN_EMAIL}
+          </p>
+        </div>
+      `
+    }
+  );
   
   // Send notification to admin
   MailApp.sendEmail({
@@ -98,5 +104,5 @@ function sendConfirmationEmail(data) {
     `
   });
   
-  Logger.log(`Detailed confirmation email sent to ${data.email}.`);
+  Logger.log(`Confirmation email sent from no-reply to ${data.email}.`);
 }
