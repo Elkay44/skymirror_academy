@@ -30,7 +30,18 @@ function doPost(e) {
       status: 'success',
       message: 'Application received successfully'
     }));
+    
+    // Add CORS headers
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Accept'
+    };
+    
+    // Set headers
     response.setMimeType(ContentService.MimeType.JSON);
+    response.setHeaders(headers);
+    
     return response;
   } catch (error) {
     Logger.log('Error: ' + error.toString());
@@ -47,6 +58,17 @@ function doPost(e) {
 function doGet(e) {
   const response = ContentService.createTextOutput(JSON.stringify({ status: 'ok' }));
   response.setMimeType(ContentService.MimeType.JSON);
+  
+  // Add CORS headers
+  const headers = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Accept'
+  };
+  
+  // Set headers
+  response.setHeaders(headers);
+  
   return response;
 }
 
