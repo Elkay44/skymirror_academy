@@ -370,12 +370,10 @@
                                     formData.append('_next', 'https://www.skymirror.academy/thank-you');
                                     formData.append('_cc', 'lukman.ibrahim@skymirror.eu');
                                     
-                                    // Create a URL-encoded string for the email template
-                                    const emailParams = new URLSearchParams();
-                                    emailParams.append('_autoresponse', emailTemplate.replace(/\n/g, '<br>'));
+                                    // Add the autoresponse email template
+                                    formData.append('_autoresponse', emailTemplate);
                                     
                                     try {
-                                        // First submit the form data
                                         const response = await fetch(form.action, {
                                             method: 'POST',
                                             body: formData,
@@ -387,7 +385,6 @@
                                         const result = await response.json();
                                         
                                         if (response.ok && result.ok) {
-                                            // If form submission is successful, show success message
                                             form.reset();
                                             formSuccess.classList.remove('hidden');
                                             form.scrollIntoView({ behavior: 'smooth' });
@@ -396,12 +393,16 @@
                                             setTimeout(() => {
                                                 formSuccess.classList.add('hidden');
                                             }, 10000);
+                                            
+                                            // Log successful submission
+                                            console.log('Form submitted successfully');
                                         } else {
                                             throw new Error(result.error || 'Form submission failed');
                                         }
                                     } catch (error) {
                                         console.error('Form submission error:', error);
-                                        alert(`Error: ${error.message || 'There was a problem submitting your application. Please try again or contact us at contact@skymirror.eu'}`);
+                                        alert(`Error: ${error.message || 'There was a problem submitting your application. Please try again or contact us at contact@skymirror.eu'}
+                                            \n\nIf you're still having issues, please send an email directly to contact@skymirror.eu`);
                                     }
                                 });
                             </script>
