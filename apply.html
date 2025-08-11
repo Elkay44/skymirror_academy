@@ -333,13 +333,11 @@
                                         const scriptUrl = 'https://script.google.com/macros/s/AKfycbw1f5_Wu991JmIk1A1AqcmUj-q1Ejp1-8ie0N_QjotEOmcRMjNkAKzva3FrCDW63Z-76A/exec';
                                         
                                         // Prepare the request body
-                                        const formData = new FormData();
-                                        formData.append('data', submissionJson);
-
                                         const response = await fetch(scriptUrl, {
                                             method: 'POST',
-                                            body: formData,
+                                            body: submissionJson,
                                             headers: {
+                                                'Content-Type': 'application/json',
                                                 'Accept': 'application/json'
                                             }
                                         });

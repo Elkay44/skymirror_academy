@@ -1,20 +1,21 @@
 // Google Apps Script code for handling form submissions
 
 // Configuration
-const ADMIN_EMAIL = 'lukman.ibrahim@skymirror.eu';
+const ADMIN_EMAIL = 'contact@skymirror.eu';
+const COPY_EMAIL = 'lukman.ibrahim@skymirror.eu';
 const WEBSITE_URL = 'https://www.skymirror.academy';
 
 // Entry point for form submissions
 function doPost(e) {
   try {
-    // Get the raw request body
-    const content = e.parameter.data;
-    if (!content) {
-      throw new Error('No data received in request');
+    // Get the form data from the request
+    const formData = e.postData.contents;
+    if (!formData) {
+      throw new Error('No form data received');
     }
     
     // Parse the JSON data
-    const data = JSON.parse(content);
+    const data = JSON.parse(formData);
     
     // Save to Google Sheets
     saveToSheet(data);
@@ -110,8 +111,29 @@ function sendAdminNotification(data) {
         <li><strong>Interest in Vanguard Cohort:</strong> ${data.VanguardCohortInterest ? 'Yes' : 'No'}</li>
         <li><strong>Why Interested:</strong> ${data.whyInterested}</li>
       </ul>
+      <p style="font-size: 0.9em; color: #666;">
+        ${WEBSITE_URL}<br>
+        Budapest President Centre<br>
+        Kálmán Imre utca 1<br>
+        1054 Budapest, Hungary<br>
+        contact@skymirror.eu
+      </p>
     </div>
   `;
+
+  // Send to contact@skymirror.eu (main contact email)
+  MailApp.sendEmail({
+    to: ADMIN_EMAIL,
+    subject: 'New Application Received - Skymirror Academy',
+    htmlBody: htmlTemplate
+  });
+
+  // Send copy to lukman.ibrahim@skymirror.eu
+  MailApp.sendEmail({
+    to: COPY_EMAIL,
+    subject: 'New Application Copy - Skymirror Academy',
+    htmlBody: htmlTemplate
+  });
   
   MailApp.sendEmail({
     to: ADMIN_EMAIL,
