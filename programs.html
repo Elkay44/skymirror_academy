@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs | Skymirror Academy</title>
+    <meta name="description" content="Explore Skymirror Academy's practical, hands-on programs in Fullstack Development, AI & Machine Learning, and GreenTech. Learn skills that matter through real-world projects.">
+    
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="Programs | Skymirror Academy">
+    <meta property="og:description" content="Learn-by-doing through hands-on projects with our Fullstack, AI & ML, and GreenTech certification programs.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551867633-194f125bddfa">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Particle background effect -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0" id="particles-js"></div>
+    </div>
+
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="programs.html" class="text-purple-300 hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-full">Programs</a></li>
+                    <li><a href="Vanguard Cohort.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Vanguard Cohort</a></li>
+                    <li><a href="about.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">About Us</a></li>
+                    <li><a href="apply.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Apply</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            
+            <a href="apply.html" class="hidden md:block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                <span class="flex items-center">
+                    <span>Apply Now</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 p-4 bg-glass rounded-lg border border-white border-opacity-10">
+            <ul class="flex flex-col space-y-4">
+                <li><a href="programs.html" class="block text-purple-300 transition-colors text-base font-medium">Programs</a></li>
+                <li><a href="Vanguard Cohort.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Vanguard Cohort</a></li>
+                <li><a href="about.html" class="block hover:text-purple-300 transition-colors text-base font-medium">About Us</a></li>
+                <li><a href="apply.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Apply</a></li>
+                <li class="pt-2">
+                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold">
+                        Apply Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Programs Hero Section -->
+        <section class="py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-4">
+                        Our Programs
+                    </span>
+                    
+                    <h1 class="text-5xl sm:text-6xl font-bold mb-6">
+                        <span class="text-gradient hero-gradient">Learn By Doing</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300">
+                        Our focused tech programs emphasize practical skills through hands-on projects, preparing you for real-world challenges in the industry.
+                    </p>
+                </div>
+                
+                <!-- Program Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Fullstack Development Card -->
+                    <a href="#fullstack" class="group bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white hover:bg-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-code text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">Fullstack Development</h3>
+                        <p class="text-gray-400 mb-4">
+                            Master both frontend and backend technologies to build complete web applications from the ground up.
+                        </p>
+                        <div class="flex items-center text-purple-300 font-medium">
+                            <span>Learn more</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <!-- AI & Machine Learning Card -->
+                    <a href="#ai-ml" class="group bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white hover:bg-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-brain text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">AI & Machine Learning</h3>
+                        <p class="text-gray-400 mb-4">
+                            Build intelligent systems that analyze data, learn from patterns, and make predictions through practical projects.
+                        </p>
+                        <div class="flex items-center text-purple-300 font-medium">
+                            <span>Learn more</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
+                    </a>
+                    
+                    <!-- GreenTech Innovation Card -->
+                    <a href="#greentech" class="group bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg hover:shadow-xl transition-all duration-300 hover:bg-white hover:bg-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-leaf text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-3">GreenTech Innovation</h3>
+                        <p class="text-gray-400 mb-4">
+                            Develop sustainable technology solutions that address environmental challenges through innovative approaches.
+                        </p>
+                        <div class="flex items-center text-purple-300 font-medium">
+                            <span>Learn more</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                            </svg>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Individual Programs -->
+        <section id="fullstack" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+            <div class="max-w-7xl mx-auto">
+                <!-- Fullstack Development -->
+                <div class="mb-24">
+                    <div class="flex flex-col md:flex-row md:items-center mb-12">
+                        <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-code text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-2">
+                                Most Popular Program
+                            </span>
+                            <h2 class="text-4xl font-bold text-gradient hero-gradient">Fullstack Development</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <!-- Program Overview -->
+                        <div class="lg:col-span-2">
+                            <p class="text-xl text-gray-300 mb-6">
+                                Master both frontend and backend development to build complete web applications from scratch. In this intensive program, you'll learn to create responsive user interfaces, build robust backends, and integrate with databases and APIs.
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">What You'll Learn:</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Frontend Development</h4>
+                                        <p class="text-gray-400 text-sm">Modern JavaScript, React, state management, responsive design</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Backend Development</h4>
+                                        <p class="text-gray-400 text-sm">Node.js, Express, RESTful API design, authentication</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Database Integration</h4>
+                                        <p class="text-gray-400 text-sm">MongoDB, data modeling, CRUD operations, indexing</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Development Workflows</h4>
+                                        <p class="text-gray-400 text-sm">Git, CI/CD, deployment strategies, testing</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">Real-World Projects You'll Build:</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">E-Commerce Platform</h4>
+                                    <p class="text-gray-400 text-sm">Build a complete online store with product catalog, shopping cart, payment processing, and user accounts.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Social Media Dashboard</h4>
+                                    <p class="text-gray-400 text-sm">Create a real-time analytics dashboard that aggregates and visualizes data from multiple social media APIs.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Capstone Project: SaaS Application</h4>
+                                    <p class="text-gray-400 text-sm">Develop a full-featured SaaS application with subscription management, team collaboration, and advanced frontend interactions.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program Details Sidebar -->
+                        <div>
+                            <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg sticky top-24">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-bold text-gradient hero-gradient mb-1">$199</div>
+                                    <div class="text-gray-400 text-sm">Full certification</div>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">7-week intensive program</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">15+ hands-on projects</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">24/7 AI-assisted learning</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Weekly code reviews</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Blockchain-verified certification</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Budapest Vanguard Cohort eligibility</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="space-y-3">
+                                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                                        Apply Now
+                                    </a>
+                                    <a href="#" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold">
+                                        Download Syllabus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI & Machine Learning Section -->
+        <section id="ai-ml" class="py-16 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="mb-24">
+                    <div class="flex flex-col md:flex-row md:items-center mb-12">
+                        <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-brain text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-2">
+                                High-Demand Skills
+                            </span>
+                            <h2 class="text-4xl font-bold text-gradient hero-gradient">AI & Machine Learning</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <!-- Program Overview -->
+                        <div class="lg:col-span-2">
+                            <p class="text-xl text-gray-300 mb-6">
+                                Dive into the world of artificial intelligence and machine learning. This program teaches you to build intelligent systems that can analyze data, learn from patterns, and make predictions—all through practical, hands-on projects.
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">What You'll Learn:</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Machine Learning Fundamentals</h4>
+                                        <p class="text-gray-400 text-sm">Supervised & unsupervised learning, model evaluation, feature engineering</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Neural Networks</h4>
+                                        <p class="text-gray-400 text-sm">Deep learning, CNNs, RNNs, transfer learning, TensorFlow & PyTorch</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Computer Vision</h4>
+                                        <p class="text-gray-400 text-sm">Image processing, object detection, face recognition, OpenCV</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Natural Language Processing</h4>
+                                        <p class="text-gray-400 text-sm">Text preprocessing, sentiment analysis, chatbots, transformers</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">Real-World Projects You'll Build:</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Predictive Analytics Dashboard</h4>
+                                    <p class="text-gray-400 text-sm">Build a system that analyzes business data to predict future trends and visualize insights.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Computer Vision Application</h4>
+                                    <p class="text-gray-400 text-sm">Create an intelligent vision system that can identify objects, recognize faces, and track movement in real-time.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Capstone Project: AI-Powered Solution</h4>
+                                    <p class="text-gray-400 text-sm">Develop an end-to-end AI solution that solves a real business or social problem, deployable in production environments.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program Details Sidebar -->
+                        <div>
+                            <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg sticky top-24">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-bold text-gradient hero-gradient mb-1">$249</div>
+                                    <div class="text-gray-400 text-sm">Full certification</div>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">7-week intensive program</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">12+ AI & ML projects</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">GPU-enabled cloud environments</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Weekly model reviews</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Blockchain-verified certification</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Budapest Vanguard Cohort eligibility</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="space-y-3">
+                                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                                        Apply Now
+                                    </a>
+                                    <a href="#" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold">
+                                        Download Syllabus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- GreenTech Innovation Section -->
+        <section id="greentech" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+            <div class="max-w-7xl mx-auto">
+                <!-- GreenTech Innovation -->
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-center mb-12">
+                        <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-leaf text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-2">
+                                Future-Focused Program
+                            </span>
+                            <h2 class="text-4xl font-bold text-gradient hero-gradient">GreenTech Innovation</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <!-- Program Overview -->
+                        <div class="lg:col-span-2">
+                            <p class="text-xl text-gray-300 mb-6">
+                                Develop sustainable technology solutions that address environmental challenges. Learn to create innovative applications that tackle climate change, resource optimization, and environmental monitoring.
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">What You'll Learn:</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">IoT & Sensor Networks</h4>
+                                        <p class="text-gray-400 text-sm">Arduino, Raspberry Pi, sensor integration, data collection strategies</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Environmental Data Science</h4>
+                                        <p class="text-gray-400 text-sm">Data analysis, predictive modeling, geospatial techniques, Python</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Green Business Models</h4>
+                                        <p class="text-gray-400 text-sm">Sustainable product development, impact assessment, market analysis</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">Real-World Projects You'll Build:</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Environmental Monitoring Platform</h4>
+                                    <p class="text-gray-400 text-sm">Create a network of IoT sensors to collect and analyze environmental data, with real-time dashboards and alerts.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Resource Optimization System</h4>
+                                    <p class="text-gray-400 text-sm">Develop software that helps businesses or communities optimize resource usage through predictive analytics and automation.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Capstone Project: Climate Tech Solution</h4>
+                                    <p class="text-gray-400 text-sm">Design and prototype an innovative technology solution that addresses a specific environmental challenge, with a complete implementation plan.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program Details Sidebar -->
+                        <div>
+                            <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg sticky top-24">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-bold text-gradient hero-gradient mb-1">$229</div>
+                                    <div class="text-gray-400 text-sm">Full certification</div>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">7-week intensive program</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">10+ sustainability projects</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Hardware toolkit included</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Industry partner mentoring</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Blockchain-verified certification</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Budapest Vanguard Cohort eligibility</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="space-y-3">
+                                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                                        Apply Now
+                                    </a>
+                                    <a href="#" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold">
+                                        Download Syllabus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-6 text-gradient hero-gradient">Ready to Begin Your Journey?</h2>
+                <p class="text-xl text-gray-300 mb-10">
+                    Choose the program that aligns with your interests and take the first step toward a hands-on, practical education in tech.
+                </p>
+                
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="apply.html" class="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-lg">
+                        Apply Now
+                    </a>
+                    <a href="Vanguard Cohort.html" class="px-8 py-4 bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 rounded-full transition-all duration-300 font-semibold text-lg">
+                        Learn About Vanguard Cohort
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container">
+        <!-- Footer will be loaded here via JavaScript -->
+    </div>
+
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>

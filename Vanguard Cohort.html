@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budapest Vanguard Cohort | Skymirror Academy</title>
+    <meta name="description" content="Experience real-world tech projects during our exclusive Budapest Vanguard Cohort. Work with European companies and build your international network.">
+    
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="Budapest Vanguard Cohort | Skymirror Academy">
+    <meta property="og:description" content="Apply classroom skills in a real-world setting with our exclusive 2-week Budapest Vanguard Cohort program.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1605135693932-f1d6fb1be3cc">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        .badge {
+            background-color: rgba(139, 92, 246, 0.15);
+            color: rgb(167, 139, 250);
+            padding: 0.25em 0.75em;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Particle background effect -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0" id="particles-js"></div>
+    </div>
+
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="programs.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Programs</a></li>
+                    <li><a href="residency.html" class="text-purple-300 hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-full">Vanguard Cohort</a></li>
+                    <li><a href="about.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">About Us</a></li>
+                    <li><a href="apply.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Apply</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            
+            <a href="apply.html" class="hidden md:block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                <span class="flex items-center">
+                    <span>Apply Now</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 p-4 bg-glass rounded-lg border border-white border-opacity-10">
+            <ul class="flex flex-col space-y-4">
+                <li><a href="programs.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Programs</a></li>
+                <li><a href="residency.html" class="block text-purple-300 transition-colors text-base font-medium">Vanguard Cohort</a></li>
+                <li><a href="about.html" class="block hover:text-purple-300 transition-colors text-base font-medium">About Us</a></li>
+                <li><a href="apply.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Apply</a></li>
+                <li class="pt-2">
+                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold">
+                        Apply Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left Column: Content -->
+                    <div>
+                        <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-4">
+                            Exclusive Opportunity
+                        </span>
+                        
+                        <h1 class="text-5xl sm:text-6xl font-bold mb-6">
+                            <span class="text-gradient hero-gradient">Budapest Vanguard Cohort</span>
+                        </h1>
+                        
+                        <p class="text-xl text-gray-300 mb-8">
+                            Apply what you've learned in the real world. Top students join our exclusive 2-week Vanguard Cohort in Budapest, working directly with tech companies on actual projects.
+                        </p>
+                        
+                        <div class="flex flex-wrap gap-3 mb-8">
+                            <span class="badge"><i class="fas fa-briefcase mr-2"></i>Real Industry Projects</span>
+                            <span class="badge"><i class="fas fa-users mr-2"></i>Tech Leader Networking</span>
+                            <span class="badge"><i class="fas fa-city mr-2"></i>Cultural Immersion</span>
+                            <span class="badge"><i class="fas fa-certificate mr-2"></i>Career Acceleration</span>
+                        </div>
+                        
+                        <div class="flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="apply.html" class="block sm:inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold w-full sm:w-auto text-center">
+                                Apply Now
+                            </a>
+                            <a href="#Vanguard Cohort-details" class="block sm:inline-block bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold w-full sm:w-auto text-center">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Image -->
+                    <div class="relative hidden lg:block">
+                        <div class="relative w-full h-96 rounded-2xl overflow-hidden">
+                            <div class="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-blue-500/30 mix-blend-multiply z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1605135693932-f1d6fb1be3cc" class="absolute inset-0 w-full h-full object-cover" alt="Budapest panorama">
+                        </div>
+                        
+                        <!-- Floating elements -->
+                        <div class="absolute -bottom-6 -left-6 w-48 p-4 bg-glass rounded-lg border border-white border-opacity-10 shadow-xl">
+                            <div class="flex items-center mb-2">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white mr-2">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <span class="font-semibold">Budapest, Hungary</span>
+                            </div>
+                            <div class="text-sm text-gray-400">2-week immersive tech Vanguard Cohort</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Vanguard Cohort Details -->
+        <section id="Vanguard Cohort-details" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6 text-gradient hero-gradient">
+                        What Makes Our Vanguard Cohort Special
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Unlike traditional internships, our Budapest Vanguard Cohort is designed to provide deep industry immersion in a supportive environment with like-minded peers.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                    <!-- Feature 1 -->
+                    <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Real Projects, Real Impact</h3>
+                        <p class="text-gray-300">Work on actual projects for European tech companies that will go into production—not simulated exercises.</p>
+                    </div>
+                    
+                    <!-- Feature 2 -->
+                    <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Industry Connections</h3>
+                        <p class="text-gray-300">Network with European tech leaders at exclusive events, building relationships that can lead to job opportunities.</p>
+                    </div>
+                    
+                    <!-- Feature 3 -->
+                    <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fas fa-city"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Cultural Immersion</h3>
+                        <p class="text-gray-300">Experience the vibrant city of Budapest with organized cultural activities, tech meetups, and a supportive student community.</p>
+                    </div>
+                    
+                    <!-- Feature 4 -->
+                    <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mb-6">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-4">Career Acceleration</h3>
+                        <p class="text-gray-300">Add international experience to your resume, differentiate yourself from peers, and fast-track your career in tech.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Vanguard Cohort Experience -->
+        <section class="py-24 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <!-- Left Column: Image Gallery -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="space-y-4">
+                            <div class="rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c" class="w-full h-auto" alt="Students collaborating">
+                            </div>
+                            <div class="rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1558403194-611308249627" class="w-full h-auto" alt="Tech meeting">
+                            </div>
+                        </div>
+                        <div class="space-y-4 mt-8">
+                            <div class="rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1511988617509-a57c8a288659" class="w-full h-auto" alt="Coding session">
+                            </div>
+                            <div class="rounded-xl overflow-hidden shadow-lg">
+                                <img src="https://images.unsplash.com/photo-1551867633-194f125bddfa" class="w-full h-auto" alt="Budapest architecture">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Column: Content -->
+                    <div>
+                        <h2 class="text-4xl font-bold mb-6 text-gradient hero-gradient">
+                            A Day in the Vanguard Cohort
+                        </h2>
+                        
+                        <div class="space-y-8">
+                            <!-- Morning -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white">
+                                        <i class="fas fa-coffee"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-semibold mb-2">Morning: Project Work</h3>
+                                    <p class="text-gray-300">Start your day at the tech hub, collaborating with your team on client projects. Work alongside industry mentors who provide guidance and feedback on your work.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Afternoon -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white">
+                                        <i class="fas fa-laptop-code"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-semibold mb-2">Afternoon: Industry Workshops</h3>
+                                    <p class="text-gray-300">Attend specialized workshops led by industry experts on cutting-edge technologies and methodologies used in European tech companies.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Evening -->
+                            <div class="flex">
+                                <div class="flex-shrink-0 mt-1">
+                                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white">
+                                        <i class="fas fa-city"></i>
+                                    </div>
+                                </div>
+                                <div class="ml-4">
+                                    <h3 class="text-xl font-semibold mb-2">Evening: Networking & Culture</h3>
+                                    <p class="text-gray-300">Join tech meetups, networking events, or cultural experiences around Budapest. Build connections while experiencing the city's unique blend of history and innovation.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                                Apply for Vanguard Cohort
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container">
+        <!-- Footer will be loaded here via JavaScript -->
+    </div>
+
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>

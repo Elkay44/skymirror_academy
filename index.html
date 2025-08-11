@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skymirror Academy | Practical Tech Skills for Students</title>
+    <meta name="description" content="Skymirror Academy offers practical, project-based tech education with AI-guided learning and real-world experience in Budapest. Perfect for students seeking hands-on skills.">
+    
+    <!-- Social Media Tags -->
+    <meta property="og:title" content="Skymirror Academy | Practical Tech Education">
+    <meta property="og:description" content="Learn-by-doing with real projects, AI mentorship, and our exclusive Budapest residency.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1551867633-194f125bddfa">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .program-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2.5rem;
+            box-shadow: 0 7px 14px -2px rgba(0, 0, 0, 0.18), 0 4px 9px -2px rgba(0, 0, 0, 0.09);
+            transition: all 400ms cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .program-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(225deg, rgba(79, 70, 229, 0.05) 0%, rgba(76, 81, 191, 0) 100%);
+            z-index: -1;
+            transition: opacity 0.3s ease-in-out;
+            opacity: 0;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-0.75rem) scale(1.03);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.2), 0 10px 10px -5px rgba(0, 0, 0, 0.1);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+        
+        .program-card:hover::before {
+            opacity: 1;
+        }
+        
+        .badge {
+            background-color: rgba(139, 92, 246, 0.15);
+            color: rgb(167, 139, 250);
+            padding: 0.25em 0.75em;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .badge:hover {
+            background-color: rgba(139, 92, 246, 0.25);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Particle background effect -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div class="absolute inset-0" id="particles-js"></div>
+    </div>
+
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="programs.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Programs</a></li>
+                    <li><a href="Vanguard Cohort.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Vanguard Cohort</a></li>
+                    <li><a href="about.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">About Us</a></li>
+                    <li><a href="apply.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Apply</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+            
+            <a href="apply.html" class="hidden md:block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                <span class="flex items-center">
+                    <span>Apply Now</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 p-4 bg-glass rounded-lg border border-white border-opacity-10">
+            <ul class="flex flex-col space-y-4">
+                <li><a href="programs.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Programs</a></li>
+                <li><a href="Vanguard Cohort.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Vanguard Cohort</a></li>
+                <li><a href="about.html" class="block hover:text-purple-300 transition-colors text-base font-medium">About Us</a></li>
+                <li><a href="apply.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Apply</a></li>
+                <li class="pt-2">
+                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold">
+                        Apply Now
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-7xl mx-auto relative">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <!-- Left column: Text content -->
+                    <div class="text-left">
+                        <div class="mb-4">
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium">
+                                Launching 2025 — Registration Open
+                            </span>
+                        </div>
+                        
+                        <h1 class="text-5xl sm:text-6xl font-extrabold mb-6">
+                            <span class="block text-gray-100">Learn to</span>
+                            <span class="text-gradient hero-gradient block">Build. Create. Launch.</span>
+                        </h1>
+                        
+                        <p class="text-xl text-gray-300 mb-8 max-w-xl">
+                            Designed for <span class="text-purple-300 font-semibold">students seeking practical experience</span>. Skymirror Academy bridges the gap between theory and practice with hands-on projects, <strong>blockchain-verified portfolios</strong>, and real-world problem-solving in our Budapest residency.
+                        </p>
+                        
+                        <!-- Feature badges -->
+                        <div class="flex flex-wrap mb-8">
+                            <span class="badge"><i class="fas fa-laptop-code mr-2"></i>100% Practical Projects</span>
+                            <span class="badge"><i class="fas fa-briefcase mr-2"></i>Industry-Relevant Skills</span>
+                            <span class="badge"><i class="fas fa-robot mr-2"></i>AI-Guided Practice</span>
+                            <span class="badge"><i class="fas fa-city mr-2"></i>Real-World Experience</span>
+                        </div>
+                        
+                        <div class="flex flex-wrap space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="programs.html" class="block sm:inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold w-full sm:w-auto text-center">
+                                Explore Programs
+                            </a>
+                            <a href="#how-it-works" class="block sm:inline-block bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-8 py-3 rounded-full transition-all duration-300 text-lg font-semibold w-full sm:w-auto text-center">
+                                How It Works
+                            </a>
+                        </div>
+                        
+                        <!-- Starting price -->
+                        <div class="mt-8 text-gray-400">
+                            <span class="text-gray-300 font-medium">Starting at just </span>
+                            <span class="text-xl font-bold text-gradient hero-gradient">$100</span>
+                            <span class="text-gray-300 font-medium"> per certification</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Right column: Floating illustration -->
+                    <div class="hidden lg:block">
+                        <div class="relative w-full h-96">
+                            <!-- Circle background -->
+                            <div class="absolute top-10 right-10 w-64 h-64 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 opacity-20 blur-xl"></div>
+                            
+                            <!-- Mock dashboard card -->
+                            <div class="absolute top-10 left-0 w-72 bg-glass rounded-xl p-4 border border-white border-opacity-10 shadow-xl floating">
+                                <div class="flex items-center mb-2">
+                                    <div class="w-8 h-8 rounded-full bg-purple-600 flex items-center justify-center mr-2">
+                                        <i class="fas fa-code text-xs"></i>
+                                    </div>
+                                    <span class="font-semibold">Fullstack Development</span>
+                                </div>
+                                <div class="h-2 bg-gray-700 rounded-full overflow-hidden">
+                                    <div class="h-full w-3/4 bg-gradient-to-r from-purple-500 to-blue-500"></div>
+                                </div>
+                                <div class="text-right text-xs mt-1">75% complete</div>
+                            </div>
+                            
+                            <!-- Mock portfolio card -->
+                            <div class="absolute bottom-10 right-0 w-64 bg-glass rounded-xl overflow-hidden shadow-xl floating" style="animation-delay: 1s">
+                                <div class="h-32 bg-gradient-to-br from-gray-800 to-gray-900 flex items-center justify-center">
+                                    <i class="fas fa-project-diagram text-4xl text-purple-400"></i>
+                                </div>
+                                <div class="p-3">
+                                    <div class="text-sm font-semibold">Portfolio Project</div>
+                                    <div class="text-xs text-gray-400 mt-1">Blockchain verified • Budapest approved</div>
+                                </div>
+                            </div>
+                            
+                            <!-- Central element -->
+                            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-36 h-36 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center shadow-lg floating" style="animation-delay: 0.5s">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Trusted by companies -->
+                <div class="mt-20 pt-10 border-t border-gray-800">
+                    <p class="text-center text-gray-500 text-sm uppercase font-medium tracking-wider mb-6">Aligned with industry leaders</p>
+                    <div class="flex flex-wrap justify-center items-center gap-12 opacity-80">
+    <div class="flex flex-col items-center">
+        <span class="text-gray-400 text-lg font-semibold mb-2">Microsoft</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/4/44/Microsoft_logo.svg" alt="Microsoft Logo" class="h-8 w-auto grayscale hover:grayscale-0 transition duration-200 bg-white rounded p-1" />
+    </div>
+    <div class="flex flex-col items-center">
+        <span class="text-gray-400 text-lg font-semibold mb-2">Google</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" alt="Google Logo" class="h-8 w-auto grayscale hover:grayscale-0 transition duration-200" />
+    </div>
+    <div class="flex flex-col items-center">
+        <span class="text-gray-400 text-lg font-semibold mb-2">Tesla</span>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Tesla_Motors.svg" alt="Tesla Logo" class="h-8 w-auto grayscale hover:grayscale-0 transition duration-200" />
+    </div>
+    <div class="flex flex-col items-center">
+        <span class="text-gray-400 text-lg font-semibold mb-2">Siemens</span>
+        <img src="assets/img/siemens.png" alt="Siemens Logo" class="h-8 w-auto grayscale hover:grayscale-0 transition duration-200 bg-white rounded p-1" />
+    </div>
+    <div class="flex flex-col items-center">
+        <span class="text-gray-400 text-lg font-semibold mb-2">ByteDance</span>
+        <img src="assets/img/bytedance.png" alt="ByteDance Logo" class="h-8 w-auto grayscale hover:grayscale-0 transition duration-200 bg-white rounded p-1" />
+    </div>
+</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-black">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-4">
+                        Practical Learning Path
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-bold mb-6 text-gradient hero-gradient">
+                        Real Experience, Not Just Theory
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Unlike traditional education, we focus on practical skills and real-world experience from day one. Perfect for students who learn by doing, not just listening.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+                    <!-- Step 1 -->
+                    <div class="relative bg-glass p-8 rounded-2xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-2xl font-bold mb-6">1</div>
+                        <h3 class="text-2xl font-bold mb-4">Learn By Doing</h3>
+                        <p class="text-gray-300 mb-4">Skip the lecture hall. Every concept is taught through hands-on projects that simulate real workplace tasks. You'll build actual applications from day one that employers recognize.</p>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>AI-guided learning path</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Weekly live coding sessions</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Step 2 -->
+                    <div class="relative bg-glass p-8 rounded-2xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-2xl font-bold mb-6">2</div>
+                        <h3 class="text-2xl font-bold mb-4">Build Your Portfolio</h3>
+                        <p class="text-gray-300 mb-4">Forget theoretical assignments. Every project you complete tackles real challenges and becomes part of your blockchain-verified portfolio—concrete evidence of your practical skills that employers can trust.</p>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Immutable project records</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Real-world solutions showcase</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="relative bg-glass p-8 rounded-2xl border border-white border-opacity-5 shadow-lg">
+                        <div class="w-14 h-14 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-2xl font-bold mb-6">3</div>
+                        <h3 class="text-2xl font-bold mb-4">Experience Budapest</h3>
+                        <p class="text-gray-300 mb-4">Apply classroom skills in the real world. Top students join our 2-week Budapest residency, where you'll work directly with tech companies on actual projects, gaining the practical experience that students often struggle to find.</p>
+                        <ul class="space-y-2 text-gray-400">
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>Live presentations to employers</span>
+                            </li>
+                            <li class="flex items-start">
+                                <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                <span>European tech community networking</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Programs Section -->
+        <section id="programs-preview" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-5 animate-pulse-slow"></div>
+            
+            <div class="max-w-7xl mx-auto relative">
+                <div class="text-center mb-16">
+                    <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-4">
+                        Practice-Focused Curriculum for Students
+                    </span>
+                    <h2 class="text-4xl sm:text-5xl font-bold mb-6 text-gradient hero-gradient">
+                        Learn Skills That Matter
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Our certifications replace theoretical lectures with hands-on projects that simulate actual workplace challenges. Perfect for students who want to graduate with practical experience that employers value.
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Fullstack Development Card -->
+                    <div class="program-card group">
+                        <!-- Ribbon -->
+                        <div class="absolute top-4 right-4 bg-purple-600 text-white text-xs font-bold px-2 py-1 rounded uppercase tracking-wider">Popular</div>
+                        
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-code text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gradient hero-gradient">Fullstack Development</h3>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6">
+                            Master both frontend and backend development to build complete web applications. Create responsive UIs, RESTful APIs, and deploy to the cloud.
+                        </p>
+                        
+                        <div class="mb-8">
+                            <span class="block text-gray-400 text-sm mb-2">What you'll learn:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">JavaScript</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">React</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Node.js</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">MongoDB</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Express</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-lg font-bold text-gradient hero-gradient">$199</span>
+                                <span class="text-gray-400 text-sm ml-2">full certification</span>
+                            </div>
+                            <a href="programs.html" class="px-4 py-2 bg-white bg-opacity-5 border border-purple-500 border-opacity-30 rounded-full hover:bg-purple-500 hover:bg-opacity-20 transition-all text-sm font-medium">
+                                Explore Course
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- AI & ML Card -->
+                    <div class="program-card group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-brain text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gradient hero-gradient">AI & Machine Learning</h3>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6">
+                            Explore the fascinating world of AI and machine learning. Build intelligent systems, train models, and develop cutting-edge applications.
+                        </p>
+                        
+                        <div class="mb-8">
+                            <span class="block text-gray-400 text-sm mb-2">What you'll learn:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Python</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">TensorFlow</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">PyTorch</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Computer Vision</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">NLP</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-lg font-bold text-gradient hero-gradient">$249</span>
+                                <span class="text-gray-400 text-sm ml-2">full certification</span>
+                            </div>
+                            <a href="programs.html" class="px-4 py-2 bg-white bg-opacity-5 border border-purple-500 border-opacity-30 rounded-full hover:bg-purple-500 hover:bg-opacity-20 transition-all text-sm font-medium">
+                                Explore Course
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- GreenTech Card -->
+                    <div class="program-card group">
+                        <div class="flex items-center mb-6">
+                            <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mr-4 group-hover:scale-110 transition-transform duration-300">
+                                <i class="fas fa-leaf text-xl"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gradient hero-gradient">GreenTech</h3>
+                        </div>
+                        
+                        <p class="text-gray-300 mb-6">
+                            Apply technology to solve environmental challenges. Learn how to create sustainable solutions that make a positive impact on our planet.
+                        </p>
+                        
+                        <div class="mb-8">
+                            <span class="block text-gray-400 text-sm mb-2">What you'll learn:</span>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">IoT</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Data Analysis</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Renewable Energy</span>
+                                <span class="px-2 py-1 bg-white bg-opacity-5 rounded text-xs font-medium">Smart Systems</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="text-lg font-bold text-gradient hero-gradient">$199</span>
+                                <span class="text-gray-400 text-sm ml-2">full certification</span>
+                            </div>
+                            <a href="programs.html" class="px-4 py-2 bg-white bg-opacity-5 border border-purple-500 border-opacity-30 rounded-full hover:bg-purple-500 hover:bg-opacity-20 transition-all text-sm font-medium">
+                                Explore Course
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="mt-12 text-center">
+                    <a href="programs.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                        View All Programs
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Container -->
+    <div id="footer-container">
+        <!-- Footer will be loaded here via JavaScript -->
+    </div>
+
+    <!-- Particles.js for background effects -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>
