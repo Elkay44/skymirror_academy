@@ -327,6 +327,14 @@
                                             VanguardCohortInterest: formObject.VanguardCohortInterest === 'on'
                                         };
 
+                                        // Validate required fields
+                                        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'program', 'background'];
+                                        for (const field of requiredFields) {
+                                            if (!submissionData[field]) {
+                                                throw new Error(`Please fill in all required fields`);
+                                            }
+                                        }
+
                                         const submissionJson = JSON.stringify(submissionData);
                                         
                                         // Google Apps Script URL
@@ -340,14 +348,19 @@
                                             headers: {
                                                 'Content-Type': 'application/json',
                                                 'Accept': 'application/json',
-                                                'Origin': window.location.origin
+                                                'Origin': window.location.origin,
+                                                'Access-Control-Request-Method': 'POST'
                                             },
                                             body: submissionJson
                                         });
 
                                         const serverResponse = await response.json();
                                         
-                                        if (response.ok && serverResponse.status === 'success') {
+                                        if (!response.ok) {
+                                            throw new Error(`Server error: ${serverResponse.status} - ${serverResponse.message}`);
+                                        }
+                                        
+                                        if (serverResponse.status === 'success') {
                                             // Success handling
                                             form.reset();
                                             formSuccess.classList.remove('hidden');
@@ -356,11 +369,13 @@
                                             // Hide success message after 10 seconds
                                             setTimeout(() => {
                                                 formSuccess.classList.add('hidden');
-                                                formSuccess.classList.add('hidden');
                                             }, 10000);
                                             
                                             // Log successful submission
                                             console.log('Application submitted successfully');
+                                            
+                                            // Add success message to console
+                                            console.log('Server Response:', serverResponse);
                                         } else {
                                             throw new Error(serverResponse.message || 'Form submission failed');
                                         }
@@ -369,12 +384,27 @@
                                         
                                         // Provide detailed error information
                                         let errorMessage = error.message || 'There was a problem submitting your application';
-                                        if (error.name === 'TypeError') {
+                                        
+                                        // Check for CORS errors
+                                        if (error.name === 'TypeError' || error.message.includes('CORS')) {
                                             errorMessage += '\n\nThis might be due to CORS restrictions. Please try again or contact us at contact@skymirror.eu';
                                         }
                                         
+                                        // Add more specific error details
+                                        if (error.response) {
+                                            errorMessage += `\n\nServer Response: ${error.response.status} - ${error.response.statusText}`;
+                                        }
+                                        
+                                        // Show error message
                                         alert(`Error: ${errorMessage}
                                             \n\nIf you're still having issues, please send an email directly to contact@skymirror.eu`);
+                                        
+                                        // Log error to console with more details
+                                        console.error('Error Details:', {
+                                            message: error.message,
+                                            name: error.name,
+                                            stack: error.stack
+                                        });
                                     }
                                 });
                             </script>
