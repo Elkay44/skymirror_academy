@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backend Development Curriculum | Skymirror Academy</title>
+    <meta name="description" content="Comprehensive curriculum for Backend Development at Skymirror Academy.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #0f0f23, #1a1a2e, #16213e, #0f3460);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(139, 92, 246, 0.08);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(139, 92, 246, 0.15);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(45deg, #8b5cf6, #3b82f6, #06b6d4, #8b5cf6, #3b82f6);
+            background-size: 300% auto;
+            animation: gradient 10s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .phase-card {
+            transition: all 0.3s ease;
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15), 0 4px 16px rgba(59, 130, 246, 0.1);
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.2), 0 10px 20px rgba(59, 130, 246, 0.15);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bg-glass, .phase-card {
+                background: white;
+                border: 1px solid #eee;
+                color: black;
+            }
+            
+            .text-white, .text-gray-300, .text-gray-400 {
+                color: black;
+            }
+            
+            .hero-gradient, .text-gradient {
+                background: none;
+                color: black;
+            }
+            
+            .print-black {
+                color: black !important;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <div class="flex space-x-4">
+                <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Back to Home
+                </a>
+                <a href="programs.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    All Programs
+                </a>
+                <a href="#" onclick="window.print()" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    <i class="fas fa-download mr-2"></i> Download Syllabus
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6">
+                    <span class="text-gradient hero-gradient">Backend Development</span>
+                    <span class="block text-gray-300 text-3xl mt-2">Curriculum</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A comprehensive 10-week journey to becoming a professional backend developer with Node.js, databases, APIs, and cloud deployment.
+                </p>
+            </div>
+            
+            <!-- Curriculum Overview -->
+            <div class="space-y-12">
+                <!-- Week 1-2: Server Fundamentals -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1-2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Server Fundamentals</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Understand server-side programming and build your first APIs with Node.js.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Node.js runtime and npm package management</li>
+                        <li>Express.js framework and middleware</li>
+                        <li>HTTP methods, status codes, and request/response cycle</li>
+                        <li>RESTful API design principles</li>
+                        <li>Environment variables and configuration</li>
+                        <li>Basic error handling and logging</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Simple REST API for a book library with CRUD operations</p>
+                    </div>
+                </div>
+                
+                <!-- Week 3-4: Database Integration -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">3-4</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Database Integration</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Master database design and integration with both SQL and NoSQL databases.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>MongoDB with Mongoose ODM</li>
+                        <li>PostgreSQL with Prisma ORM</li>
+                        <li>Database schema design and relationships</li>
+                        <li>Data validation and sanitization</li>
+                        <li>Query optimization and indexing</li>
+                        <li>Database migrations and seeding</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Blog API with user management and post relationships</p>
+                    </div>
+                </div>
+                
+                <!-- Week 5-6: Authentication & Security -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">5-6</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Authentication & Security</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Implement secure authentication systems and protect your applications.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>JWT (JSON Web Tokens) authentication</li>
+                        <li>Password hashing with bcrypt</li>
+                        <li>OAuth 2.0 and third-party authentication</li>
+                        <li>Role-based access control (RBAC)</li>
+                        <li>API rate limiting and security headers</li>
+                        <li>Input validation and SQL injection prevention</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Secure user authentication system with role-based permissions</p>
+                    </div>
+                </div>
+                
+                <!-- Week 7-8: Advanced APIs & Real-time -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">7-8</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Advanced APIs & Real-time</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build advanced API features and real-time communication systems.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>GraphQL API development with Apollo Server</li>
+                        <li>WebSocket connections with Socket.io</li>
+                        <li>File upload and image processing</li>
+                        <li>Email services and notifications</li>
+                        <li>Background job processing with queues</li>
+                        <li>API documentation with Swagger/OpenAPI</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Real-time chat application with file sharing and notifications</p>
+                    </div>
+                </div>
+                
+                <!-- Week 9-10: DevOps & Deployment -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">9-10</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">DevOps & Deployment</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Deploy and scale applications in production environments.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Docker containerization and Docker Compose</li>
+                        <li>Cloud deployment (AWS, Google Cloud, Azure)</li>
+                        <li>CI/CD pipelines with GitHub Actions</li>
+                        <li>Load balancing and horizontal scaling</li>
+                        <li>Monitoring, logging, and error tracking</li>
+                        <li>Performance optimization and caching strategies</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Capstone Project:</h4>
+                        <p class="text-gray-300">Scalable microservices architecture with containerized deployment</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Learning Path Note -->
+            <div class="mt-16 bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                <h2 class="text-2xl font-bold mb-4 text-center">
+                    <span class="text-gradient hero-gradient">Complete Your Full-Stack Journey</span>
+                </h2>
+                <p class="text-gray-300 text-center mb-6">
+                    Combine your Backend Development skills with our Frontend Development program to become a complete full-stack developer, or explore our specialized AI and enterprise programs.
+                </p>
+                <div class="flex justify-center space-x-4">
+                    <a href="frontend-syllabus.html" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                        View Frontend Development
+                    </a>
+                    <a href="programs.html" class="bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold">
+                        All Programs
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center no-print">
+                <p class="text-xl text-gray-300 mb-6">Ready to start your journey as a Backend Developer?</p>
+                <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                    Apply to Skymirror Academy
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12 no-print">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-sm font-bold">S</span>
+                    </div>
+                    <span class="text-xl font-extrabold">
+                        <span class="text-gradient hero-gradient">Skymirror</span>
+                        <span class="text-gray-100">Academy</span>
+                    </span>
+                </div>
+                <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>

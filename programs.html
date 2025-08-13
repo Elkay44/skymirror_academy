@@ -82,6 +82,93 @@
             50% { transform: translateY(-20px); }
             100% { transform: translateY(0px); }
         }
+
+        /* Filter System Styles */
+        .filter-checkbox {
+            appearance: none;
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(139, 92, 246, 0.3);
+            border-radius: 4px;
+            background: transparent;
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .filter-checkbox:checked {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-color: #8b5cf6;
+        }
+
+        .filter-checkbox:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .filter-checkbox:hover {
+            border-color: rgba(139, 92, 246, 0.6);
+            transform: scale(1.05);
+        }
+
+        .quick-filter-tag {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            color: rgb(196, 181, 253);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .quick-filter-tag:hover {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(59, 130, 246, 0.1));
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+        }
+
+        .quick-filter-tag.active {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            border-color: #8b5cf6;
+            color: white;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
+        .program-section {
+            transition: all 0.5s ease;
+        }
+
+        .program-section.hidden {
+            display: none;
+        }
+
+        .filter-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .results-highlight {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            animation: pulse 2s ease-in-out;
+        }
     </style>
 </head>
 
@@ -239,9 +326,147 @@
                 </div>
             </div>
         </section>
+
+        <!-- Advanced Filter Section -->
+        <section class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-800 border-y border-white border-opacity-5">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl font-bold mb-4">
+                        <span class="text-gradient hero-gradient">Find Your Perfect Program</span>
+                    </h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto">
+                        Use our advanced filters to discover the program that matches your goals, timeline, and budget.
+                    </p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg mb-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Duration Filter -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Program Duration</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox duration-filter" data-filter="short" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">10 weeks (Short)</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox duration-filter" data-filter="medium" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">20 weeks (Medium)</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox duration-filter" data-filter="long" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">24+ weeks (Extended)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Price Range Filter -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Price Range</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox price-filter" data-filter="budget" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">€129 - €149 (Budget)</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox price-filter" data-filter="standard" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">€179 - €229 (Standard)</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox price-filter" data-filter="premium" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">€299+ (Premium)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Skill Level Filter -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Skill Level</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox level-filter" data-filter="foundation" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Foundation</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox level-filter" data-filter="intermediate" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Intermediate</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox level-filter" data-filter="advanced" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Advanced</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox level-filter" data-filter="enterprise" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Enterprise</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Focus Area Filter -->
+                        <div>
+                            <label class="block text-sm font-semibold text-gray-300 mb-3">Focus Area</label>
+                            <div class="space-y-2">
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox focus-filter" data-filter="web-dev" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Web Development</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox focus-filter" data-filter="ai-ml" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">AI & Machine Learning</span>
+                                </label>
+                                <label class="flex items-center cursor-pointer">
+                                    <input type="checkbox" class="filter-checkbox focus-filter" data-filter="sustainability" checked>
+                                    <span class="ml-2 text-gray-300 hover:text-white transition-colors">Sustainability</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Filter Actions -->
+                    <div class="flex flex-wrap justify-between items-center mt-6 pt-6 border-t border-white border-opacity-10">
+                        <div class="flex items-center space-x-4 mb-4 lg:mb-0">
+                            <button id="clear-filters" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">
+                                Clear All Filters
+                            </button>
+                            <button id="select-all-filters" class="text-purple-300 hover:text-purple-200 transition-colors text-sm font-medium">
+                                Select All
+                            </button>
+                        </div>
+                        <div id="results-count" class="text-gray-300 text-sm font-medium">
+                            Showing <span id="visible-count">6</span> of <span id="total-count">6</span> programs
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Filter Tags -->
+                <div class="flex flex-wrap gap-3 mb-8">
+                    <button class="quick-filter-tag active" data-filter="all">
+                        <i class="fas fa-th-large mr-2"></i>All Programs
+                    </button>
+                    <button class="quick-filter-tag" data-filter="beginner-friendly">
+                        <i class="fas fa-seedling mr-2"></i>Beginner Friendly
+                    </button>
+                    <button class="quick-filter-tag" data-filter="high-demand">
+                        <i class="fas fa-fire mr-2"></i>High Demand
+                    </button>
+                    <button class="quick-filter-tag" data-filter="fast-track">
+                        <i class="fas fa-rocket mr-2"></i>Fast Track (10 weeks)
+                    </button>
+                    <button class="quick-filter-tag" data-filter="comprehensive">
+                        <i class="fas fa-graduation-cap mr-2"></i>Comprehensive (20+ weeks)
+                    </button>
+                    <button class="quick-filter-tag" data-filter="ai-focused">
+                        <i class="fas fa-brain mr-2"></i>AI Focused
+                    </button>
+                </div>
+            </div>
+        </section>
         
         <!-- Individual Programs -->
-        <section id="fullstack" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <section id="fullstack" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 program-section" 
+                 data-duration="medium" data-price="standard" data-level="intermediate" data-focus="web-dev" 
+                 data-tags="popular,comprehensive,beginner-friendly,high-demand">
             <div class="max-w-7xl mx-auto">
                 <!-- Fullstack Development -->
                 <div class="mb-24">
@@ -389,8 +614,8 @@
                                     <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
                                         Apply Now
                                     </a>
-                                    <a href="fullstack-syllabus.html" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold"><i class="fas fa-download mr-2"></i>
-                                        Download Syllabus
+                                    <a href="#" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold opacity-50 cursor-not-allowed">
+                                        Syllabus Coming Soon
                                     </a>
                                 </div>
                             </div>
@@ -401,9 +626,12 @@
         </section>
 
         <!-- AI & Machine Learning Section -->
-        <section id="ai-ml" class="py-16 px-4 sm:px-6 lg:px-8">
+        <section id="ai-ml" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800 program-section" 
+                 data-duration="medium" data-price="standard" data-level="advanced" data-focus="ai-ml" 
+                 data-tags="high-demand,ai-focused,comprehensive">
             <div class="max-w-7xl mx-auto">
-                <div class="mb-24">
+                <!-- AI & Machine Learning -->
+                <div>
                     <div class="flex flex-col md:flex-row md:items-center mb-12">
                         <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
                             <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
@@ -566,7 +794,9 @@
         </section>
 
         <!-- GreenTech Innovation Section -->
-        <section id="greentech" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <section id="greentech" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 program-section" 
+                 data-duration="medium" data-price="standard" data-level="intermediate" data-focus="sustainability" 
+                 data-tags="comprehensive,innovative">
             <div class="max-w-7xl mx-auto">
                 <!-- GreenTech Innovation -->
                 <div>
@@ -720,7 +950,9 @@
         </section>
 
         <!-- Full-Stack AI Engineer Section -->
-        <section id="ai-engineer" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+        <section id="ai-engineer" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800 program-section" 
+                 data-duration="long" data-price="premium" data-level="enterprise" data-focus="ai-ml" 
+                 data-tags="ai-focused,comprehensive,enterprise">
             <div class="max-w-7xl mx-auto">
                 <!-- Full-Stack AI Engineer -->
                 <div>
@@ -891,6 +1123,342 @@
             </div>
         </section>
 
+        <!-- Frontend Development Section -->
+        <section id="frontend" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900 program-section" 
+                 data-duration="short" data-price="budget" data-level="foundation" data-focus="web-dev" 
+                 data-tags="beginner-friendly,fast-track,foundation">
+            <div class="max-w-7xl mx-auto">
+                <!-- Frontend Development -->
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-center mb-12">
+                        <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-paint-brush text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-2">
+                                Foundation Program
+                            </span>
+                            <h2 class="text-4xl font-bold text-gradient hero-gradient">Frontend Development</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <!-- Program Overview -->
+                        <div class="lg:col-span-2">
+                            <p class="text-xl text-gray-300 mb-6">
+                                Master the art of creating stunning, interactive user interfaces. Learn modern frontend technologies, responsive design principles, and user experience best practices to build engaging web applications that users love.
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">What You'll Learn:</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Modern JavaScript</h4>
+                                        <p class="text-gray-400 text-sm">ES6+, async/await, modules, DOM manipulation, event handling</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">React & State Management</h4>
+                                        <p class="text-gray-400 text-sm">Components, hooks, context, Redux, routing, lifecycle methods</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Responsive Design</h4>
+                                        <p class="text-gray-400 text-sm">CSS Grid, Flexbox, Tailwind CSS, mobile-first design</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Performance & Testing</h4>
+                                        <p class="text-gray-400 text-sm">Optimization, bundling, Jest, React Testing Library</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">Real-World Projects You'll Build:</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Interactive Portfolio Website</h4>
+                                    <p class="text-gray-400 text-sm">Build a stunning personal portfolio with animations, responsive design, and dynamic content management.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Task Management App</h4>
+                                    <p class="text-gray-400 text-sm">Create a feature-rich task manager with drag-and-drop functionality, filtering, and local storage.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Capstone Project: E-Commerce Frontend</h4>
+                                    <p class="text-gray-400 text-sm">Develop a complete e-commerce frontend with product catalog, shopping cart, and checkout flow.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program Details Sidebar -->
+                        <div>
+                            <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg sticky top-24">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-bold text-gradient hero-gradient mb-1">€129</div>
+                                    <div class="text-gray-400 text-sm">Full certification</div>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">10-week intensive program</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">8+ frontend projects</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">24/7 Mentor-assisted learning</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Design tools & resources</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Weekly code reviews</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Blockchain-verified certification</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Backend Development pathway</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="space-y-3">
+                                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                                        Apply Now
+                                    </a>
+                                    <a href="frontend-syllabus.html" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold"><i class="fas fa-download mr-2"></i>
+                                        Download Syllabus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Backend Development Section -->
+        <section id="backend" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800 program-section" 
+                 data-duration="short" data-price="budget" data-level="advanced" data-focus="web-dev" 
+                 data-tags="fast-track,advanced">
+            <div class="max-w-7xl mx-auto">
+                <!-- Backend Development -->
+                <div>
+                    <div class="flex flex-col md:flex-row md:items-center mb-12">
+                        <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-8">
+                            <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                <i class="fas fa-server text-2xl text-white"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-2">
+                                Advanced Program
+                            </span>
+                            <h2 class="text-4xl font-bold text-gradient hero-gradient">Backend Development</h2>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                        <!-- Program Overview -->
+                        <div class="lg:col-span-2">
+                            <p class="text-xl text-gray-300 mb-6">
+                                Build robust, scalable server-side applications and APIs. Master database design, authentication, security, and cloud deployment to create the backbone that powers modern web applications.
+                            </p>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">What You'll Learn:</h3>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 mb-8">
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Server Development</h4>
+                                        <p class="text-gray-400 text-sm">Node.js, Express.js, RESTful APIs, GraphQL, middleware</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Database Management</h4>
+                                        <p class="text-gray-400 text-sm">MongoDB, PostgreSQL, data modeling, indexing, optimization</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">Authentication & Security</h4>
+                                        <p class="text-gray-400 text-sm">JWT, OAuth, encryption, data validation, security best practices</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex items-start">
+                                    <div class="flex-shrink-0 mt-1">
+                                        <div class="w-5 h-5 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center">
+                                            <i class="fas fa-check text-xs"></i>
+                                        </div>
+                                    </div>
+                                    <div class="ml-3">
+                                        <h4 class="font-semibold">DevOps & Deployment</h4>
+                                        <p class="text-gray-400 text-sm">Docker, CI/CD, cloud platforms, monitoring, scaling</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h3 class="text-2xl font-semibold mb-4">Real-World Projects You'll Build:</h3>
+                            
+                            <div class="space-y-4 mb-8">
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">RESTful API Service</h4>
+                                    <p class="text-gray-400 text-sm">Build a complete API with authentication, data validation, and comprehensive documentation.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Real-time Chat Backend</h4>
+                                    <p class="text-gray-400 text-sm">Create a scalable chat system with WebSockets, message queuing, and user presence tracking.</p>
+                                </div>
+                                
+                                <div class="bg-glass p-4 rounded-lg border border-white border-opacity-5">
+                                    <h4 class="font-semibold">Capstone Project: Microservices Architecture</h4>
+                                    <p class="text-gray-400 text-sm">Design and implement a microservices-based application with service discovery and load balancing.</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Program Details Sidebar -->
+                        <div>
+                            <div class="bg-glass p-6 rounded-xl border border-white border-opacity-5 shadow-lg sticky top-24">
+                                <div class="text-center mb-6">
+                                    <div class="text-3xl font-bold text-gradient hero-gradient mb-1">€149</div>
+                                    <div class="text-gray-400 text-sm">Full certification</div>
+                                </div>
+                                
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">10-week intensive program</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">10+ backend projects</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">24/7 Mentor-assisted learning</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Cloud deployment credits</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Weekly architecture reviews</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Blockchain-verified certification</span>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <svg class="h-5 w-5 text-purple-400 mr-2 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                        </svg>
+                                        <span class="text-gray-300">Budapest Vanguard Cohort eligibility</span>
+                                    </li>
+                                </ul>
+                                
+                                <div class="space-y-3">
+                                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold">
+                                        Apply Now
+                                    </a>
+                                    <a href="backend-syllabus.html" class="block text-center bg-transparent border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-6 py-3 rounded-full transition-all duration-300 font-semibold"><i class="fas fa-download mr-2"></i>
+                                        Download Syllabus
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Call to Action Section -->
         <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
             <!-- Animated background elements -->
@@ -925,6 +1493,153 @@
     
     <!-- Custom scripts -->
     <script src="js/script.js"></script>
+
+    <!-- Filter System JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Get all filter elements
+            const durationFilters = document.querySelectorAll('.duration-filter');
+            const priceFilters = document.querySelectorAll('.price-filter');
+            const levelFilters = document.querySelectorAll('.level-filter');
+            const focusFilters = document.querySelectorAll('.focus-filter');
+            const quickFilterTags = document.querySelectorAll('.quick-filter-tag');
+            const clearAllBtn = document.getElementById('clear-all-filters');
+            const selectAllBtn = document.getElementById('select-all-filters');
+            const resultsCount = document.getElementById('results-count');
+            const programSections = document.querySelectorAll('.program-section');
+
+            // Initialize filters - all checked by default
+            function initializeFilters() {
+                [...durationFilters, ...priceFilters, ...levelFilters, ...focusFilters].forEach(filter => {
+                    filter.checked = true;
+                });
+                updateResults();
+            }
+
+            // Get active filters
+            function getActiveFilters() {
+                const active = {
+                    duration: Array.from(durationFilters).filter(f => f.checked).map(f => f.dataset.filter),
+                    price: Array.from(priceFilters).filter(f => f.checked).map(f => f.dataset.filter),
+                    level: Array.from(levelFilters).filter(f => f.checked).map(f => f.dataset.filter),
+                    focus: Array.from(focusFilters).filter(f => f.checked).map(f => f.dataset.filter),
+                    tags: Array.from(quickFilterTags).filter(t => t.classList.contains('active')).map(t => t.dataset.tag)
+                };
+                return active;
+            }
+
+            // Check if program matches filters
+            function programMatchesFilters(program, filters) {
+                const programData = {
+                    duration: program.dataset.duration,
+                    price: program.dataset.price,
+                    level: program.dataset.level,
+                    focus: program.dataset.focus,
+                    tags: program.dataset.tags ? program.dataset.tags.split(',') : []
+                };
+
+                // Check duration filter
+                if (filters.duration.length > 0 && !filters.duration.includes(programData.duration)) {
+                    return false;
+                }
+
+                // Check price filter
+                if (filters.price.length > 0 && !filters.price.includes(programData.price)) {
+                    return false;
+                }
+
+                // Check level filter
+                if (filters.level.length > 0 && !filters.level.includes(programData.level)) {
+                    return false;
+                }
+
+                // Check focus filter
+                if (filters.focus.length > 0 && !filters.focus.includes(programData.focus)) {
+                    return false;
+                }
+
+                // Check tag filters (if any tags are selected, program must have at least one)
+                if (filters.tags.length > 0) {
+                    const hasMatchingTag = filters.tags.some(tag => programData.tags.includes(tag));
+                    if (!hasMatchingTag) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            // Update visible programs and results count
+            function updateResults() {
+                const activeFilters = getActiveFilters();
+                let visibleCount = 0;
+
+                programSections.forEach(program => {
+                    const matches = programMatchesFilters(program, activeFilters);
+                    
+                    if (matches) {
+                        program.classList.remove('hidden');
+                        program.classList.add('filter-fade-in');
+                        visibleCount++;
+                    } else {
+                        program.classList.add('hidden');
+                        program.classList.remove('filter-fade-in');
+                    }
+                });
+
+                // Update results count
+                resultsCount.textContent = `${visibleCount} program${visibleCount !== 1 ? 's' : ''} found`;
+                
+                // Add highlight effect to results count
+                resultsCount.classList.add('results-highlight');
+                setTimeout(() => {
+                    resultsCount.classList.remove('results-highlight');
+                }, 2000);
+            }
+
+            // Clear all filters
+            function clearAllFilters() {
+                [...durationFilters, ...priceFilters, ...levelFilters, ...focusFilters].forEach(filter => {
+                    filter.checked = false;
+                });
+                quickFilterTags.forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                updateResults();
+            }
+
+            // Select all filters
+            function selectAllFilters() {
+                [...durationFilters, ...priceFilters, ...levelFilters, ...focusFilters].forEach(filter => {
+                    filter.checked = true;
+                });
+                quickFilterTags.forEach(tag => {
+                    tag.classList.remove('active');
+                });
+                updateResults();
+            }
+
+            // Event listeners for filter checkboxes
+            [...durationFilters, ...priceFilters, ...levelFilters, ...focusFilters].forEach(filter => {
+                filter.addEventListener('change', updateResults);
+            });
+
+            // Event listeners for quick filter tags
+            quickFilterTags.forEach(tag => {
+                tag.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    updateResults();
+                });
+            });
+
+            // Event listeners for action buttons
+            clearAllBtn.addEventListener('click', clearAllFilters);
+            selectAllBtn.addEventListener('click', selectAllFilters);
+
+            // Initialize the filter system
+            initializeFilters();
+        });
+    </script>
 
 </body>
 </html>
