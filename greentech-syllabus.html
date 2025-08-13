@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenTech Innovation Curriculum | Skymirror Academy</title>
+    <meta name="description" content="Comprehensive curriculum for GreenTech Innovation at Skymirror Academy.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bg-glass, .phase-card {
+                background: white;
+                border: 1px solid #eee;
+                color: black;
+            }
+            
+            .text-white, .text-gray-300, .text-gray-400 {
+                color: black;
+            }
+            
+            .hero-gradient, .text-gradient {
+                background: none;
+                color: black;
+            }
+            
+            .print-black {
+                color: black !important;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <div class="flex space-x-4">
+                <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Back to Home
+                </a>
+                <a href="programs.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Programs
+                </a>
+                <button onclick="window.print()" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    <i class="fas fa-print mr-2"></i> Print
+                </button>
+                <a href="greentech-syllabus.txt" download class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    <i class="fas fa-download mr-2"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6">
+                    <span class="text-gradient hero-gradient">GreenTech Innovation Curriculum</span>
+                </h1>
+                <p class="text-xl text-gray-300">
+                    A comprehensive 24-week journey to becoming a climate tech innovator with expertise in environmental monitoring, sustainable solutions, and resource optimization.
+                </p>
+            </div>
+            
+            <!-- Curriculum Overview -->
+            <div class="space-y-12">
+                <!-- Module 1 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Foundations & Sustainability Principles</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Understand core sustainability concepts and environmental challenges.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Introduction to climate science and environmental challenges</li>
+                        <li>Sustainable development goals and frameworks</li>
+                        <li>Environmental ethics and policy</li>
+                        <li>Introduction to green technologies and innovations</li>
+                        <li>Basic programming concepts with Python</li>
+                        <li>Version control with Git and GitHub</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Carbon footprint calculator application</p>
+                    </div>
+                </div>
+                
+                <!-- Module 2 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Environmental Data Analysis</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Learn to collect, process, and analyze environmental data.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Environmental data sources and formats</li>
+                        <li>Data collection techniques and sensors</li>
+                        <li>Python libraries for data analysis (pandas, numpy)</li>
+                        <li>Data visualization with matplotlib and seaborn</li>
+                        <li>Statistical analysis for environmental data</li>
+                        <li>Geospatial data handling with geopandas</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Air quality data analysis dashboard</p>
+                    </div>
+                </div>
+                
+                <!-- Module 3 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">IoT for Environmental Monitoring</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build connected sensor systems for environmental monitoring.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Introduction to IoT architecture</li>
+                        <li>Arduino programming fundamentals</li>
+                        <li>Sensor integration (temperature, humidity, air quality)</li>
+                        <li>Wireless communication protocols</li>
+                        <li>Data logging and transmission</li>
+                        <li>Power management for field deployments</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Weather station with remote data logging</p>
+                    </div>
+                </div>
+                
+                <!-- Module 4 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Renewable Energy Systems</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Understand and implement renewable energy solutions.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Solar, wind, and hydro energy fundamentals</li>
+                        <li>Energy storage technologies</li>
+                        <li>Energy efficiency calculations</li>
+                        <li>Microcontroller-based energy monitoring</li>
+                        <li>Smart grid concepts</li>
+                        <li>Energy optimization algorithms</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Solar-powered IoT monitoring system</p>
+                    </div>
+                </div>
+                
+                <!-- Module 5 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Sustainable Agriculture Tech</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Apply technology to agricultural sustainability challenges.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Precision agriculture principles</li>
+                        <li>Soil and crop monitoring systems</li>
+                        <li>Irrigation optimization techniques</li>
+                        <li>Machine learning for crop prediction</li>
+                        <li>Vertical farming technologies</li>
+                        <li>Sustainable farming practices</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Smart irrigation control system</p>
+                    </div>
+                </div>
+                
+                <!-- Module 6 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">6</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Waste Management Innovation</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Develop technological solutions for waste reduction and management.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Circular economy principles</li>
+                        <li>Waste classification and tracking systems</li>
+                        <li>Recycling technologies</li>
+                        <li>Composting monitoring systems</li>
+                        <li>Waste-to-energy concepts</li>
+                        <li>Life cycle assessment</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Smart waste sorting and monitoring system</p>
+                    </div>
+                </div>
+                
+                <!-- Module 7 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">7</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Environmental Monitoring Platform</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build comprehensive environmental monitoring solutions.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Complete system architecture design</li>
+                        <li>Database schema and data pipelines</li>
+                        <li>Alert systems and notifications</li>
+                        <li>Platform deployment and scaling</li>
+                        <li>User interface design for environmental data</li>
+                        <li>Data security and privacy considerations</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Full-featured environmental monitoring platform</p>
+                    </div>
+                </div>
+                
+                <!-- Module 8 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">8</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Resource Optimization System</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Develop systems that optimize resource usage.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Predictive algorithms for resource management</li>
+                        <li>Automated control systems with IoT actuators</li>
+                        <li>Optimization models for agriculture and energy</li>
+                        <li>Smart irrigation system development</li>
+                        <li>Machine learning for resource prediction</li>
+                        <li>Real-time monitoring and feedback systems</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Resource optimization system for a specific application</p>
+                    </div>
+                </div>
+                
+                <!-- Module 9 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">9</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Capstone - Climate Tech Solution</h2>
+                            <p class="text-gray-400">4 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Deliver a comprehensive climate technology solution.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Capstone Ideas:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Urban air quality monitoring network</li>
+                        <li>Smart water management system</li>
+                        <li>Renewable energy optimization platform</li>
+                        <li>Sustainable agriculture technology suite</li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Requirements:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Full system architecture and implementation</li>
+                        <li>IoT integration with cloud platform</li>
+                        <li>Data analytics and visualization</li>
+                        <li>Business case and sustainability impact assessment</li>
+                        <li>Deployment documentation and user guide</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center no-print">
+                <p class="text-xl text-gray-300 mb-6">Ready to start your journey as a GreenTech Innovator?</p>
+                <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                    Apply to Skymirror Academy
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12 no-print">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-sm font-bold">S</span>
+                    </div>
+                    <span class="text-xl font-extrabold">
+                        <span class="text-gradient hero-gradient">Skymirror</span>
+                        <span class="text-gray-100">Academy</span>
+                    </span>
+                </div>
+                <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom scripts -->
+    <script>
+        // Print functionality is handled by the browser's built-in print function
+        // Download functionality is handled by the browser's built-in download attribute
+    </script>
+</body>
+</html>

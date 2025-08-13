@@ -1,0 +1,106 @@
+Full-Stack JS/TS Developer Curriculum
+===============================
+
+Phase 0 – Foundations & Tools (2 weeks)
+--------------------------------------
+Goal: Get comfortable with the environment and core web basics. 
+
+Topics:
+- HTML: Semantic tags, forms, accessibility basics
+- CSS: Box model, flexbox, grid, media queries
+- JavaScript (ES6+) basics: Variables, types, functions, control flow, arrays, objects
+- VS Code: Extensions, debugging, productivity tips
+- Command Line: File navigation, npm commands, running scripts
+- Git & GitHub: Cloning, branching, committing, pull requests 
+
+Project: Static personal portfolio page (hosted on GitHub Pages)
+
+Phase 1 – Frontend JavaScript (3 weeks)
+--------------------------------------
+Goal: Build interactive UI without frameworks. 
+
+Topics:
+- DOM manipulation, events, query selectors
+- Forms and validation
+- Fetch API and JSON data handling
+- Modular JavaScript with ES modules 
+
+Project: Weather Dashboard (fetch live API data, update UI dynamically)
+
+Phase 2 – Modern Frontend with React (3 weeks)
+--------------------------------------------
+Goal: Build scalable, component-based UIs. 
+
+Topics:
+- React basics: JSX, components, props, state
+- Event handling, conditional rendering, lists & keys
+- Hooks: useState, useEffect, custom hooks
+- React Router for navigation
+- CSS in JS, styling approaches 
+
+Project: Movie Search App (with API integration & routing)
+
+Phase 3 – State Management & TypeScript (2 weeks)
+-----------------------------------------------
+Goal: Manage complex application state & adopt type safety. 
+
+Topics:
+- Redux Toolkit basics: store, slices, async thunks
+- Context API vs Redux
+- TypeScript fundamentals: types, interfaces, generics
+- Adding TypeScript to a React project 
+
+Project: E-Commerce Cart System (React + Redux + TypeScript)
+
+Phase 4 – Next.js & Full-Stack Concepts (3 weeks)
+-----------------------------------------------
+Goal: Build SSR & API-enabled apps. 
+
+Topics:
+- Next.js: pages, routing, server-side rendering, static generation
+- API routes in Next.js
+- Environment variables & deployment
+- Image optimization, metadata, SEO in Next.js 
+
+Project: Blog Platform with Markdown posts & API routes
+
+Phase 5 – Backend with Express & PostgreSQL (3 weeks)
+--------------------------------------------------
+Goal: Build robust backend APIs with databases. 
+
+Topics:
+- Express.js basics: routing, middleware
+- RESTful API design
+- PostgreSQL: schema design, queries, joins
+- Connecting Express to PostgreSQL with node-postgres or Prisma
+- Authentication with JWT & bcrypt 
+
+Project: Task Management API with user auth & Postgres DB
+
+Phase 6 – DevOps & Deployment (2 weeks)
+-------------------------------------
+Goal: Deploy full-stack applications & work in production-like environments. 
+
+Topics:
+- Docker basics: images, containers, Dockerfile, docker-compose
+- Containerizing frontend & backend
+- Deploying with platforms like Render, Railway, or Vercel
+- CI/CD basics with GitHub Actions 
+
+Project: Deploy your full-stack app with Docker to the cloud
+
+Phase 7 – Capstone (4 weeks)
+--------------------------
+Goal: Deliver a full-stack product from scratch. 
+
+Capstone Ideas:
+- Social Media Micro-App
+- E-Learning Platform
+- Event Booking System 
+
+Requirements:
+- Next.js + TypeScript frontend
+- Express + PostgreSQL backend
+- Authentication & authorization
+- Dockerized for deployment
+- Hosted live + GitHub repo with README

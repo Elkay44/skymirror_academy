@@ -1,0 +1,172 @@
+SKYMIRROR ACADEMY
+Full-Stack AI Engineer: Enterprise AI Application Development
+24-Week Intensive Program
+
+COURSE OVERVIEW
+Duration: 24 weeks (6 months)
+Format: Hybrid (online theory + hands-on projects)
+Prerequisites: Basic computer literacy, willingness to learn programming
+Target Audience: Aspiring AI engineers, career changers, professionals seeking AI integration skills
+
+LEARNING PATH STRUCTURE
+
+PHASE 1: WEB DEVELOPMENT FOUNDATIONS (Weeks 0-6)
+
+Module 0: Orientation & Setup (Week 0)
+Goal: Establish development environment and course foundation
+Topics:
+- Development environment setup (Node.js, VS Code, Git, Docker)
+- Course overview and mastery-based progression rules
+- Career goal setting and AI industry overview
+- GitHub workflow and project management
+
+Module 1: Web Development Foundations (Weeks 1-2)
+Goal: Master modern web development fundamentals
+Topics:
+- HTML5 semantic structure and accessibility
+- Modern CSS with Flexbox/Grid and responsive design
+- JavaScript ES6+ fundamentals and async programming
+- DOM manipulation, events, and API integration
+Project: Interactive web application with API integration
+
+Module 2: Modern Frontend with React (Weeks 3-4)
+Goal: Build dynamic user interfaces with React
+Topics:
+- React components, hooks, and functional programming
+- TypeScript integration and type safety
+- State management with useState and useEffect
+- Component lifecycle and performance optimization
+Project: React-based dashboard with real-time data
+
+Module 3: Advanced React & State Management (Weeks 5-6)
+Goal: Implement complex state management and routing
+Topics:
+- Context API and Redux Toolkit
+- React Router and navigation
+- Form handling and validation
+- Testing with Jest and React Testing Library
+Project: Multi-page React application with authentication
+
+PHASE 2: BACKEND & DATABASE SYSTEMS (Weeks 7-10)
+
+Module 4: Backend Development with Node.js (Weeks 7-8)
+Goal: Create robust server-side applications
+Topics:
+- Express.js server architecture and TypeScript
+- RESTful API design and middleware
+- JWT authentication and authorization
+- MongoDB integration with Mongoose ODM
+Project: AI-powered chat application backend
+
+Module 5: Database Design & Management (Weeks 9-10)
+Goal: Master database systems for AI applications
+Topics:
+- PostgreSQL advanced SQL and schema design
+- NoSQL with MongoDB and Redis caching
+- Vector databases for AI embeddings (Pinecone)
+- Multi-database architecture and optimization
+Project: Multi-database system with vector search
+
+PHASE 3: AI/ML INTEGRATION (Weeks 11-16)
+
+Module 6: AI/ML Fundamentals (Weeks 11-12)
+Goal: Understand machine learning and AI integration
+Topics:
+- Machine learning concepts and Python integration
+- Data preprocessing with pandas and numpy
+- OpenAI API integration and prompt engineering
+- Hugging Face transformers and model selection
+Project: Machine learning data pipeline
+
+Module 7: AI Integration & Advanced Applications (Weeks 13-14)
+Goal: Build real-time AI applications
+Topics:
+- Real-time AI with WebSockets and streaming
+- Multimodal AI (text, image, voice) integration
+- AI model versioning and A/B testing
+- Production AI monitoring and performance optimization
+Project: Multimodal AI application with streaming
+
+Module 8: Advanced AI Systems (Weeks 15-16)
+Goal: Implement enterprise-grade AI systems
+Topics:
+- Retrieval-Augmented Generation (RAG) systems
+- Document processing pipelines and vector search
+- AI agents with multi-tool capabilities
+- Enterprise AI architecture and compliance
+Project: RAG-based knowledge system
+
+PHASE 4: PRODUCTION & DEPLOYMENT (Weeks 17-20)
+
+Module 9: Testing & Deployment (Weeks 17-18)
+Goal: Deploy AI applications to production
+Topics:
+- AI testing strategies and performance testing
+- Docker containerization and multi-stage builds
+- Kubernetes deployment and orchestration
+- CI/CD pipelines with GitHub Actions
+Project: Containerized AI microservices
+
+Module 10: Performance & Scaling (Weeks 19-20)
+Goal: Optimize AI applications for scale
+Topics:
+- Advanced caching strategies for AI responses
+- Load balancing and horizontal scaling
+- Performance monitoring and analytics
+- Cost optimization for AI APIs
+Project: Scalable AI microservices architecture
+
+PHASE 5: CAPSTONE PROJECT (Weeks 21-24)
+
+Module 11: Capstone Project (Weeks 21-24)
+Goal: Deliver enterprise-grade AI application
+Capstone Requirements:
+- Enterprise-grade AI application development
+- Multi-tenant architecture and security
+- Production deployment and monitoring
+- Professional portfolio and career preparation
+
+ASSESSMENT STRATEGY
+- Assignments: 60% (hands-on projects and coding)
+- Quizzes: 20% (knowledge checks and assessments)
+- Participation: 10% (discussions and peer reviews)
+- Capstone Project: 10% (final portfolio and presentation)
+- Progression Requirement: 80% minimum score to advance
+
+REQUIRED TOOLS & SOFTWARE
+Development Environment:
+- Node.js (v18+) and npm/yarn
+- Visual Studio Code with AI extensions
+- Python and Jupyter support
+- Docker Desktop for containerization
+- Git and GitHub account
+
+AI Services & APIs:
+- OpenAI API account and credits
+- Hugging Face account for model access
+- Pinecone vector database account
+- MongoDB Atlas cloud database
+- Redis Cloud for caching
+
+Cloud Platforms:
+- AWS/GCP/Azure account for deployment
+- Kubernetes cluster access
+- GitHub Actions for CI/CD
+- Monitoring tools: Prometheus, Grafana
+
+CAREER OUTCOMES
+Upon completion, graduates will be able to:
+- Design and develop full-stack AI applications
+- Integrate multiple AI models and services
+- Deploy scalable AI systems to production
+- Optimize AI applications for performance and cost
+- Build enterprise-grade AI solutions with security and compliance
+
+STUDENT SUPPORT
+- Weekly live Q&A sessions
+- Industry professional mentors
+- Peer learning groups
+- Portfolio development guidance
+- Career counseling and job placement assistance
+
+© 2025 Skymirror Academy. All rights reserved.

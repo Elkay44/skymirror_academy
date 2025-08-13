@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack JS/TS Developer Curriculum | Skymirror Academy</title>
+    <meta name="description" content="Comprehensive curriculum for Full-Stack JavaScript and TypeScript development at Skymirror Academy.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bg-glass, .phase-card {
+                background: white;
+                border: 1px solid #eee;
+                color: black;
+            }
+            
+            .text-white, .text-gray-300, .text-gray-400 {
+                color: black;
+            }
+            
+            .hero-gradient, .text-gradient {
+                background: none;
+                color: black;
+            }
+            
+            .print-black {
+                color: black !important;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <div class="flex space-x-4">
+                <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Back to Home
+                </a>
+                <button onclick="window.print()" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                    <i class="fas fa-print mr-2"></i> Print Syllabus
+                </button>
+                <a href="fullstack-syllabus.pdf" download class="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm font-semibold">
+                    <i class="fas fa-download mr-2"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6">
+                    <span class="text-gradient hero-gradient">Full-Stack JS/TS Developer</span>
+                    <span class="block mt-2">Curriculum</span>
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A comprehensive 22-week journey to becoming a professional full-stack developer with JavaScript, TypeScript, React, and Node.js.
+                </p>
+            </div>
+            
+            <!-- Curriculum Overview -->
+            <div class="space-y-12">
+                <!-- Phase 0 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">0</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Foundations & Tools</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Get comfortable with the environment and core web basics.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>HTML: Semantic tags, forms, accessibility basics</li>
+                        <li>CSS: Box model, flexbox, grid, media queries</li>
+                        <li>JavaScript (ES6+) basics: Variables, types, functions, control flow, arrays, objects</li>
+                        <li>VS Code: Extensions, debugging, productivity tips</li>
+                        <li>Command Line: File navigation, npm commands, running scripts</li>
+                        <li>Git & GitHub: Cloning, branching, committing, pull requests</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Static personal portfolio page (hosted on GitHub Pages)</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 1 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Frontend JavaScript</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build interactive UI without frameworks.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>DOM manipulation, events, query selectors</li>
+                        <li>Forms and validation</li>
+                        <li>Fetch API and JSON data handling</li>
+                        <li>Modular JavaScript with ES modules</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Weather Dashboard (fetch live API data, update UI dynamically)</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Modern Frontend with React</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build scalable, component-based UIs.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>React basics: JSX, components, props, state</li>
+                        <li>Event handling, conditional rendering, lists & keys</li>
+                        <li>Hooks: useState, useEffect, custom hooks</li>
+                        <li>React Router for navigation</li>
+                        <li>CSS in JS, styling approaches</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Movie Search App (with API integration & routing)</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 3 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">State Management & TypeScript</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Manage complex application state & adopt type safety.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Redux Toolkit basics: store, slices, async thunks</li>
+                        <li>Context API vs Redux</li>
+                        <li>TypeScript fundamentals: types, interfaces, generics</li>
+                        <li>Adding TypeScript to a React project</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">E-Commerce Cart System (React + Redux + TypeScript)</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 4 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Next.js & Full-Stack Concepts</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build SSR & API-enabled apps.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Next.js: pages, routing, server-side rendering, static generation</li>
+                        <li>API routes in Next.js</li>
+                        <li>Environment variables & deployment</li>
+                        <li>Image optimization, metadata, SEO in Next.js</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Blog Platform with Markdown posts & API routes</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 5 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Backend with Express & PostgreSQL</h2>
+                            <p class="text-gray-400">3 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build robust backend APIs with databases.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Express.js basics: routing, middleware</li>
+                        <li>RESTful API design</li>
+                        <li>PostgreSQL: schema design, queries, joins</li>
+                        <li>Connecting Express to PostgreSQL with node-postgres or Prisma</li>
+                        <li>Authentication with JWT & bcrypt</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Task Management API with user auth & Postgres DB</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 6 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">6</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">DevOps & Deployment</h2>
+                            <p class="text-gray-400">2 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Deploy full-stack applications & work in production-like environments.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Docker basics: images, containers, Dockerfile, docker-compose</li>
+                        <li>Containerizing frontend & backend</li>
+                        <li>Deploying with platforms like Render, Railway, or Vercel</li>
+                        <li>CI/CD basics with GitHub Actions</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Deploy your full-stack app with Docker to the cloud</p>
+                    </div>
+                </div>
+                
+                <!-- Phase 7 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">7</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Capstone</h2>
+                            <p class="text-gray-400">4 weeks</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Deliver a full-stack product from scratch.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Capstone Ideas:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Social Media Micro-App</li>
+                        <li>E-Learning Platform</li>
+                        <li>Event Booking System</li>
+                    </ul>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Requirements:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Next.js + TypeScript frontend</li>
+                        <li>Express + PostgreSQL backend</li>
+                        <li>Authentication & authorization</li>
+                        <li>Dockerized for deployment</li>
+                        <li>Hosted live + GitHub repo with README</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center no-print">
+                <p class="text-xl text-gray-300 mb-6">Ready to start your journey as a Full-Stack Developer?</p>
+                <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                    Apply to Skymirror Academy
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12 no-print">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-sm font-bold">S</span>
+                    </div>
+                    <span class="text-xl font-extrabold">
+                        <span class="text-gradient hero-gradient">Skymirror</span>
+                        <span class="text-gray-100">Academy</span>
+                    </span>
+                </div>
+                <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom scripts -->
+    <script>
+        // Print functionality is handled by the browser's built-in print function
+        // Download functionality is handled by the browser's built-in download attribute
+    </script>
+</body>
+</html>

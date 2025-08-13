@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full-Stack AI Engineer Curriculum | Skymirror Academy</title>
+    <meta name="description" content="Comprehensive curriculum for Full-Stack AI Engineer at Skymirror Academy.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bg-glass, .phase-card {
+                background: white;
+                border: 1px solid #eee;
+                color: black;
+            }
+            
+            .text-white, .text-gray-300, .text-gray-400 {
+                color: black;
+            }
+            
+            .hero-gradient, .text-gradient {
+                background: none;
+                color: black;
+            }
+            
+            .print-black {
+                color: black !important;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <div class="flex space-x-4">
+                <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Back to Home
+                </a>
+                <a href="programs.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Programs
+                </a>
+                <button onclick="window.print()" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    <i class="fas fa-print mr-2"></i> Print
+                </button>
+                <a href="ai-syllabus.txt" download class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    <i class="fas fa-download mr-2"></i> Download PDF
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6">
+                    <span class="text-gradient hero-gradient">Full-Stack AI Engineer Curriculum</span>
+                </h1>
+                <p class="text-xl text-gray-300">
+                    A comprehensive 24-week journey to becoming an enterprise AI application developer with expertise in full-stack development, machine learning integration, and production deployment.
+                </p>
+            </div>
+            
+            <!-- Curriculum Overview -->
+            <div class="space-y-12">
+                <!-- Module 0 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">0</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Orientation & Setup</h2>
+                            <p class="text-gray-400">Week 0</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Establish development environment and course foundation.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Development environment setup (Node.js, VS Code, Git, Docker)</li>
+                        <li>Course overview and mastery-based progression rules</li>
+                        <li>Career goal setting and AI industry overview</li>
+                        <li>GitHub workflow and project management</li>
+                    </ul>
+                </div>
+                
+                <!-- Module 1 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Web Development Foundations</h2>
+                            <p class="text-gray-400">Weeks 1-2</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Master modern web development fundamentals.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>HTML5 semantic structure and accessibility</li>
+                        <li>Modern CSS with Flexbox/Grid and responsive design</li>
+                        <li>JavaScript ES6+ fundamentals and async programming</li>
+                        <li>DOM manipulation, events, and API integration</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Interactive web application with API integration</p>
+                    </div>
+                </div>
+                <!-- Phase 1 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Web Development Foundations</h2>
+                            <p class="text-gray-400">Weeks 0-6</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Module 0 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 0: Orientation & Setup</h4>
+                            <p class="text-gray-300 text-sm mb-2">Week 0</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Development environment setup</li>
+                                <li>• Course overview and progression</li>
+                                <li>• AI industry overview</li>
+                                <li>• GitHub workflow</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Module 1 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 1: Web Foundations</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 1-2</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• HTML5 semantic structure</li>
+                                <li>• Modern CSS with Flexbox/Grid</li>
+                                <li>• JavaScript ES6+ fundamentals</li>
+                                <li>• DOM manipulation and APIs</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Interactive web app with API</p>
+                        </div>
+                        
+                        <!-- Module 2 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 2: Modern Frontend with React</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 3-4</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• React components and hooks</li>
+                                <li>• TypeScript integration</li>
+                                <li>• State management</li>
+                                <li>• Performance optimization</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: React dashboard with real-time data</p>
+                        </div>
+                        
+                        <!-- Module 3 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 3: Advanced React & State</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 5-6</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Context API and Redux Toolkit</li>
+                                <li>• React Router navigation</li>
+                                <li>• Form handling and validation</li>
+                                <li>• Testing with Jest</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Multi-page React app with auth</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 2 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Backend & Database Systems</h2>
+                            <p class="text-gray-400">Weeks 7-10</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Module 4 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 4: Backend with Node.js</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 7-8</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Express.js server architecture</li>
+                                <li>• RESTful API design</li>
+                                <li>• JWT authentication</li>
+                                <li>• MongoDB integration</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: AI-powered chat application backend</p>
+                        </div>
+                        
+                        <!-- Module 5 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 5: Database Design</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 9-10</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• PostgreSQL advanced SQL</li>
+                                <li>• NoSQL with MongoDB</li>
+                                <li>• Vector databases (Pinecone)</li>
+                                <li>• Multi-database architecture</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Multi-database system with vector search</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 3 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">AI/ML Integration</h2>
+                            <p class="text-gray-400">Weeks 11-16</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Module 6 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 6: AI/ML Fundamentals</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 11-12</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Machine learning concepts</li>
+                                <li>• Data preprocessing</li>
+                                <li>• OpenAI API integration</li>
+                                <li>• Hugging Face transformers</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: ML data pipeline</p>
+                        </div>
+                        
+                        <!-- Module 7 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 7: AI Integration</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 13-14</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Real-time AI with WebSockets</li>
+                                <li>• Multimodal AI integration</li>
+                                <li>• AI model versioning</li>
+                                <li>• Production monitoring</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Multimodal AI app with streaming</p>
+                        </div>
+                        
+                        <!-- Module 8 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 8: Advanced AI Systems</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 15-16</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• RAG systems</li>
+                                <li>• Document processing pipelines</li>
+                                <li>• AI agents with multi-tools</li>
+                                <li>• Enterprise AI architecture</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: RAG-based knowledge system</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 4 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Production & Deployment</h2>
+                            <p class="text-gray-400">Weeks 17-20</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Module 9 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 9: Testing & Deployment</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 17-18</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• AI testing strategies</li>
+                                <li>• Docker containerization</li>
+                                <li>• Kubernetes deployment</li>
+                                <li>• CI/CD pipelines</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Containerized AI microservices</p>
+                        </div>
+                        
+                        <!-- Module 10 -->
+                        <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                            <h4 class="font-semibold text-purple-300 mb-2">Module 10: Performance & Scaling</h4>
+                            <p class="text-gray-300 text-sm mb-2">Weeks 19-20</p>
+                            <ul class="text-gray-300 text-sm space-y-1">
+                                <li>• Advanced caching strategies</li>
+                                <li>• Load balancing</li>
+                                <li>• Performance monitoring</li>
+                                <li>• Cost optimization</li>
+                            </ul>
+                            <p class="text-purple-200 text-sm mt-2 font-medium">Project: Scalable AI microservices</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Phase 5 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Capstone Project</h2>
+                            <p class="text-gray-400">Weeks 21-24</p>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-6 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-3">Module 11: Enterprise AI Application</h4>
+                        <p class="text-gray-300 mb-4">
+                            <strong>Goal:</strong> Deliver a comprehensive enterprise-grade AI application.
+                        </p>
+                        
+                        <h5 class="text-lg font-semibold mb-2">Requirements:</h5>
+                        <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                            <li>Enterprise-grade AI application development</li>
+                            <li>Multi-tenant architecture and security</li>
+                            <li>Production deployment and monitoring</li>
+                            <li>Professional portfolio and career preparation</li>
+                        </ul>
+                        
+                        <h5 class="text-lg font-semibold mb-2">Assessment:</h5>
+                        <ul class="list-disc pl-6 text-gray-300 space-y-2">
+                            <li>Assignments: 60% (hands-on projects and coding)</li>
+                            <li>Quizzes: 20% (knowledge checks and assessments)</li>
+                            <li>Participation: 10% (discussions and peer reviews)</li>
+                            <li>Capstone Project: 10% (final portfolio and presentation)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Tools & Requirements -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <h2 class="text-2xl font-bold mb-6">Required Tools & Software</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3 text-purple-300">Development Environment</h3>
+                            <ul class="text-gray-300 space-y-2 text-sm">
+                                <li>• Node.js (v18+) and npm/yarn</li>
+                                <li>• Visual Studio Code with AI extensions</li>
+                                <li>• Python and Jupyter support</li>
+                                <li>• Docker Desktop</li>
+                                <li>• Git and GitHub account</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3 text-purple-300">AI Services & APIs</h3>
+                            <ul class="text-gray-300 space-y-2 text-sm">
+                                <li>• OpenAI API account</li>
+                                <li>• Hugging Face account</li>
+                                <li>• Pinecone vector database</li>
+                                <li>• MongoDB Atlas</li>
+                                <li>• Redis Cloud for caching</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="text-lg font-semibold mb-3 text-purple-300">Cloud Platforms</h3>
+                            <ul class="text-gray-300 space-y-2 text-sm">
+                                <li>• AWS/GCP/Azure account</li>
+                                <li>• Kubernetes cluster access</li>
+                                <li>• GitHub Actions for CI/CD</li>
+                                <li>• Monitoring tools</li>
+                                <li>• Performance analytics</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center no-print">
+                <p class="text-xl text-gray-300 mb-6">Ready to start your journey as a Full-Stack AI Engineer?</p>
+                <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                    Apply to Skymirror Academy
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12 no-print">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-sm font-bold">S</span>
+                    </div>
+                    <span class="text-xl font-extrabold">
+                        <span class="text-gradient hero-gradient">Skymirror</span>
+                        <span class="text-gray-100">Academy</span>
+                    </span>
+                </div>
+                <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

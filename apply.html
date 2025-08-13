@@ -328,6 +328,8 @@
                                         // Handle checkbox value
                                         data.VanguardCohortInterest = formData.has('VanguardCohortInterest');
                                         
+                                        console.log('Sending data:', data);
+                                        
                                         const response = await fetch(webAppUrl, {
                                             method: 'POST',
                                             headers: {
@@ -337,8 +339,9 @@
                                         });
                                         
                                         const result = await response.json();
+                                        console.log('Response:', result);
                                         
-                                        if (response.ok && result.status === 'success') {
+                                        if (result.status === 'success') {
                                             // Show success message
                                             formSuccess.classList.remove('hidden');
                                             form.classList.add('hidden');
@@ -346,12 +349,19 @@
                                             // Log success
                                             console.log('Application submitted successfully');
                                         } else {
-                                            throw new Error(result.error || 'Failed to submit application');
+                                            throw new Error(result.message || 'Failed to submit application');
                                         }
                                     } catch (error) {
                                         console.error('Form submission error:', error);
-                                        // Show error message
-                                        alert('Error submitting application. Please try again later.');
+                                        
+                                        // Get detailed error information
+                                        const errorMessage = error.message || 'Failed to submit application';
+                                        const errorDetails = error.details || {};
+                                        
+                                        // Show detailed error message
+                                        alert(`Error: ${errorMessage}
+\n\n${errorDetails.errorMessage || ''}
+\n\nIf the error persists, please contact us at ${ADMIN_EMAIL}`);
                                     } finally {
                                         // Reset form state only if there was an error
                                         if (!formSuccess.classList.contains('hidden')) {

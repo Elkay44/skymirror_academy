@@ -17,34 +17,81 @@ function doOptions(e) {
  */
 function doPost(e) {
   try {
+    // Log the incoming request
+    Logger.log('Received request: ' + JSON.stringify(e));
+    
+    // Log the raw post data
+    Logger.log('Raw post data: ' + e.postData.contents);
+    
+    // Parse the JSON data
     const data = JSON.parse(e.postData.contents);
     
-    // Process form data
-    const sheet = SpreadsheetApp.getActiveSheet();
-    const row = sheet.getLastRow() + 1;
+    // Log the parsed data
+    Logger.log('Parsed data: ' + JSON.stringify(data));
     
-    // Add headers if they don't exist
-    if (sheet.getLastRow() === 0) {
-      const headers = Object.keys(data);
-      sheet.appendRow(headers);
+    // Process form data
+    try {
+      const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+      Logger.log('Active sheet: ' + sheet.getName());
+      
+      const row = sheet.getLastRow() + 1;
+      Logger.log('Adding data to row: ' + row);
+      
+      // Add headers if they don't exist
+      if (sheet.getLastRow() === 0) {
+        const headers = Object.keys(data);
+        Logger.log('Adding headers: ' + headers.join(', '));
+        sheet.appendRow(headers);
+      }
+      
+      // Add data to sheet
+      const values = Object.values(data);
+      Logger.log('Adding values: ' + values.join(', '));
+      sheet.appendRow(values);
+      
+      Logger.log('Data successfully added to spreadsheet');
+    } catch (sheetError) {
+      Logger.log('Error writing to spreadsheet: ' + sheetError.toString());
+      throw new Error('Failed to save application data to spreadsheet: ' + sheetError.toString());
     }
     
-    // Add data to sheet
-    const values = Object.values(data);
-    sheet.appendRow(values);
-    
     // Send confirmation email
-    sendConfirmationEmail(data);
+    try {
+      Logger.log('Sending confirmation email to: ' + data.email);
+      sendConfirmationEmail(data);
+      Logger.log('Confirmation email sent successfully');
+    } catch (emailError) {
+      Logger.log('Error sending confirmation email: ' + emailError.toString());
+      throw new Error('Failed to send confirmation email: ' + emailError.toString());
+    }
     
     // Return success response with CORS headers
-    return ContentService.createTextOutput(JSON.stringify({status: "success"}))
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "success",
+      message: "Application submitted successfully",
+      data: data
+    }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*")
       .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
       .setHeader("Access-Control-Allow-Headers", "Content-Type");
   } catch (error) {
     Logger.log('Error in doPost: ' + error.toString());
-    return ContentService.createTextOutput(JSON.stringify({error: error.toString()}))
+    
+    // Log the error details
+    Logger.log('Error stack: ' + error.stack);
+    
+    // Return detailed error message
+    return ContentService.createTextOutput(JSON.stringify({
+      status: "error",
+      error: error.toString(),
+      message: "Failed to process application",
+      details: {
+        timestamp: new Date().toISOString(),
+        errorType: error.name,
+        errorMessage: error.message
+      }
+    }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*")
       .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
