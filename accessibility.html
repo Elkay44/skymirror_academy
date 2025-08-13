@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Statement | Skymirror Academy</title>
+    <meta name="description" content="Accessibility Statement for Skymirror Academy - Our commitment to making education accessible to everyone.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .bg-glass {
+                background-color: rgba(255, 255, 255, 0.1);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Skip to main content link -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-purple-600 text-white px-4 py-2 rounded-lg z-50">
+        Skip to main content
+    </a>
+
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2" aria-label="Skymirror Academy Home">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold" aria-hidden="true">S</span>
+                </div>
+                <span class="text-2xl font-bold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <!-- Back to Home -->
+            <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <i class="fas fa-arrow-left mr-2" aria-hidden="true"></i>Back to Home
+            </a>
+        </div>
+    </header>
+
+    <main id="main-content" class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Header Section -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">
+                <span class="text-gradient hero-gradient">Accessibility Statement</span>
+            </h1>
+            <p class="text-xl text-gray-300">
+                Our commitment to making education accessible to everyone
+            </p>
+            <p class="text-sm text-gray-400 mt-4">
+                Last updated: January 2025
+            </p>
+        </div>
+
+        <!-- Content -->
+        <div class="bg-glass rounded-xl p-8 space-y-8">
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Our Commitment</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Skymirror Academy is committed to ensuring digital accessibility for people with disabilities. We are continually improving the user experience for everyone and applying the relevant accessibility standards to achieve these goals.</p>
+                    <p>We believe that technology education should be accessible to all, regardless of ability, and we strive to create an inclusive learning environment that empowers every student to succeed.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Accessibility Standards</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Our website aims to conform to the <strong>Web Content Accessibility Guidelines (WCAG) 2.1</strong> at the AA level. These guidelines explain how to make web content more accessible for people with disabilities and user-friendly for everyone.</p>
+                    <p>We also follow accessibility best practices including:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Semantic HTML structure for screen readers</li>
+                        <li>Keyboard navigation support</li>
+                        <li>High contrast color schemes</li>
+                        <li>Alternative text for images</li>
+                        <li>Descriptive link text and headings</li>
+                        <li>Focus indicators for interactive elements</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Accessibility Features</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Our website and educational platform include the following accessibility features:</p>
+                    
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Navigation</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Skip to main content link</li>
+                        <li>Consistent navigation structure across all pages</li>
+                        <li>Breadcrumb navigation where applicable</li>
+                        <li>Logical tab order for keyboard users</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Visual Design</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>High contrast color combinations</li>
+                        <li>Scalable text that can be enlarged up to 200%</li>
+                        <li>Support for high contrast mode</li>
+                        <li>Reduced motion options for users with vestibular disorders</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Content</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Descriptive headings and labels</li>
+                        <li>Alternative text for all meaningful images</li>
+                        <li>Captions and transcripts for video content</li>
+                        <li>Clear and simple language</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Forms</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Clearly labeled form fields</li>
+                        <li>Error messages that are easy to understand</li>
+                        <li>Required field indicators</li>
+                        <li>Keyboard accessible form controls</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Educational Accessibility</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Beyond our website, we are committed to making our educational programs accessible:</p>
+                    
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Learning Materials</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Multiple format options (text, audio, video)</li>
+                        <li>Closed captions for all video content</li>
+                        <li>Screen reader compatible documents</li>
+                        <li>Adjustable playback speeds for video content</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Learning Support</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Extended time for assignments when needed</li>
+                        <li>Alternative assessment methods</li>
+                        <li>One-on-one mentoring support</li>
+                        <li>Flexible scheduling options</li>
+                    </ul>
+
+                    <h3 class="text-xl font-semibold text-purple-200 mt-6 mb-3">Technology Tools</h3>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Screen reader compatible development environments</li>
+                        <li>Voice recognition software support</li>
+                        <li>Keyboard-only navigation for all tools</li>
+                        <li>High contrast themes for coding interfaces</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Assistive Technologies</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Our website and learning platform are designed to work with assistive technologies, including:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Screen readers (JAWS, NVDA, VoiceOver, TalkBack)</li>
+                        <li>Voice recognition software (Dragon NaturallySpeaking)</li>
+                        <li>Keyboard navigation tools</li>
+                        <li>Browser zoom and magnification tools</li>
+                        <li>High contrast and dark mode extensions</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Known Limitations</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>While we strive for full accessibility, we acknowledge some current limitations:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Some third-party embedded content may not be fully accessible</li>
+                        <li>Complex interactive coding exercises may require additional support</li>
+                        <li>Some legacy video content may lack captions (being updated)</li>
+                    </ul>
+                    <p>We are actively working to address these limitations and welcome feedback on how we can improve.</p>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Accommodation Requests</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>If you need specific accommodations to participate in our programs, please contact us. We will work with you to provide:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Alternative formats for course materials</li>
+                        <li>Modified assessment methods</li>
+                        <li>Extended deadlines when appropriate</li>
+                        <li>Additional technical support</li>
+                        <li>Personalized learning plans</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Feedback and Contact</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>We welcome your feedback on the accessibility of our website and educational programs. If you encounter any accessibility barriers or have suggestions for improvement, please contact us:</p>
+                    
+                    <div class="bg-gray-800 bg-opacity-50 p-4 rounded-lg">
+                        <p><strong>Accessibility Coordinator</strong></p>
+                        <p>Email: <a href="mailto:accessibility@skymirror.academy" class="text-purple-400 hover:text-purple-300 underline focus:outline-none focus:ring-2 focus:ring-purple-500">accessibility@skymirror.academy</a></p>
+                        <p>Phone: <a href="tel:+36-1-234-5678" class="text-purple-400 hover:text-purple-300 underline focus:outline-none focus:ring-2 focus:ring-purple-500">+36 1 234 5678</a></p>
+                        <p>Address: Budapest, Hungary</p>
+                    </div>
+                    
+                    <p class="mt-4">When reporting accessibility issues, please include:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>The specific page or feature affected</li>
+                        <li>The assistive technology you're using</li>
+                        <li>The browser and operating system</li>
+                        <li>A description of the problem encountered</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Ongoing Efforts</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Accessibility is an ongoing commitment. Our efforts include:</p>
+                    <ul class="list-disc list-inside space-y-2 ml-4">
+                        <li>Regular accessibility audits and testing</li>
+                        <li>Staff training on accessibility best practices</li>
+                        <li>User testing with people with disabilities</li>
+                        <li>Continuous improvement based on feedback</li>
+                        <li>Staying current with accessibility standards and technologies</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 class="text-2xl font-semibold text-purple-300 mb-4">Third-Party Content</h2>
+                <div class="text-gray-300 space-y-4">
+                    <p>Some content on our website may be provided by third parties. While we strive to ensure all content meets accessibility standards, we cannot guarantee the accessibility of third-party content. If you encounter issues with third-party content, please contact us and we will work to find alternative solutions.</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Back to Top -->
+        <div class="text-center mt-12">
+            <a href="#main-content" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold focus:outline-none focus:ring-2 focus:ring-purple-500">
+                <i class="fas fa-arrow-up mr-2" aria-hidden="true"></i>Back to Top
+            </a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12" role="contentinfo">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="flex items-center justify-center space-x-2 mb-4">
+                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                    <span class="text-lg font-bold" aria-hidden="true">S</span>
+                </div>
+                <span class="text-xl font-bold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </div>
+            <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+</body>
+</html>
