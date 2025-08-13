@@ -194,8 +194,9 @@
             <!-- Desktop Navigation -->
             <nav class="hidden md:block">
                 <ul class="flex space-x-8">
-                    <li><a href="programs.html" class="text-purple-300 hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-full">Programs</a></li>
+                    <li><a href="programs.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Programs</a></li>
                     <li><a href="Vanguard%20Cohort.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Vanguard Cohort</a></li>
+                    <li><a href="careers.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Careers</a></li>
                     <li><a href="about.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">About Us</a></li>
                 </ul>
             </nav>
@@ -222,6 +223,7 @@
             <ul class="flex flex-col space-y-4">
                 <li><a href="programs.html" class="block text-purple-300 transition-colors text-base font-medium">Programs</a></li>
                 <li><a href="Vanguard%20Cohort.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Vanguard Cohort</a></li>
+                <li><a href="careers.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Careers</a></li>
                 <li><a href="about.html" class="block hover:text-purple-300 transition-colors text-base font-medium">About Us</a></li>
                 <li class="pt-2">
                     <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold">
@@ -426,7 +428,7 @@
                     <!-- Filter Actions -->
                     <div class="flex flex-wrap justify-between items-center mt-6 pt-6 border-t border-white border-opacity-10">
                         <div class="flex items-center space-x-4 mb-4 lg:mb-0">
-                            <button id="clear-filters" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">
+                            <button id="clear-all-filters" class="text-gray-400 hover:text-white transition-colors text-sm font-medium">
                                 Clear All Filters
                             </button>
                             <button id="select-all-filters" class="text-purple-300 hover:text-purple-200 transition-colors text-sm font-medium">
@@ -434,29 +436,26 @@
                             </button>
                         </div>
                         <div id="results-count" class="text-gray-300 text-sm font-medium">
-                            Showing <span id="visible-count">6</span> of <span id="total-count">6</span> programs
+                            6 programs found
                         </div>
                     </div>
                 </div>
 
                 <!-- Quick Filter Tags -->
                 <div class="flex flex-wrap gap-3 mb-8">
-                    <button class="quick-filter-tag active" data-filter="all">
-                        <i class="fas fa-th-large mr-2"></i>All Programs
-                    </button>
-                    <button class="quick-filter-tag" data-filter="beginner-friendly">
+                    <button class="quick-filter-tag" data-tag="beginner-friendly">
                         <i class="fas fa-seedling mr-2"></i>Beginner Friendly
                     </button>
-                    <button class="quick-filter-tag" data-filter="high-demand">
+                    <button class="quick-filter-tag" data-tag="high-demand">
                         <i class="fas fa-fire mr-2"></i>High Demand
                     </button>
-                    <button class="quick-filter-tag" data-filter="fast-track">
+                    <button class="quick-filter-tag" data-tag="fast-track">
                         <i class="fas fa-rocket mr-2"></i>Fast Track (10 weeks)
                     </button>
-                    <button class="quick-filter-tag" data-filter="comprehensive">
+                    <button class="quick-filter-tag" data-tag="comprehensive">
                         <i class="fas fa-graduation-cap mr-2"></i>Comprehensive (20+ weeks)
                     </button>
-                    <button class="quick-filter-tag" data-filter="ai-focused">
+                    <button class="quick-filter-tag" data-tag="ai-focused">
                         <i class="fas fa-brain mr-2"></i>AI Focused
                     </button>
                 </div>

@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Careers | Skymirror Academy</title>
+    <meta name="description" content="Launch your tech career with Skymirror Academy. Explore career paths, success stories, and our comprehensive career support services.">
+    <meta name="keywords" content="tech careers, software development jobs, AI careers, full-stack developer, career support, job placement">
+    <meta property="og:title" content="Careers | Skymirror Academy">
+    <meta property="og:description" content="Launch your tech career with Skymirror Academy. Explore career paths, success stories, and our comprehensive career support services.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://skymirror.academy/careers">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .career-card {
+            transition: all 0.3s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        .stat-counter {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.05));
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02));
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Animated background -->
+    <div class="fixed inset-0 -z-10 overflow-hidden">
+        <div id="particles-js" class="absolute inset-0"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <nav class="hidden md:block">
+                <ul class="flex space-x-8">
+                    <li><a href="programs.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Programs</a></li>
+                    <li><a href="Vanguard Cohort.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">Vanguard Cohort</a></li>
+                    <li><a href="careers.html" class="text-purple-300 hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-full">Careers</a></li>
+                    <li><a href="about.html" class="hover:text-purple-300 transition-colors text-base font-medium relative after:absolute after:bottom-0 after:left-0 after:bg-purple-400 after:h-0.5 after:w-0 hover:after:w-full after:transition-all">About Us</a></li>
+                </ul>
+            </nav>
+
+            <!-- Mobile menu button -->
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+
+            <a href="apply.html" class="hidden md:block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-5 py-2 rounded-full shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                <span class="flex items-center">
+                    Apply Now
+                    <svg class="h-4 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </span>
+            </a>
+        </div>
+
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 p-4 bg-glass rounded-lg border border-white border-opacity-10">
+            <ul class="flex flex-col space-y-4">
+                <li><a href="programs.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Programs</a></li>
+                <li><a href="Vanguard Cohort.html" class="block hover:text-purple-300 transition-colors text-base font-medium">Vanguard Cohort</a></li>
+                <li><a href="careers.html" class="block text-purple-300 transition-colors text-base font-medium">Careers</a></li>
+                <li><a href="about.html" class="block hover:text-purple-300 transition-colors text-base font-medium">About Us</a></li>
+                <li class="pt-2">
+                    <a href="apply.html" class="block text-center bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all duration-300 text-sm font-semibold">Apply Now</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+            <!-- Animated background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            <div class="absolute bottom-20 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse-slow"></div>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center max-w-4xl mx-auto mb-16">
+                    <span class="inline-block py-1 px-3 rounded-full bg-purple-900 bg-opacity-30 text-purple-300 text-sm font-medium mb-4">Career Opportunities</span>
+                    <h1 class="text-5xl sm:text-6xl font-bold mb-6">
+                        <span class="text-gradient hero-gradient">Launch Your Tech Career</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-10">
+                        Transform your passion into a thriving career. Our graduates land roles at top tech companies with competitive salaries and exciting growth opportunities.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <a href="apply.html" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 font-semibold text-lg">
+                            Start Your Journey
+                        </a>
+                        <a href="#career-paths" class="border border-purple-400 text-purple-300 hover:bg-purple-500 hover:bg-opacity-10 px-8 py-4 rounded-full transition-all duration-300 font-semibold text-lg">
+                            Explore Career Paths
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Career Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+                    <div class="stat-counter p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold text-gradient hero-gradient mb-2">95%</div>
+                        <div class="text-gray-300">Job Placement Rate</div>
+                    </div>
+                    <div class="stat-counter p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold text-gradient hero-gradient mb-2">€65k</div>
+                        <div class="text-gray-300">Average Starting Salary</div>
+                    </div>
+                    <div class="stat-counter p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold text-gradient hero-gradient mb-2">3 months</div>
+                        <div class="text-gray-300">Average Time to Hire</div>
+                    </div>
+                    <div class="stat-counter p-6 rounded-xl text-center">
+                        <div class="text-3xl font-bold text-gradient hero-gradient mb-2">500+</div>
+                        <div class="text-gray-300">Partner Companies</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Career Paths Section -->
+        <section id="career-paths" class="py-16 px-4 sm:px-6 lg:px-8 bg-gray-800">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold mb-6">
+                        <span class="text-gradient hero-gradient">Career Paths</span>
+                    </h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                        Discover the diverse career opportunities available to our graduates across different industries and specializations.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Frontend Developer -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-paint-brush text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Frontend Developer</h3>
+                        <p class="text-gray-400 mb-6">Create stunning user interfaces and interactive web experiences using modern frameworks like React and Vue.js.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€45k - €75k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Entry to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">React</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">JavaScript</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">CSS</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">TypeScript</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Full-Stack Developer -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Full-Stack Developer</h3>
+                        <p class="text-gray-400 mb-6">Master both frontend and backend technologies to build complete web applications from start to finish.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€55k - €95k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Mid to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">React</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Node.js</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Databases</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">DevOps</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI/ML Engineer -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-brain text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">AI/ML Engineer</h3>
+                        <p class="text-gray-400 mb-6">Develop intelligent systems and machine learning models that solve complex business problems.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€70k - €120k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Mid to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">TensorFlow</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">PyTorch</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Data Science</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Backend Developer -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-server text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Backend Developer</h3>
+                        <p class="text-gray-400 mb-6">Build robust server-side applications, APIs, and database systems that power modern web applications.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€50k - €85k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Entry to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Node.js</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Python</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">MongoDB</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">APIs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- DevOps Engineer -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-cogs text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">DevOps Engineer</h3>
+                        <p class="text-gray-400 mb-6">Streamline development workflows and manage cloud infrastructure for scalable applications.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€60k - €100k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Mid to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Docker</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Kubernetes</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">AWS</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">CI/CD</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Manager -->
+                    <div class="career-card bg-glass p-8 rounded-xl border border-white border-opacity-5">
+                        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mb-6">
+                            <i class="fas fa-chart-line text-2xl text-white"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-4">Product Manager</h3>
+                        <p class="text-gray-400 mb-6">Bridge technical and business teams to drive product strategy and deliver user-focused solutions.</p>
+                        <div class="space-y-3 mb-6">
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Salary Range:</span>
+                                <span class="text-purple-300 font-semibold">€65k - €110k</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Experience Level:</span>
+                                <span class="text-purple-300 font-semibold">Mid to Senior</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-300">Remote Options:</span>
+                                <span class="text-green-400 font-semibold">Available</span>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <h4 class="font-semibold text-gray-200">Key Skills:</h4>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Strategy</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Analytics</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">UX/UI</span>
+                                <span class="px-3 py-1 bg-purple-900 bg-opacity-30 text-purple-300 rounded-full text-sm">Agile</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
