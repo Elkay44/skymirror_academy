@@ -1,4 +1,4 @@
-// Enhanced Hash Router for Clean URLs
+// Simple Clean URL Handler - Multi-page Website
 (function() {
     const routes = {
         '': 'index.html',
@@ -25,72 +25,63 @@
         }
     }
 
+    // Only handle hash navigation on homepage
     function handleHashChange() {
-        const hash = window.location.hash.substring(1);
-        if (hash && routes[hash]) {
-            navigate(hash);
-        }
-    }
-
-    // Update all internal links to use hash navigation
-    function updateLinks() {
-        document.querySelectorAll('a[href]').forEach(link => {
-            const href = link.getAttribute('href');
-            
-            // Only update internal HTML links
-            if (href && 
-                href.endsWith('.html') && 
-                !href.startsWith('http') && 
-                !href.startsWith('mailto:') && 
-                !href.startsWith('tel:')) {
-                
-                const pageName = reverseRoutes[href];
-                if (pageName) {
-                    link.setAttribute('href', '#' + pageName);
-                    
-                    // Add smooth transition class
-                    link.classList.add('hash-nav-link');
-                }
-            }
-        });
-    }
-
-    // Handle direct .html access - redirect to hash version
-    function handleDirectAccess() {
         const currentPath = window.location.pathname;
         const fileName = currentPath.split('/').pop();
         
-        if (fileName && fileName.endsWith('.html') && reverseRoutes[fileName]) {
-            const hashRoute = reverseRoutes[fileName];
-            if (hashRoute) {
-                // Redirect to hash version
-                window.location.href = window.location.origin + window.location.pathname.replace(fileName, '') + '#' + hashRoute;
-                return;
+        // Only handle hash navigation if we're on the homepage
+        if (fileName === 'index.html' || fileName === '' || currentPath === '/' || currentPath.endsWith('/')) {
+            const hash = window.location.hash.substring(1);
+            if (hash && routes[hash]) {
+                navigate(hash);
             }
         }
     }
 
-    // Initialize router
-    function init() {
-        // Handle direct access to .html files
-        handleDirectAccess();
+    // Update links only on homepage to use hash navigation
+    function updateLinksOnHomepage() {
+        const currentPath = window.location.pathname;
+        const fileName = currentPath.split('/').pop();
         
-        // Update all links on page load
-        updateLinks();
-        
-        // Re-update links when new content is loaded (for dynamic content)
-        const observer = new MutationObserver(function(mutations) {
-            mutations.forEach(function(mutation) {
-                if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
-                    updateLinks();
+        // Only update links to hash navigation if we're on the homepage
+        if (fileName === 'index.html' || fileName === '' || currentPath === '/' || currentPath.endsWith('/')) {
+            document.querySelectorAll('a[href]').forEach(link => {
+                const href = link.getAttribute('href');
+                
+                // Only update internal HTML links
+                if (href && 
+                    href.endsWith('.html') && 
+                    !href.startsWith('http') && 
+                    !href.startsWith('mailto:') && 
+                    !href.startsWith('tel:')) {
+                    
+                    const pageName = reverseRoutes[href];
+                    if (pageName) {
+                        link.setAttribute('href', '#' + pageName);
+                        link.classList.add('hash-nav-link');
+                    }
                 }
             });
-        });
+        }
+    }
+
+    // Initialize
+    function init() {
+        const currentPath = window.location.pathname;
+        const fileName = currentPath.split('/').pop();
         
-        observer.observe(document.body, {
-            childList: true,
-            subtree: true
-        });
+        // If we're on homepage and have a hash, navigate to that page
+        if ((fileName === 'index.html' || fileName === '' || currentPath === '/' || currentPath.endsWith('/')) && window.location.hash) {
+            const hash = window.location.hash.substring(1);
+            if (routes[hash]) {
+                navigate(hash);
+                return;
+            }
+        }
+        
+        // Update links only on homepage
+        updateLinksOnHomepage();
     }
 
     // Event listeners
