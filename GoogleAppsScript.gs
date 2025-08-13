@@ -1,4 +1,4 @@
-const ADMIN_EMAIL = 'contact@skymirror.eu';
+const ADMIN_EMAIL = 'admissions@skymirror.eu';
 
 /**
  * Handles CORS preflight requests
