@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Load the footer component if the footer-container exists
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
-        fetch('/components/footer.html')
+        fetch('./components/footer.html')
             .then(response => response.text())
             .then(data => {
                 footerContainer.innerHTML = data;
@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('Error loading footer:', error);
-                footerContainer.innerHTML = '<p class="text-center text-gray-400 py-8">© 2023 Skymirror Academy</p>';
+                footerContainer.innerHTML = '<p class="text-center text-gray-400 py-8">© 2025 Skymirror Academy</p>';
             });
     }
     
