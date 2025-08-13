@@ -310,11 +310,23 @@
                                 const formSuccess = document.getElementById('form-success');
                                 const submitButton = form.querySelector('button[type="submit"]');
                                 
-                                // Google Apps Script URL
+                                // Configuration
+                                const ADMIN_EMAIL = 'lukman.ibrahim@skymirror.eu';
                                 const webAppUrl = 'https://script.google.com/macros/s/AKfycbytuBx72AKNqnTStzLcEp13Vu67wUatpEtVyV4vMeBMhxPoxeOrnGRubNphKXYQRZrFFg/exec';
+                                
+                                // Debug: Check if form elements exist
+                                console.log('Form element:', form);
+                                console.log('Success element:', formSuccess);
+                                console.log('Submit button:', submitButton);
+                                
+                                if (!form || !formSuccess || !submitButton) {
+                                    console.error('Required form elements not found!');
+                                    return;
+                                }
 
                                 form.addEventListener('submit', async (e) => {
                                     e.preventDefault();
+                                    console.log('Form submission started...');
                                     
                                     try {
                                         // Disable form and show loading state
@@ -328,7 +340,17 @@
                                         // Handle checkbox value
                                         data.VanguardCohortInterest = formData.has('VanguardCohortInterest');
                                         
-                                        console.log('Sending data:', data);
+                                        console.log('Form data collected:', data);
+                                        
+                                        // Validate required fields
+                                        const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'program', 'background'];
+                                        for (const field of requiredFields) {
+                                            if (!data[field] || data[field].trim() === '') {
+                                                throw new Error(`Please fill in the ${field} field.`);
+                                            }
+                                        }
+                                        
+                                        console.log('Validation passed, sending to server...');
                                         
                                         const response = await fetch(webAppUrl, {
                                             method: 'POST',
@@ -338,8 +360,15 @@
                                             body: JSON.stringify(data)
                                         });
                                         
+                                        console.log('Response status:', response.status);
+                                        console.log('Response headers:', response.headers);
+                                        
+                                        if (!response.ok) {
+                                            throw new Error(`HTTP error! status: ${response.status}`);
+                                        }
+                                        
                                         const result = await response.json();
-                                        console.log('Response:', result);
+                                        console.log('Response data:', result);
                                         
                                         if (result.status === 'success') {
                                             // Show success message
