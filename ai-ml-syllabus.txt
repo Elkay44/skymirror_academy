@@ -1,0 +1,159 @@
+SKYMIRROR ACADEMY
+AI & Machine Learning: Intelligent Systems Development
+16-Week Intensive Program
+
+COURSE OVERVIEW
+Duration: 16 weeks (4 months)
+Format: Hybrid (online theory + hands-on projects)
+Prerequisites: Basic programming knowledge (Python preferred), mathematics fundamentals
+Target Audience: Aspiring AI/ML engineers, data scientists, developers seeking AI specialization
+
+LEARNING PATH STRUCTURE
+
+MODULE 0: FOUNDATIONS & SETUP (Week 0)
+Goal: Establish development environment and mathematical foundations
+Topics:
+- Python development environment setup (Anaconda, Jupyter, VS Code)
+- Mathematics review: Linear algebra, statistics, calculus basics
+- Introduction to AI/ML landscape and career paths
+- Git workflow for data science projects
+- Course overview and project-based learning approach
+
+MODULE 1: MACHINE LEARNING FUNDAMENTALS (Weeks 1-2)
+Goal: Understand core ML concepts and supervised learning
+Topics:
+- Introduction to machine learning types and applications
+- Supervised learning: regression and classification
+- Model evaluation metrics and cross-validation
+- Feature engineering and data preprocessing
+- Scikit-learn library fundamentals
+- Overfitting, underfitting, and bias-variance tradeoff
+Project: House price prediction model with feature engineering
+
+MODULE 2: ADVANCED MACHINE LEARNING (Weeks 3-4)
+Goal: Master unsupervised learning and ensemble methods
+Topics:
+- Unsupervised learning: clustering, dimensionality reduction
+- K-means, hierarchical clustering, PCA, t-SNE
+- Ensemble methods: Random Forest, Gradient Boosting, XGBoost
+- Hyperparameter tuning and model selection
+- Feature selection and importance analysis
+Project: Customer segmentation and recommendation system
+
+MODULE 3: NEURAL NETWORKS & DEEP LEARNING (Weeks 5-6)
+Goal: Build and train neural networks from scratch
+Topics:
+- Neural network fundamentals and perceptrons
+- Backpropagation and gradient descent optimization
+- Deep learning frameworks: TensorFlow and PyTorch
+- Activation functions, loss functions, and optimizers
+- Regularization techniques: dropout, batch normalization
+- Model architecture design and hyperparameter tuning
+Project: Multi-class image classifier using neural networks
+
+MODULE 4: CONVOLUTIONAL NEURAL NETWORKS (Weeks 7-8)
+Goal: Implement computer vision solutions with CNNs
+Topics:
+- CNN architecture: convolution, pooling, fully connected layers
+- Popular CNN architectures: LeNet, AlexNet, VGG, ResNet
+- Transfer learning and pre-trained models
+- Image preprocessing and data augmentation
+- Object detection and image segmentation basics
+- OpenCV for computer vision tasks
+Project: Real-time object detection application
+
+MODULE 5: RECURRENT NEURAL NETWORKS (Weeks 9-10)
+Goal: Process sequential data with RNNs and LSTMs
+Topics:
+- RNN fundamentals and vanishing gradient problem
+- LSTM and GRU architectures
+- Sequence-to-sequence models and attention mechanisms
+- Time series forecasting and analysis
+- Text preprocessing and tokenization
+- Bidirectional RNNs and stacked architectures
+Project: Stock price prediction and sentiment analysis system
+
+MODULE 6: NATURAL LANGUAGE PROCESSING (Weeks 11-12)
+Goal: Build intelligent text processing applications
+Topics:
+- Text preprocessing: tokenization, stemming, lemmatization
+- Bag of words, TF-IDF, and word embeddings
+- Word2Vec, GloVe, and contextual embeddings
+- Transformer architecture and attention mechanisms
+- BERT, GPT, and modern language models
+- Named entity recognition and part-of-speech tagging
+Project: Intelligent chatbot with sentiment analysis
+
+MODULE 7: COMPUTER VISION APPLICATIONS (Weeks 13-14)
+Goal: Develop advanced computer vision systems
+Topics:
+- Advanced image processing techniques
+- Face detection and recognition systems
+- Object tracking and motion analysis
+- Image segmentation and edge detection
+- Real-time video processing with OpenCV
+- Integration with web applications and APIs
+Project: Intelligent surveillance system with face recognition
+
+MODULE 8: CAPSTONE PROJECT (Weeks 15-16)
+Goal: Deliver a comprehensive AI solution for real-world problems
+Capstone Options:
+- Predictive analytics dashboard for business intelligence
+- Computer vision application for healthcare or security
+- NLP-powered content analysis and recommendation system
+- Time series forecasting system for financial markets
+- AI-powered automation solution for specific industry
+
+Requirements:
+- End-to-end AI solution with data pipeline
+- Model training, evaluation, and deployment
+- Web interface or API for user interaction
+- Documentation and presentation of results
+- Production-ready code with proper testing
+
+ASSESSMENT STRATEGY
+- Assignments: 50% (hands-on projects and coding)
+- Quizzes: 20% (knowledge checks and theory)
+- Participation: 10% (discussions and peer reviews)
+- Capstone Project: 20% (final solution and presentation)
+- Progression Requirement: 75% minimum score to advance
+
+REQUIRED TOOLS & SOFTWARE
+Development Environment:
+- Python 3.8+ with Anaconda distribution
+- Jupyter Notebook and JupyterLab
+- Visual Studio Code with Python extensions
+- Git and GitHub for version control
+
+AI/ML Libraries:
+- Scikit-learn for traditional ML
+- TensorFlow and Keras for deep learning
+- PyTorch for research and experimentation
+- OpenCV for computer vision
+- NLTK and spaCy for NLP
+- Pandas and NumPy for data manipulation
+- Matplotlib and Seaborn for visualization
+
+Cloud Platforms:
+- Google Colab for GPU/TPU access
+- AWS/GCP/Azure for model deployment
+- Kaggle for datasets and competitions
+- Weights & Biases for experiment tracking
+
+CAREER OUTCOMES
+Upon completion, graduates will be able to:
+- Design and implement machine learning solutions
+- Build and deploy neural networks for various applications
+- Develop computer vision systems for real-world problems
+- Create NLP applications including chatbots and text analysis
+- Deploy AI models to production environments
+- Evaluate and optimize model performance
+
+STUDENT SUPPORT
+- Weekly live coding sessions and Q&A
+- Industry mentor guidance from AI professionals
+- Peer learning groups and project collaboration
+- Portfolio development and career guidance
+- Job placement assistance and interview preparation
+
+© 2025 Skymirror Academy. All rights reserved.
