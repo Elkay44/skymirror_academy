@@ -17,80 +17,45 @@ function doOptions(e) {
  */
 function doPost(e) {
   try {
-    // Log the incoming request
-    Logger.log('Received request: ' + JSON.stringify(e));
-    
-    // Log the raw post data
-    Logger.log('Raw post data: ' + e.postData.contents);
-    
     // Parse the JSON data
     const data = JSON.parse(e.postData.contents);
     
     // Log the parsed data
-    Logger.log('Parsed data: ' + JSON.stringify(data));
+    console.log('Application received:', data);
     
-    // Process form data
+    // Send notification email to admin
     try {
-      const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-      Logger.log('Active sheet: ' + sheet.getName());
-      
-      const row = sheet.getLastRow() + 1;
-      Logger.log('Adding data to row: ' + row);
-      
-      // Add headers if they don't exist
-      if (sheet.getLastRow() === 0) {
-        const headers = Object.keys(data);
-        Logger.log('Adding headers: ' + headers.join(', '));
-        sheet.appendRow(headers);
-      }
-      
-      // Add data to sheet
-      const values = Object.values(data);
-      Logger.log('Adding values: ' + values.join(', '));
-      sheet.appendRow(values);
-      
-      Logger.log('Data successfully added to spreadsheet');
-    } catch (sheetError) {
-      Logger.log('Error writing to spreadsheet: ' + sheetError.toString());
-      throw new Error('Failed to save application data to spreadsheet: ' + sheetError.toString());
+      sendAdminNotification(data);
+      console.log('Admin notification sent successfully');
+    } catch (emailError) {
+      console.log('Error sending admin notification:', emailError.toString());
     }
     
-    // Send confirmation email
+    // Send confirmation email to applicant
     try {
-      Logger.log('Sending confirmation email to: ' + data.email);
       sendConfirmationEmail(data);
-      Logger.log('Confirmation email sent successfully');
+      console.log('Confirmation email sent successfully');
     } catch (emailError) {
-      Logger.log('Error sending confirmation email: ' + emailError.toString());
-      throw new Error('Failed to send confirmation email: ' + emailError.toString());
+      console.log('Error sending confirmation email:', emailError.toString());
     }
     
     // Return success response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
-      message: "Application submitted successfully",
-      data: data
+      message: "Application submitted successfully"
     }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*")
       .setHeader("Access-Control-Allow-Methods", "POST, OPTIONS")
       .setHeader("Access-Control-Allow-Headers", "Content-Type");
+      
   } catch (error) {
-    Logger.log('Error in doPost: ' + error.toString());
+    console.log('Error in doPost:', error.toString());
     
-    // Log the error details
-    Logger.log('Error stack: ' + error.stack);
-    
-    // Return detailed error message
+    // Return error response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       status: "error",
-      error: error.toString(),
-      message: "Failed to process application",
-      details: {
-        timestamp: new Date().toISOString(),
-        errorType: error.name,
-        errorMessage: error.message
-      }
+      message: "Failed to process application"
     }))
       .setMimeType(ContentService.MimeType.JSON)
       .setHeader("Access-Control-Allow-Origin", "*")
@@ -100,56 +65,58 @@ function doPost(e) {
 }
 
 /**
- * Sends a templated confirmation email to the applicant.
+ * Sends notification email to admin about new application
  * @param {Object} data The parsed JSON data from the form.
  */
-function sendConfirmationEmail(data) {
-  const email = data.email;
-  const firstName = data.firstName;
-  const noReplyEmail = 'no-reply@skymirror.eu';  // Update this to your domain's no-reply email
-  
-  // Send single confirmation email to applicant from no-reply address
-  GmailApp.sendEmail(email, 
-    'Skymirror Academy Application Received',
-    '', // Empty body for HTML only
-    {
-      from: `Skymirror Academy <${noReplyEmail}>`,
-      replyTo: ADMIN_EMAIL, // Replies will go to admin email
-      name: 'Skymirror Academy',
-      htmlBody: `
-        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-          <h1 style="color: #3b82f6; text-align: center;">Thank you for your application!</h1>
-          <p style="color: #1f2937; line-height: 1.6;">Dear ${firstName},</p>
-          <p style="color: #1f2937; line-height: 1.6;">We've received your application for Skymirror Academy's program. Here's what happens next:</p>
-          <ol style="color: #1f2937; line-height: 1.6;">
-            <li>Our team will review your application.</li>
-            <li>We'll contact you within 7-10 business days.</li>
-            <li>Next steps will be shared via email.</li>
-          </ol>
-          <p style="color: #1f2937; line-height: 1.6;">If you have any questions, please reply to this email or contact us at ${ADMIN_EMAIL}.</p>
-          <p style="color: #1f2937; line-height: 1.6;">Best regards,<br>The Skymirror Academy Team</p>
-          <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 30px;">
-            This is an automated message. Please do not reply to this email.<br>
-            Website: https://skymirror.eu<br>
-            Contact: ${ADMIN_EMAIL}
-          </p>
-        </div>
-      `
-    }
-  );
-  
-  // Send notification to admin
+function sendAdminNotification(data) {
   MailApp.sendEmail({
     to: ADMIN_EMAIL,
     subject: 'New Skymirror Academy Application',
     htmlBody: `
-      <div style="font-family: Arial, sans-serif;">
-        <h2>New Application Received</h2>
-        <p>Application received from: ${data.firstName} ${data.lastName}</p>
-        <p>Email: ${data.email}</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h2 style="color: #3b82f6;">New Application Received</h2>
+        <table style="width: 100%; border-collapse: collapse;">
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Name:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.firstName} ${data.lastName}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Email:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.email}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Phone:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.phone || 'Not provided'}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Program:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.program || 'Not specified'}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Background:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.background || 'Not provided'}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Why Interested:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.whyInterested || 'Not provided'}</td></tr>
+          <tr><td style="padding: 8px; border-bottom: 1px solid #e5e7eb; font-weight: bold;">Vanguard Cohort:</td><td style="padding: 8px; border-bottom: 1px solid #e5e7eb;">${data.VanguardCohortInterest ? 'Yes' : 'No'}</td></tr>
+        </table>
+        <p style="margin-top: 20px; color: #6b7280; font-size: 14px;">
+          Submitted at: ${new Date().toLocaleString()}
+        </p>
       </div>
     `
   });
-  
-  Logger.log(`Confirmation email sent from no-reply to ${data.email}.`);
+}
+
+/**
+ * Sends a templated confirmation email to the applicant.
+ * @param {Object} data The parsed JSON data from the form.
+ */
+function sendConfirmationEmail(data) {
+  MailApp.sendEmail({
+    to: data.email,
+    subject: 'Skymirror Academy Application Received',
+    htmlBody: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+        <h1 style="color: #3b82f6; text-align: center;">Thank you for your application!</h1>
+        <p style="color: #1f2937; line-height: 1.6;">Dear ${data.firstName},</p>
+        <p style="color: #1f2937; line-height: 1.6;">We've received your application for Skymirror Academy's program. Here's what happens next:</p>
+        <ol style="color: #1f2937; line-height: 1.6;">
+          <li>Our team will review your application.</li>
+          <li>We'll contact you within 7-10 business days.</li>
+          <li>Next steps will be shared via email.</li>
+        </ol>
+        <p style="color: #1f2937; line-height: 1.6;">If you have any questions, please reply to this email or contact us at ${ADMIN_EMAIL}.</p>
+        <p style="color: #1f2937; line-height: 1.6;">Best regards,<br>The Skymirror Academy Team</p>
+        <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 30px;">
+          Website: https://skymirror.eu<br>
+          Contact: ${ADMIN_EMAIL}
+        </p>
+      </div>
+    `
+  });
 }

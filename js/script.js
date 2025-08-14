@@ -201,9 +201,8 @@ document.addEventListener('DOMContentLoaded', function() {
     if (form && formSuccess && submitButton) {
         // Configuration
         const ADMIN_EMAIL = 'admissions@skymirror.eu';
-        // TODO: Replace with your actual Google Apps Script Web App URL
-        // Deploy the GoogleAppsScript.gs as a web app and paste the URL here
-        const webAppUrl = 'YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL_HERE';
+        // Google Apps Script Web App URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbyYmqHqEVt9SR2TUy3jTLwXQtSS9ZlZcyG7oHK9FpRCHhfpNHdJxYqg0x5mbibB2lkFfw/exec';
         
         // Fallback: Check if we have a valid URL
         const hasValidUrl = webAppUrl && !webAppUrl.includes('YOUR_GOOGLE_APPS_SCRIPT');
