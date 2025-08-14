@@ -5,28 +5,39 @@ document.addEventListener('DOMContentLoaded', function() {
     if (urlParams.get('submission') === 'success') {
         const form = document.getElementById('application-form');
         const successMessage = document.getElementById('form-success');
-        const formTitle = document.querySelector('h2');
+        const formContainer = form?.parentElement;
+        const formTitle = formContainer?.querySelector('h2');
+
+        console.log('Success parameter detected');
+        console.log('Form found:', !!form);
+        console.log('Success message found:', !!successMessage);
 
         if (form && successMessage) {
             // Hide the entire form and title
             form.style.display = 'none';
-            if (formTitle && formTitle.textContent.includes('Start Your Application')) {
+            if (formTitle) {
                 formTitle.style.display = 'none';
             }
             
-            // Show the success message
+            // Show the success message with multiple methods to ensure visibility
             successMessage.classList.remove('hidden');
             successMessage.style.display = 'block';
+            successMessage.style.visibility = 'visible';
+            successMessage.style.opacity = '1';
             
             // Scroll to the success message
-            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            setTimeout(() => {
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
             
-            // Clear the URL parameter after a delay to ensure message is shown
+            console.log('Success message should now be visible');
+            
+            // Clear the URL parameter after a delay
             setTimeout(() => {
                 const url = new URL(window.location);
                 url.searchParams.delete('submission');
                 window.history.replaceState({}, document.title, url.pathname);
-            }, 1000);
+            }, 2000);
         }
     }
 
