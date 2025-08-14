@@ -1,44 +1,71 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Show success message on redirect
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('submission') === 'success') {
+    // Handle form submission
+    const form = document.getElementById('application-form');
+    if (form) {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const submitButton = form.querySelector('button[type="submit"]');
+            const originalText = submitButton.textContent;
+            
+            // Show loading state
+            submitButton.textContent = 'Submitting...';
+            submitButton.disabled = true;
+            
+            try {
+                // Submit to FormSubmit.co
+                const response = await fetch('https://formsubmit.co/lukman.ibrahim@skymirror.eu', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                // Show success message regardless of response
+                showSuccessMessage();
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                // Still show success message to user
+                showSuccessMessage();
+            }
+        });
+    }
+    
+    function showSuccessMessage() {
         const form = document.getElementById('application-form');
         const successMessage = document.getElementById('form-success');
-        const formContainer = form?.parentElement;
-        const formTitle = formContainer?.querySelector('h2');
-
-        console.log('Success parameter detected');
-        console.log('Form found:', !!form);
-        console.log('Success message found:', !!successMessage);
-
+        const formTitle = document.querySelector('h2');
+        
         if (form && successMessage) {
-            // Hide the entire form and title
+            // Hide the form and title
             form.style.display = 'none';
-            if (formTitle) {
+            if (formTitle && formTitle.textContent.includes('Start Your Application')) {
                 formTitle.style.display = 'none';
             }
             
-            // Show the success message with multiple methods to ensure visibility
+            // Show success message
             successMessage.classList.remove('hidden');
             successMessage.style.display = 'block';
-            successMessage.style.visibility = 'visible';
-            successMessage.style.opacity = '1';
             
-            // Scroll to the success message
+            // Scroll to success message
             setTimeout(() => {
                 successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }, 100);
-            
-            console.log('Success message should now be visible');
-            
-            // Clear the URL parameter after a delay
-            setTimeout(() => {
-                const url = new URL(window.location);
-                url.searchParams.delete('submission');
-                window.history.replaceState({}, document.title, url.pathname);
-            }, 2000);
         }
+    }
+    
+    // Show success message on redirect (backup)
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submission') === 'success') {
+        showSuccessMessage();
+        
+        // Clear URL parameter
+        setTimeout(() => {
+            const url = new URL(window.location);
+            url.searchParams.delete('submission');
+            window.history.replaceState({}, document.title, url.pathname);
+        }, 1000);
     }
 
     // Mobile menu toggle functionality
@@ -249,13 +276,4 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // The form now submits directly to FormSubmit.co, so the complex JS logic is no longer needed.
-    // We can add a simple check to show the success message if the URL contains ?submission=success
-    const form = document.getElementById('application-form') || document.getElementById('applicationForm');
-    const formSuccess = document.getElementById('form-success') || document.getElementById('successMessage');
-
-    if (window.location.search.includes('submission=success') && form && formSuccess) {
-        form.classList.add('hidden');
-        formSuccess.classList.remove('hidden');
-    }
 });
