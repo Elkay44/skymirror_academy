@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ADMIN_EMAIL = 'admissions@skymirror.eu';
         // !!! IMPORTANT !!!
         // REPLACE THIS URL WITH YOUR OWN GOOGLE APPS SCRIPT WEB APP URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbynvl9QmrlMapcH6m5tefjCFpM9GG55RdsZSzlcLO5zXWrZA2_xF3G-AYpvLRqAfVXKBQ/exec'; // Replace with your actual URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxC4Taeyyia7tznp7S0Hf2wuMXwtvttU7rupNCjFejMmfNCj4PMoi9fIMoJdaRLhDOc1A/exec'; // Replace with your actual URL
         
         // Fallback: Check if we have a valid URL
         const hasValidUrl = webAppUrl && !webAppUrl.includes('YOUR_GOOGLE_APPS_SCRIPT');
