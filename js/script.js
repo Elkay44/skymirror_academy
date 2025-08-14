@@ -1,59 +1,5 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle form submission with iframe method for proper autoresponse
-    const form = document.getElementById('application-form');
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            const submitButton = form.querySelector('button[type="submit"]');
-            
-            // Show loading state
-            submitButton.textContent = 'Submitting...';
-            submitButton.disabled = true;
-            
-            // Show success message after a short delay to allow form submission
-            setTimeout(() => {
-                showSuccessMessage();
-            }, 1000);
-            
-            // Form will submit to iframe, so page won't redirect
-        });
-    }
-    
-    function showSuccessMessage() {
-        const form = document.getElementById('application-form');
-        const successMessage = document.getElementById('form-success');
-        const formTitle = document.querySelector('h2');
-        
-        if (form && successMessage) {
-            // Hide the form and title
-            form.style.display = 'none';
-            if (formTitle && formTitle.textContent.includes('Start Your Application')) {
-                formTitle.style.display = 'none';
-            }
-            
-            // Show success message
-            successMessage.classList.remove('hidden');
-            successMessage.style.display = 'block';
-            
-            // Scroll to success message
-            setTimeout(() => {
-                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 100);
-        }
-    }
-    
-    // Show success message on redirect (backup)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.get('submission') === 'success') {
-        showSuccessMessage();
-        
-        // Clear URL parameter
-        setTimeout(() => {
-            const url = new URL(window.location);
-            url.searchParams.delete('submission');
-            window.history.replaceState({}, document.title, url.pathname);
-        }, 1000);
-    }
 
     // Mobile menu toggle functionality
     const mobileMenuButton = document.getElementById('mobile-menu-button');
