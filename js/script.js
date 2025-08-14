@@ -5,18 +5,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (urlParams.get('submission') === 'success') {
         const form = document.getElementById('application-form');
         const successMessage = document.getElementById('form-success');
+        const formTitle = document.querySelector('h2');
 
         if (form && successMessage) {
-            // Hide the entire form
+            // Hide the entire form and title
             form.style.display = 'none';
+            if (formTitle && formTitle.textContent.includes('Start Your Application')) {
+                formTitle.style.display = 'none';
+            }
+            
             // Show the success message
             successMessage.classList.remove('hidden');
             successMessage.style.display = 'block';
             
-            // Clear the URL parameter to clean up the address bar
-            const url = new URL(window.location);
-            url.searchParams.delete('submission');
-            window.history.replaceState({}, document.title, url.pathname);
+            // Scroll to the success message
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Clear the URL parameter after a delay to ensure message is shown
+            setTimeout(() => {
+                const url = new URL(window.location);
+                url.searchParams.delete('submission');
+                window.history.replaceState({}, document.title, url.pathname);
+            }, 1000);
         }
     }
 
