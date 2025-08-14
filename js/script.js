@@ -58,51 +58,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
-    // Enhanced form validation and loading states
-    const applicationForm = document.getElementById('applicationForm');
-    if (applicationForm) {
-        applicationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Show loading state
-            const submitButton = this.querySelector('button[type="submit"]');
-            const originalText = submitButton.innerHTML;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
-            submitButton.disabled = true;
-            
-            // Collect form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-            
-            // Submit to Google Apps Script
-            fetch('https://script.google.com/macros/s/AKfycbzYourScriptId/exec', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => response.json())
-            .then(result => {
-                if (result.status === 'success') {
-                    // Show success message
-                    document.getElementById('applicationForm').style.display = 'none';
-                    document.getElementById('successMessage').style.display = 'block';
-                } else {
-                    throw new Error(result.message || 'Submission failed');
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('There was an error submitting your application. Please try again.');
-            })
-            .finally(() => {
-                // Reset button state
-                submitButton.innerHTML = originalText;
-                submitButton.disabled = false;
-            });
-        });
-    }
 
     // For FAQ accordion on the apply page
     const faqButtons = document.querySelectorAll('.bg-glass button');
@@ -254,15 +209,16 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Application form submission functionality
-    const form = document.getElementById('application-form');
-    const formSuccess = document.getElementById('form-success');
+    const form = document.getElementById('application-form') || document.getElementById('applicationForm');
+    const formSuccess = document.getElementById('form-success') || document.getElementById('successMessage');
     const submitButton = form ? form.querySelector('button[type="submit"]') : null;
     
     if (form && formSuccess && submitButton) {
         // Configuration
         const ADMIN_EMAIL = 'admissions@skymirror.eu';
-        // Google Apps Script Web App URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbynvl9QmrlMapcH6m5tefjCFpM9GG55RdsZSzlcLO5zXWrZA2_xF3G-AYpvLRqAfVXKBQ/exec';
+        // !!! IMPORTANT !!!
+        // REPLACE THIS URL WITH YOUR OWN GOOGLE APPS SCRIPT WEB APP URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbynvl9QmrlMapcH6m5tefjCFpM9GG55RdsZSzlcLO5zXWrZA2_xF3G-AYpvLRqAfVXKBQ/exec'; // Replace with your actual URL
         
         // Fallback: Check if we have a valid URL
         const hasValidUrl = webAppUrl && !webAppUrl.includes('YOUR_GOOGLE_APPS_SCRIPT');
