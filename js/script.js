@@ -27,6 +27,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
     // Load the footer component if the footer-container exists
     const footerContainer = document.getElementById('footer-container');
     if (footerContainer) {
@@ -44,6 +58,52 @@ document.addEventListener('DOMContentLoaded', function() {
             });
     }
     
+    // Enhanced form validation and loading states
+    const applicationForm = document.getElementById('applicationForm');
+    if (applicationForm) {
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            const originalText = submitButton.innerHTML;
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Submitting...';
+            submitButton.disabled = true;
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Submit to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbzYourScriptId/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(result => {
+                if (result.status === 'success') {
+                    // Show success message
+                    document.getElementById('applicationForm').style.display = 'none';
+                    document.getElementById('successMessage').style.display = 'block';
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your application. Please try again.');
+            })
+            .finally(() => {
+                // Reset button state
+                submitButton.innerHTML = originalText;
+                submitButton.disabled = false;
+            });
+        });
+    }
+
     // For FAQ accordion on the apply page
     const faqButtons = document.querySelectorAll('.bg-glass button');
     faqButtons.forEach(button => {
