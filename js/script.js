@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     if (form && formSuccess && submitButton) {
         // Configuration
-        const ADMIN_EMAIL = 'admissions@skymirror.eu';
+        const ADMIN_EMAIL = 'lukmanibrahim1998@gmail.com';
         // !!! IMPORTANT !!!
         // REPLACE THIS URL WITH YOUR OWN GOOGLE APPS SCRIPT WEB APP URL
         const webAppUrl = 'https://script.google.com/macros/s/AKfycbxC4Taeyyia7tznp7S0Hf2wuMXwtvttU7rupNCjFejMmfNCj4PMoi9fIMoJdaRLhDOc1A/exec'; // Replace with your actual URL
