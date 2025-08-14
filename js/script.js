@@ -1,5 +1,22 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Show success message on redirect
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submission') === 'success') {
+        const form = document.getElementById('application-form');
+        const successMessage = document.getElementById('form-success');
+        const formContainer = form.parentElement; // The div wrapping the form and title
+
+        if (form && successMessage && formContainer) {
+            // Hide the form and its title
+            formContainer.classList.add('hidden');
+            // Show the success message container
+            successMessage.classList.remove('hidden');
+            // Ensure the parent container of the success message is visible
+            successMessage.parentElement.classList.remove('hidden');
+        }
+    }
+
     // Mobile menu toggle functionality
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
