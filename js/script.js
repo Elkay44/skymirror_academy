@@ -5,15 +5,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (urlParams.get('submission') === 'success') {
         const form = document.getElementById('application-form');
         const successMessage = document.getElementById('form-success');
-        const formContainer = form.parentElement; // The div wrapping the form and title
 
-        if (form && successMessage && formContainer) {
-            // Hide the form and its title
-            formContainer.classList.add('hidden');
-            // Show the success message container
+        if (form && successMessage) {
+            // Hide the entire form
+            form.style.display = 'none';
+            // Show the success message
             successMessage.classList.remove('hidden');
-            // Ensure the parent container of the success message is visible
-            successMessage.parentElement.classList.remove('hidden');
+            successMessage.style.display = 'block';
+            
+            // Clear the URL parameter to clean up the address bar
+            const url = new URL(window.location);
+            url.searchParams.delete('submission');
+            window.history.replaceState({}, document.title, url.pathname);
         }
     }
 
