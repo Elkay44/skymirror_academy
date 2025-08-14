@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Test</title>
+</head>
+<body>
+    <h1>Testing Form Submission</h1>
+    <button onclick="testForm()">Test Form Submission</button>
+    <div id="result"></div>
+
+    <script>
+        async function testForm() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Testing...';
+            
+            try {
+                const testData = {
+                    firstName: 'John',
+                    lastName: 'Doe',
+                    email: 'john.doe@example.com',
+                    phone: '+1234567890',
+                    program: 'Fullstack Development',
+                    background: 'I have experience in web development',
+                    whyInterested: 'I want to advance my career',
+                    VanguardCohortInterest: true
+                };
+                
+                console.log('Sending test data:', testData);
+                
+                const response = await fetch('https://script.google.com/macros/s/AKfycbzg1lMkAZNCNQu_Z6U_KOGUCAz5dbHC4wB7QhJg5bXqxJ-6osc8_144zAZmH4ZsYdJWDw/exec', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                console.log('Response status:', response.status);
+                console.log('Response headers:', response.headers);
+                
+                const result = await response.text();
+                console.log('Response text:', result);
+                
+                resultDiv.innerHTML = `
+                    <h3>Response:</h3>
+                    <p>Status: ${response.status}</p>
+                    <p>Response: ${result}</p>
+                `;
+                
+            } catch (error) {
+                console.error('Test error:', error);
+                resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>
