@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Engineering Program - Detailed Syllabus | Skymirror Academy</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .bg-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .text-gradient {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @media print {
+            body { background: white !important; color: black !important; }
+            .bg-glass { background: white !important; border: 1px solid #ccc !important; }
+            .text-white { color: black !important; }
+            .text-gray-300, .text-gray-400 { color: #666 !important; }
+            .bg-gradient-to-br { background: #f0f0f0 !important; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-gray-900 via-purple-900 to-violet-900 min-h-screen text-white">
+    <!-- Header -->
+    <header class="bg-glass border-b border-white border-opacity-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-2xl font-bold text-gradient">Skymirror Academy</a>
+                </div>
+                <nav class="hidden md:flex space-x-8">
+                    <a href="index.html" class="text-gray-300 hover:text-white transition-colors">Home</a>
+                    <a href="programs.html" class="text-white font-medium">Programs</a>
+                    <a href="apply.html" class="bg-purple-600 hover:bg-purple-700 px-4 py-2 rounded-lg transition-colors">Apply Now</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <!-- Program Header -->
+        <div class="text-center mb-12">
+            <div class="w-20 h-20 rounded-xl bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center mx-auto mb-6">
+                <i class="fas fa-database text-3xl text-white"></i>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                <span class="text-gradient">Data Engineering</span> Program
+            </h1>
+            <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                Master the design, build, and maintenance of robust data infrastructure and pipelines for modern data-driven organizations.
+            </p>
+        </div>
+
+        <!-- Program Overview -->
+        <div class="bg-glass rounded-xl p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-6 text-gradient">Program Overview</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-purple-300">Duration & Format</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-clock text-purple-400 mr-2"></i>24 weeks (6 months)</li>
+                        <li><i class="fas fa-users text-purple-400 mr-2"></i>Aspiring data engineers, developers transitioning to data engineering</li>
+                        <li><i class="fas fa-code text-purple-400 mr-2"></i>Prerequisites: Basic programming (Python preferred), database understanding</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-purple-300">What You'll Master</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Scalable data pipeline design and implementation</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Cloud platforms (AWS, GCP, Azure) for data engineering</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Real-time and batch data processing systems</li>
+                        <li><i class="fas fa-check text-green-400 mr-2"></i>Data quality monitoring and governance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="flex flex-wrap gap-4 justify-center mb-12">
+            <button onclick="window.print()" class="bg-purple-600 hover:bg-purple-700 px-6 py-3 rounded-lg font-medium transition-colors flex items-center">
+                <i class="fas fa-print mr-2"></i>Print Syllabus
+            </button>
+            <a href="#detailed-curriculum" class="bg-glass hover:bg-white hover:bg-opacity-10 px-6 py-3 rounded-lg font-medium transition-colors flex items-center border border-purple-400">
+                <i class="fas fa-file-alt mr-2"></i>View Detailed Syllabus
+            </a>
+        </div>
+
+        <!-- Detailed Curriculum -->
+        <div id="detailed-curriculum" class="space-y-8">
+            <h2 class="text-3xl font-bold text-center mb-8 text-gradient">Detailed Curriculum</h2>
+
+            <!-- Module 0 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 0 – Data Engineering Foundations</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Week 0</p>
+                <p class="text-gray-300 mb-4">Establish foundational knowledge and set up development environment.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Data engineering role and responsibilities</li>
+                            <li>• Modern data stack overview</li>
+                            <li>• Development environment setup</li>
+                            <li>• Git workflows for data engineering</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Environment setup verification</li>
+                            <li>• Git repository creation</li>
+                            <li>• Data Engineering Fundamentals Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 1 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 1 – Python & SQL Foundations</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 1–2</p>
+                <p class="text-gray-300 mb-4">Master Python and SQL for data engineering tasks.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Advanced Python for data engineering</li>
+                            <li>• SQL for data engineering</li>
+                            <li>• Database design principles</li>
+                            <li>• Data modeling techniques</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Build data processing script with Python and SQL</li>
+                            <li>• Python & SQL Proficiency Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 2 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 2 – Data Pipeline Fundamentals</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 3–4</p>
+                <p class="text-gray-300 mb-4">Understand ETL/ELT concepts and build basic pipelines.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• ETL vs ELT design patterns</li>
+                            <li>• Data extraction methods</li>
+                            <li>• Transformation patterns</li>
+                            <li>• Loading strategies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Build end-to-end ETL pipeline</li>
+                            <li>• Data Pipeline Concepts Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 3 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 3 – Apache Airflow & Workflow Orchestration</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 5–6</p>
+                <p class="text-gray-300 mb-4">Master workflow orchestration using Apache Airflow.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Airflow architecture & concepts</li>
+                            <li>• Building DAGs and operators</li>
+                            <li>• Scheduling & monitoring workflows</li>
+                            <li>• Best practices for production</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Create complex data workflows with Airflow</li>
+                            <li>• Airflow Orchestration Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 4 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 4 – Cloud Data Platforms</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 7–9</p>
+                <p class="text-gray-300 mb-4">Work with cloud-native data services across major platforms.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• AWS data engineering stack</li>
+                            <li>• GCP data engineering tools</li>
+                            <li>• Azure data platform</li>
+                            <li>• Cloud storage and managed databases</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Build cloud-native data pipeline</li>
+                            <li>• Cloud Platforms Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 5 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 5 – Stream Processing & Real-time Data</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 10–11</p>
+                <p class="text-gray-300 mb-4">Process streaming data in real-time with modern frameworks.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Stream processing concepts</li>
+                            <li>• Apache Kafka fundamentals</li>
+                            <li>• Real-time data processing</li>
+                            <li>• Event-driven architecture</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Build real-time data streaming pipeline</li>
+                            <li>• Stream Processing Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 6 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 6 – Data Warehousing & Analytics</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 12–14</p>
+                <p class="text-gray-300 mb-4">Design and implement modern data warehouses for analytics.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Data warehouse design principles</li>
+                            <li>• Dimensional modeling techniques</li>
+                            <li>• Modern data warehouse architectures</li>
+                            <li>• Analytics optimization</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Design and implement a data warehouse</li>
+                            <li>• Data Warehousing Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 7 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 7 – Big Data Technologies</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 15–16</p>
+                <p class="text-gray-300 mb-4">Work with big data processing frameworks and architectures.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Big data fundamentals</li>
+                            <li>• Apache Spark for data engineering</li>
+                            <li>• Data lake architecture</li>
+                            <li>• Distributed computing concepts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Process large datasets with Spark</li>
+                            <li>• Big Data Technologies Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 8 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 8 – Data Quality & Governance</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 17–18</p>
+                <p class="text-gray-300 mb-4">Implement data quality and governance practices for enterprise environments.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Data quality frameworks</li>
+                            <li>• Data testing & validation</li>
+                            <li>• Data governance & compliance</li>
+                            <li>• Monitoring and alerting</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Implement data quality monitoring system</li>
+                            <li>• Data Quality & Governance Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 9 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 9 – DevOps for Data Engineering</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 19–20</p>
+                <p class="text-gray-300 mb-4">Apply DevOps practices to data engineering workflows.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Topics Covered:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• DataOps principles</li>
+                            <li>• CI/CD for data pipelines</li>
+                            <li>• Infrastructure as code</li>
+                            <li>• Containerization and monitoring</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Projects & Assessments:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Implement CI/CD pipeline for data project</li>
+                            <li>• DataOps Quiz</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Module 10 -->
+            <div class="bg-glass rounded-xl p-6">
+                <h3 class="text-xl font-bold mb-4 text-purple-300">Module 10 – Capstone Data Engineering Project</h3>
+                <p class="text-gray-400 mb-3"><i class="fas fa-calendar mr-2"></i>Weeks 21–24</p>
+                <p class="text-gray-300 mb-4">Build and deploy a comprehensive data engineering solution.</p>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Project Requirements:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• End-to-end data engineering solution</li>
+                            <li>• Real-world data sources and scenarios</li>
+                            <li>• Industry-standard tools and practices</li>
+                            <li>• Comprehensive documentation</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold mb-2 text-white">Deliverables:</h4>
+                        <ul class="space-y-1 text-gray-300 text-sm">
+                            <li>• Complete data engineering project</li>
+                            <li>• Peer review & technical feedback</li>
+                            <li>• Self-assessment & knowledge integration</li>
+                            <li>• Portfolio-ready project showcase</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Career Outcomes -->
+        <div class="bg-glass rounded-xl p-8 mt-12">
+            <h2 class="text-2xl font-bold mb-6 text-gradient">Career Outcomes</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-purple-300">Industry Connections</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>• Guest lectures from data engineering professionals</li>
+                        <li>• Industry case studies and real-world scenarios</li>
+                        <li>• Networking with data engineering community</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-purple-300">Portfolio Development</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>• GitHub portfolio with documented projects</li>
+                        <li>• Technical blog posts and knowledge sharing</li>
+                        <li>• Open-source contributions</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-lg font-semibold mb-3 text-purple-300">Job Readiness</h3>
+                    <ul class="space-y-2 text-gray-300 text-sm">
+                        <li>• Technical interview preparation</li>
+                        <li>• Resume and LinkedIn optimization</li>
+                        <li>• Salary negotiation strategies</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-glass border-t border-white border-opacity-10 mt-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div class="text-center">
+                <p class="text-gray-400">&copy; 2024 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
