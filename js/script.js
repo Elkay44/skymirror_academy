@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const ADMIN_EMAIL = 'lukmanibrahim1998@gmail.com';
         // !!! IMPORTANT !!!
         // REPLACE THIS URL WITH YOUR OWN GOOGLE APPS SCRIPT WEB APP URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbxC4Taeyyia7tznp7S0Hf2wuMXwtvttU7rupNCjFejMmfNCj4PMoi9fIMoJdaRLhDOc1A/exec'; // Replace with your actual URL
+        const webAppUrl = 'https://script.google.com/macros/s/AKfycbwHPhAGaTW61QsCNHXzG2P0c-Dc7LlcPRM_uc98CGqdDlCQfryE6wg4hpzOCpRZ3HvLmg/exec'; // Replace with your actual URL
         
         // Fallback: Check if we have a valid URL
         const hasValidUrl = webAppUrl && !webAppUrl.includes('YOUR_GOOGLE_APPS_SCRIPT');
