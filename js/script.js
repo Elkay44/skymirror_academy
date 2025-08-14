@@ -208,125 +208,13 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Application form submission functionality
+    // The form now submits directly to FormSubmit.co, so the complex JS logic is no longer needed.
+    // We can add a simple check to show the success message if the URL contains ?submission=success
     const form = document.getElementById('application-form') || document.getElementById('applicationForm');
     const formSuccess = document.getElementById('form-success') || document.getElementById('successMessage');
-    const submitButton = form ? form.querySelector('button[type="submit"]') : null;
-    
-    if (form && formSuccess && submitButton) {
-        // Configuration
-        const ADMIN_EMAIL = 'lukmanibrahim1998@gmail.com';
-        // !!! IMPORTANT !!!
-        // REPLACE THIS URL WITH YOUR OWN GOOGLE APPS SCRIPT WEB APP URL
-        const webAppUrl = 'https://script.google.com/macros/s/AKfycbwHPhAGaTW61QsCNHXzG2P0c-Dc7LlcPRM_uc98CGqdDlCQfryE6wg4hpzOCpRZ3HvLmg/exec'; // Replace with your actual URL
-        
-        // Fallback: Check if we have a valid URL
-        const hasValidUrl = webAppUrl && !webAppUrl.includes('YOUR_GOOGLE_APPS_SCRIPT');
-        
-        console.log('Form submission script loaded');
-        console.log('Form element:', form);
-        console.log('Success element:', formSuccess);
-        console.log('Submit button:', submitButton);
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            console.log('Form submission started...');
-            
-            try {
-                // Disable form and show loading state
-                form.classList.add('opacity-50');
-                form.classList.add('pointer-events-none');
-                submitButton.innerHTML = '<span class="animate-spin inline-block w-4 h-4 border-2 border-white border-t-transparent rounded-full"></span> Submitting...';
-                
-                const formData = new FormData(form);
-                const data = Object.fromEntries(formData.entries());
-                
-                // Handle checkbox value
-                data.VanguardCohortInterest = formData.has('VanguardCohortInterest');
-                
-                console.log('Form data collected:', data);
-                
-                // Validate required fields
-                const requiredFields = ['firstName', 'lastName', 'email', 'phone', 'program', 'background', 'whyInterested'];
-                for (const field of requiredFields) {
-                    if (!data[field] || data[field].trim() === '') {
-                        throw new Error(`Please fill in the ${field} field.`);
-                    }
-                }
-                
-                console.log('Validation passed, sending to server...');
-                
-                if (hasValidUrl) {
-                    // Try Google Apps Script submission
-                    const response = await fetch(webAppUrl, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(data)
-                    });
-                    
-                    console.log('Response status:', response.status);
-                    
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-                    
-                    const result = await response.json();
-                    console.log('Response data:', result);
-                    
-                    if (result.status === 'success') {
-                        // Show success message
-                        formSuccess.classList.remove('hidden');
-                        form.classList.add('hidden');
-                        
-                        // Log success
-                        console.log('Application submitted successfully');
-                    } else {
-                        throw new Error(result.message || 'Failed to submit application');
-                    }
-                } else {
-                    // Fallback: Create email with form data
-                    const emailBody = `
-Application Details:
-- Name: ${data.firstName} ${data.lastName}
-- Email: ${data.email}
-- Phone: ${data.phone}
-- Program: ${data.program}
-- Background: ${data.background}
-- Why Interested: ${data.whyInterested}
-- Vanguard Cohort Interest: ${data.VanguardCohortInterest ? 'Yes' : 'No'}
-                    `.trim();
-                    
-                    const emailSubject = 'New Application - Skymirror Academy';
-                    const mailtoLink = `mailto:${ADMIN_EMAIL}?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-                    
-                    // Open email client
-                    window.open(mailtoLink, '_blank');
-                    
-                    // Show success message
-                    formSuccess.classList.remove('hidden');
-                    form.classList.add('hidden');
-                    
-                    console.log('Application submitted via email fallback');
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                
-                // Get detailed error information
-                const errorMessage = error.message || 'Failed to submit application';
-                
-                // Show detailed error message
-                alert(`Error: ${errorMessage}\n\nIf the error persists, please contact us at ${ADMIN_EMAIL}`);
-            } finally {
-                // Reset form state only if there was an error
-                if (formSuccess.classList.contains('hidden')) {
-                    // Reset form state
-                    form.classList.remove('opacity-50');
-                    form.classList.remove('pointer-events-none');
-                    submitButton.innerHTML = 'Submit Application';
-                }
-            }
-        });
+
+    if (window.location.search.includes('submission=success') && form && formSuccess) {
+        form.classList.add('hidden');
+        formSuccess.classList.remove('hidden');
     }
 });
