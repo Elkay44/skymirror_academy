@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Science Curriculum | Skymirror Academy</title>
+    <meta name="description" content="Comprehensive curriculum for Data Science at Skymirror Academy - 24 weeks of hands-on learning.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- TailwindCSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-image: linear-gradient(to bottom, #111827, #1f2937, #374151);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .bg-glass {
+            background-color: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-gradient {
+            background-image: linear-gradient(to right, #8b5cf6, #3b82f6, #8b5cf6);
+            background-size: 200% auto;
+            animation: gradient 8s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+            100% { background-position: 0% center; }
+        }
+        
+        .phase-card {
+            transition: all 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        @media print {
+            body {
+                background: white;
+                color: black;
+            }
+            
+            .bg-glass, .phase-card {
+                background: white;
+                border: 1px solid #eee;
+                color: black;
+            }
+            
+            .text-white, .text-gray-300, .text-gray-400 {
+                color: black;
+            }
+            
+            .hero-gradient, .text-gradient {
+                background: none;
+                color: black;
+            }
+            
+            .print-black {
+                color: black !important;
+            }
+            
+            .no-print {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body class="text-white">
+    <!-- Header with glass effect -->
+    <header class="sticky top-0 z-50 py-5 px-4 sm:px-6 lg:px-8 bg-glass border-b border-white border-opacity-10 no-print">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="group flex items-center space-x-2">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center transform group-hover:rotate-12 transition-all duration-300">
+                    <span class="text-xl font-bold">S</span>
+                </div>
+                <span class="text-2xl font-extrabold">
+                    <span class="text-gradient hero-gradient">Skymirror</span>
+                    <span class="text-gray-100">Academy</span>
+                </span>
+            </a>
+            
+            <div class="flex space-x-4">
+                <a href="index.html" class="bg-transparent hover:bg-white hover:bg-opacity-10 px-4 py-2 rounded-lg transition-all duration-300 text-sm font-medium">
+                    Back to Home
+                </a>
+                <button onclick="window.print()" class="bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-purple-500/25 transition-all duration-300 text-sm font-semibold">
+                    <i class="fas fa-print mr-2"></i> Print Syllabus
+                </button>
+                <a href="data-science-syllabus.txt" download class="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-4 py-2 rounded-lg shadow-lg hover:shadow-blue-500/25 transition-all duration-300 text-sm font-semibold">
+                    <i class="fas fa-file-alt mr-2"></i> View Detailed Syllabus
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-5xl mx-auto">
+            <!-- Title Section -->
+            <div class="text-center mb-16">
+                <h1 class="text-5xl font-bold mb-6">
+                    <span class="text-gradient hero-gradient">Data Science</span> Curriculum
+                </h1>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    A comprehensive 24-week journey to becoming a professional data scientist with Python, machine learning, and big data technologies.
+                </p>
+            </div>
+            
+            <!-- Curriculum Overview -->
+            <div class="space-y-12">
+                <!-- Module 0 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">0</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Orientation & Environment Setup</h2>
+                            <p class="text-gray-400">Week 0</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Set up all tools and introduce course flow.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Welcome & Data Science Roadmap</li>
+                        <li>Tools Installation (Python, Anaconda, JupyterLab, Git, VS Code)</li>
+                        <li>Datasets & Project Guidelines</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Submit screenshot of working Python + Jupyter environment</p>
+                    </div>
+                </div>
+                
+                <!-- Module 1 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">1</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Python Foundations for Data Science</h2>
+                            <p class="text-gray-400">Weeks 1-2</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Learn Python essentials for analysis and modeling.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Data types, loops, functions, list comprehensions</li>
+                        <li>Error handling and debugging</li>
+                        <li>NumPy for numerical computing</li>
+                        <li>Pandas for data manipulation</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Clean and transform a CSV dataset using Pandas</p>
+                    </div>
+                </div>
+
+                <!-- Module 2 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">2</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Data Visualization</h2>
+                            <p class="text-gray-400">Weeks 3-4</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Create effective data visualizations.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Principles of data visualization</li>
+                        <li>Static visuals with Matplotlib and Seaborn</li>
+                        <li>Interactive visuals with Plotly</li>
+                        <li>Storytelling with charts</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Build a dashboard from a dataset (Jupyter Notebook or Python script)</p>
+                    </div>
+                </div>
+
+                <!-- Module 3 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">3</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Statistics & Probability for Data Science</h2>
+                            <p class="text-gray-400">Weeks 5-6</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Apply statistical reasoning to datasets.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Descriptive statistics and probability basics</li>
+                        <li>Hypothesis testing and p-values</li>
+                        <li>Correlation and simple regression</li>
+                        <li>Probability distributions</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Analyze dataset for significant differences between groups</p>
+                    </div>
+                </div>
+
+                <!-- Module 4 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">4</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">SQL for Data Science</h2>
+                            <p class="text-gray-400">Week 7</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Query databases for analysis.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>SQL basics: SELECT, filtering, aggregations</li>
+                        <li>Advanced SQL: joins, subqueries</li>
+                        <li>Window functions for analytics</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Use SQL to produce analytics reports from a sample database</p>
+                    </div>
+                </div>
+
+                <!-- Module 5 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">5</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Machine Learning Foundations</h2>
+                            <p class="text-gray-400">Weeks 8-9</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Understand and implement ML models.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>ML concepts and workflow</li>
+                        <li>Supervised learning: regression and classification</li>
+                        <li>Unsupervised learning: clustering and dimensionality reduction</li>
+                        <li>Model evaluation with scikit-learn</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Train and evaluate ML models on a real dataset</p>
+                    </div>
+                </div>
+
+                <!-- Module 6 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">6</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Feature Engineering & Model Tuning</h2>
+                            <p class="text-gray-400">Weeks 10-11</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Improve model performance.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Feature engineering techniques</li>
+                        <li>Encoding, scaling, handling missing values</li>
+                        <li>Hyperparameter tuning with GridSearchCV</li>
+                        <li>Cross-validation strategies</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Improve model performance from Module 5 with feature engineering</p>
+                    </div>
+                </div>
+
+                <!-- Module 7 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">7</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Deep Learning Foundations</h2>
+                            <p class="text-gray-400">Weeks 12-14</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build neural networks for predictive tasks.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Neural network basics</li>
+                        <li>Building models with TensorFlow/Keras</li>
+                        <li>Convolutional Neural Networks (CNNs)</li>
+                        <li>Recurrent Neural Networks (RNNs)</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Build a deep learning model for image or text classification</p>
+                    </div>
+                </div>
+
+                <!-- Module 8 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">8</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Data Science for the Real World</h2>
+                            <p class="text-gray-400">Weeks 15-17</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Apply DS in production and real-world contexts.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>From notebook to API</li>
+                        <li>Model deployment with Flask/FastAPI</li>
+                        <li>Model monitoring and maintenance</li>
+                        <li>Ethical considerations in AI</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Deploy a simple ML API on a cloud platform</p>
+                    </div>
+                </div>
+
+                <!-- Module 9 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">9</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Big Data & Cloud for Data Science</h2>
+                            <p class="text-gray-400">Weeks 18-19</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Work with large datasets in the cloud.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Topics:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>Big data concepts and challenges</li>
+                        <li>PySpark for distributed processing</li>
+                        <li>Google BigQuery for analytics</li>
+                        <li>AWS S3 and cloud storage</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Run a big data analysis on cloud-hosted dataset</p>
+                    </div>
+                </div>
+
+                <!-- Module 10 -->
+                <div class="phase-card bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
+                    <div class="flex items-center mb-6">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center text-white text-xl mr-4">
+                            <span class="font-bold">10</span>
+                        </div>
+                        <div>
+                            <h2 class="text-2xl font-bold">Capstone Data Science Project</h2>
+                            <p class="text-gray-400">Weeks 20-24</p>
+                        </div>
+                    </div>
+                    
+                    <p class="text-gray-300 mb-4">
+                        <strong>Goal:</strong> Build and present a complete data science project.
+                    </p>
+                    
+                    <h3 class="text-lg font-semibold mb-2">Requirements:</h3>
+                    <ul class="list-disc pl-6 text-gray-300 space-y-2 mb-4">
+                        <li>End-to-end data science pipeline</li>
+                        <li>Data collection, cleaning, and analysis</li>
+                        <li>Machine learning model development</li>
+                        <li>Model deployment and API creation</li>
+                        <li>Comprehensive documentation and presentation</li>
+                    </ul>
+                    
+                    <div class="bg-purple-900 bg-opacity-30 p-4 rounded-lg">
+                        <h4 class="font-semibold text-purple-300 mb-1">Project:</h4>
+                        <p class="text-gray-300">Submit final project with dataset, code, documentation, and presentation video</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="mt-16 text-center no-print">
+                <p class="text-xl text-gray-300 mb-6">Ready to start your journey as a Data Scientist?</p>
+                <a href="apply.html" class="inline-block bg-gradient-to-r from-purple-600 to-blue-500 hover:from-purple-700 hover:to-blue-600 text-white px-8 py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 text-lg font-semibold">
+                    Apply to Skymirror Academy
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 sm:px-6 lg:px-8 bg-gray-900 mt-12 no-print">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center">
+                <div class="flex items-center justify-center space-x-2 mb-4">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center">
+                        <span class="text-sm font-bold">S</span>
+                    </div>
+                    <span class="text-xl font-extrabold">
+                        <span class="text-gradient hero-gradient">Skymirror</span>
+                        <span class="text-gray-100">Academy</span>
+                    </span>
+                </div>
+                <p class="text-gray-400">© 2025 Skymirror Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Custom scripts -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
