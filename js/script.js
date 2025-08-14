@@ -1,34 +1,21 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
-    // Handle form submission
+    // Handle form submission with iframe method for proper autoresponse
     const form = document.getElementById('application-form');
     if (form) {
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(form);
+        form.addEventListener('submit', function(e) {
             const submitButton = form.querySelector('button[type="submit"]');
-            const originalText = submitButton.textContent;
             
             // Show loading state
             submitButton.textContent = 'Submitting...';
             submitButton.disabled = true;
             
-            try {
-                // Submit to FormSubmit.co
-                const response = await fetch('https://formsubmit.co/lukman.ibrahim@skymirror.eu', {
-                    method: 'POST',
-                    body: formData
-                });
-                
-                // Show success message regardless of response
+            // Show success message after a short delay to allow form submission
+            setTimeout(() => {
                 showSuccessMessage();
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                // Still show success message to user
-                showSuccessMessage();
-            }
+            }, 1000);
+            
+            // Form will submit to iframe, so page won't redirect
         });
     }
     
