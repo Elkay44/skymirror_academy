@@ -1,5 +1,80 @@
+// Show success message if redirected from form submission
+function showSuccessMessage() {
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('submission') === 'success') {
+        const form = document.getElementById('application-form');
+        const successMessage = document.getElementById('form-success');
+        const formTitle = document.querySelector('h2');
+
+        if (form && successMessage) {
+            form.style.display = 'none';
+            if (formTitle && formTitle.textContent.includes('Start Your Application')) {
+                formTitle.style.display = 'none';
+            }
+            successMessage.classList.remove('hidden');
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Clean URL without reloading the page
+            const newUrl = window.location.pathname;
+            window.history.replaceState({}, document.title, newUrl);
+        }
+    }
+}
+
+// Handle form submission
+function handleFormSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
+    
+    // Show loading state
+    submitButton.disabled = true;
+    submitButton.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-2 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Processing...
+    `;
+    
+    // Submit form using FormSubmit
+    fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Show success message
+            form.reset();
+            showSuccessMessage();
+        } else {
+            throw new Error('Network response was not ok');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('There was a problem submitting your application. Please try again or contact admissions@skymirror.eu');
+    })
+    .finally(() => {
+        submitButton.disabled = false;
+        submitButton.textContent = originalButtonText;
+    });
+}
+
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Add form submission handler
+    const form = document.getElementById('application-form');
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+    }
+    
+    // Show success message if redirected from form submission
+    showSuccessMessage();
 
     // Mobile menu toggle functionality
     const mobileMenuButton = document.getElementById('mobile-menu-button');
