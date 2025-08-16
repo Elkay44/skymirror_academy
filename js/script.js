@@ -23,7 +23,6 @@ function showSuccessMessage() {
 
 // Handle form submission
 function handleFormSubmit(e) {
-    e.preventDefault();
     const form = e.target;
     const submitButton = form.querySelector('button[type="submit"]');
     const originalButtonText = submitButton.textContent;
@@ -38,31 +37,8 @@ function handleFormSubmit(e) {
         Processing...
     `;
     
-    // Submit form using FormSubmit
-    fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-            'Accept': 'application/json'
-        }
-    })
-    .then(response => {
-        if (response.ok) {
-            // Show success message
-            form.reset();
-            showSuccessMessage();
-        } else {
-            throw new Error('Network response was not ok');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('There was a problem submitting your application. Please try again or contact lukman.ibrahim@skymirror.eu');
-    })
-    .finally(() => {
-        submitButton.disabled = false;
-        submitButton.textContent = originalButtonText;
-    });
+    // Let FormSubmit handle the submission and redirect
+    // Don't prevent default - let the form submit naturally
 }
 
 // Wait for the DOM to be fully loaded
