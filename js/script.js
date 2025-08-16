@@ -57,7 +57,7 @@ function handleFormSubmit(e) {
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('There was a problem submitting your application. Please try again or contact admissions@skymirror.eu');
+        alert('There was a problem submitting your application. Please try again or contact lukman.ibrahim@skymirror.eu');
     })
     .finally(() => {
         submitButton.disabled = false;
