@@ -219,12 +219,13 @@
                     <div>
                         <!-- Mentorship CTA -->
                         <div class="bg-gradient-to-r from-purple-900 from-opacity-30 to-blue-900 to-opacity-30 p-6 rounded-xl border border-purple-500 border-opacity-30 mb-6">
-                            <div class="flex items-center mb-3">
-                                <i class="fas fa-award text-yellow-400 text-xl mr-3"></i>
-                                <h3 class="text-lg font-bold text-white">Get Matched with a World-Class Mentor</h3>
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-graduation-cap text-yellow-400 text-xl mr-3"></i>
+                                <h3 class="text-lg font-bold text-white">Student Scholarship Application (30% Discount)</h3>
                             </div>
+                            
                             <p class="text-gray-300 text-sm mb-4">
-                                Every accepted student gets paired with an industry expert who will guide your career journey from day one.
+                                Skymirror Academy offers a 30% tuition discount specifically for current students. Apply for our merit-based and need-based scholarships to make world-class tech education more accessible. <strong>You may apply for only one scholarship category per application.</strong>
                             </p>
                             <div class="grid grid-cols-2 gap-3 text-xs text-gray-400">
                                 <div class="flex items-center">
@@ -444,6 +445,78 @@
                                     <input type="checkbox" id="VanguardCohortInterest" name="VanguardCohortInterest" class="w-4 h-4 text-purple-500 bg-gray-800 border-gray-700 rounded focus:ring-purple-500">
                                     <label for="VanguardCohortInterest" class="ml-2 text-sm font-medium text-gray-300">Interested in the Vanguard Cohort?</label>
                                 </div>
+
+                                <!-- Student Scholarship Section -->
+                                <div class="bg-gradient-to-r from-yellow-900 from-opacity-20 to-orange-900 to-opacity-20 p-6 rounded-xl border border-yellow-500 border-opacity-30">
+                                    <div class="flex items-center mb-4">
+                                        <i class="fas fa-graduation-cap text-yellow-400 text-xl mr-3"></i>
+                                        <h3 class="text-lg font-bold text-white">Student Scholarship (30% Discount)</h3>
+                                    </div>
+                                    
+                                    <p class="text-gray-300 text-sm mb-4">
+                                        We offer a 30% tuition discount specifically for current university/college students. <strong>You may select only one scholarship category per application.</strong>
+                                    </p>
+                                    
+                                    <!-- Scholarship Interest Checkbox -->
+                                    <div class="flex items-center mb-4">
+                                        <input type="checkbox" id="scholarshipInterest" name="scholarshipInterest" class="w-4 h-4 text-yellow-500 bg-gray-800 border-gray-700 rounded focus:ring-yellow-500" onchange="toggleScholarshipSection()">
+                                        <label for="scholarshipInterest" class="ml-2 text-sm font-medium text-yellow-300">I am a current student and would like to apply for the 30% scholarship</label>
+                                    </div>
+                                    
+                                    <!-- Scholarship Details (Hidden by default) -->
+                                    <div id="scholarshipDetails" class="hidden space-y-4">
+                                        <!-- Scholarship Category -->
+                                        <div>
+                                            <label for="scholarshipCategory" class="block text-sm font-medium text-gray-300 mb-2">Select ONE Scholarship Category *</label>
+                                            <select id="scholarshipCategory" name="scholarshipCategory" class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg focus:border-yellow-500 transition-all text-white">
+                                                <option value="" disabled selected>Choose your scholarship category</option>
+                                                <option value="merit-based-student">Merit-Based (Academic Excellence - GPA 3.5+)</option>
+                                                <option value="need-based-student">Need-Based (Financial Assistance Required)</option>
+                                                <option value="diversity-student">Diversity & Inclusion (Underrepresented Groups)</option>
+                                                <option value="women-tech-student">Women in Tech Leadership</option>
+                                                <option value="career-transition-student">Career Transition Support</option>
+                                                <option value="international-student">International Student (Non-EU)</option>
+                                            </select>
+                                        </div>
+                                        
+                                        <!-- Student Verification -->
+                                        <div>
+                                            <label for="studentVerification" class="block text-sm font-medium text-gray-300 mb-2">Student Status Verification *</label>
+                                            <textarea id="studentVerification" name="studentVerification" rows="2" class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg focus:border-yellow-500 transition-all text-white" placeholder="University/College name, degree program, expected graduation year, and student ID (last 4 digits only)..."></textarea>
+                                        </div>
+                                        
+                                        <!-- Academic Achievements -->
+                                        <div>
+                                            <label for="academicAchievements" class="block text-sm font-medium text-gray-300 mb-2">Academic Achievements & Goals *</label>
+                                            <textarea id="academicAchievements" name="academicAchievements" rows="3" class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg focus:border-yellow-500 transition-all text-white" placeholder="GPA, relevant coursework, academic projects, awards, and how this program aligns with your career goals..."></textarea>
+                                        </div>
+                                        
+                                        <!-- Financial Need (conditional) -->
+                                        <div>
+                                            <label for="financialNeed" class="block text-sm font-medium text-gray-300 mb-2">Financial Circumstances (if applying for need-based)</label>
+                                            <textarea id="financialNeed" name="financialNeed" rows="2" class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg focus:border-yellow-500 transition-all text-white" placeholder="Brief description of financial situation (only if applying for need-based scholarship)..."></textarea>
+                                        </div>
+                                        
+                                        <!-- Portfolio Links -->
+                                        <div>
+                                            <label for="portfolioLinks" class="block text-sm font-medium text-gray-300 mb-2">Portfolio/Project Links</label>
+                                            <input type="url" id="portfolioLinks" name="portfolioLinks" class="w-full px-4 py-3 bg-gray-800 bg-opacity-50 border border-gray-700 rounded-lg focus:border-yellow-500 transition-all text-white" placeholder="GitHub, LinkedIn, personal website, or academic project links (optional)">
+                                        </div>
+                                        
+                                        <!-- Student Scholarship Criteria -->
+                                        <div class="bg-yellow-900 bg-opacity-20 p-4 rounded-lg border border-yellow-600 border-opacity-30">
+                                            <h4 class="font-semibold text-yellow-300 mb-2">Student Scholarship Criteria (30% Discount):</h4>
+                                            <ul class="text-xs text-gray-300 space-y-1">
+                                                <li>• <strong>Enrollment Verification:</strong> Currently enrolled in university/college</li>
+                                                <li>• <strong>Academic Performance:</strong> Good academic standing (GPA 3.0+ preferred)</li>
+                                                <li>• <strong>Career Alignment:</strong> Clear connection between studies and tech career goals</li>
+                                                <li>• <strong>Financial Need:</strong> Demonstrated need for tuition assistance (if applicable)</li>
+                                                <li>• <strong>Commitment:</strong> Dedication to completing the program successfully</li>
+                                                <li>• <strong>Application Quality:</strong> Thoughtful, detailed responses</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
                                 
                                 <!-- Submit Button -->
                                 <div class="pt-4">
@@ -580,6 +653,27 @@
     
     <!-- Custom scripts -->
     <script src="js/script.js"></script>
+
+    <script>
+        // Toggle scholarship section visibility
+        function toggleScholarshipSection() {
+            const checkbox = document.getElementById('scholarshipInterest');
+            const details = document.getElementById('scholarshipDetails');
+            const requiredFields = details.querySelectorAll('select[required], textarea[required]');
+            
+            if (checkbox.checked) {
+                details.classList.remove('hidden');
+                // Make scholarship fields required when section is visible
+                requiredFields.forEach(field => field.setAttribute('required', 'required'));
+            } else {
+                details.classList.add('hidden');
+                // Remove required attribute when section is hidden
+                requiredFields.forEach(field => field.removeAttribute('required'));
+                // Clear values when hiding
+                details.querySelectorAll('input, select, textarea').forEach(field => field.value = '');
+            }
+        }
+    </script>
 
 </body>
 </html>
