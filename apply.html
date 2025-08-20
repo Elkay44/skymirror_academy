@@ -22,6 +22,9 @@
     
     <!-- TailwindCSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Pricing JavaScript -->
+    <script src="js/pricing.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -86,6 +89,53 @@
         input:focus, select:focus, textarea:focus {
             outline: none;
             box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.5);
+        }
+
+        /* Monthly Pricing Styles */
+        .pricing-toggle-btn {
+            color: rgb(156, 163, 175);
+            background: transparent;
+        }
+
+        .pricing-toggle-btn.active {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            color: white;
+            box-shadow: 0 2px 8px rgba(139, 92, 246, 0.3);
+        }
+
+        .pricing-toggle-btn:hover:not(.active) {
+            color: rgb(196, 181, 253);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .monthly-pricing {
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        .full-pricing {
+            animation: slideInUp 0.5s ease-out;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pricing-highlight {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1), rgba(16, 185, 129, 0.05));
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px rgba(34, 197, 94, 0.2); }
+            to { box-shadow: 0 0 20px rgba(34, 197, 94, 0.4); }
         }
     </style>
 </head>
@@ -217,6 +267,65 @@
                     
                     <!-- Right Column: Application Form -->
                     <div>
+                        <!-- Monthly Payment Option -->
+                        <div class="bg-gradient-to-r from-green-900 from-opacity-30 to-emerald-900 to-opacity-30 p-6 rounded-xl border border-green-500 border-opacity-30 mb-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-calendar-alt text-green-400 text-xl mr-3"></i>
+                                    <h3 class="text-lg font-bold text-white">Monthly Payment Plans</h3>
+                                </div>
+                                <div class="text-xs text-green-400 bg-green-900 bg-opacity-20 px-2 py-1 rounded-full">
+                                    <i class="fas fa-star mr-1"></i>Most Popular
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                                <div class="bg-glass p-4 rounded-lg border border-green-400 border-opacity-30">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400">€149</div>
+                                        <div class="text-xs text-gray-300">per month</div>
+                                        <div class="text-xs text-gray-400 mt-1">Fullstack/AI Programs</div>
+                                        <div class="text-xs text-green-400 mt-2">0% interest</div>
+                                    </div>
+                                </div>
+                                <div class="bg-glass p-4 rounded-lg border border-green-400 border-opacity-30">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400">€124</div>
+                                        <div class="text-xs text-gray-300">per month</div>
+                                        <div class="text-xs text-gray-400 mt-1">Data Science/Engineering</div>
+                                        <div class="text-xs text-green-400 mt-2">0% interest</div>
+                                    </div>
+                                </div>
+                                <div class="bg-glass p-4 rounded-lg border border-green-400 border-opacity-30">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400">€129</div>
+                                        <div class="text-xs text-gray-300">per month</div>
+                                        <div class="text-xs text-gray-400 mt-1">Frontend Programs</div>
+                                        <div class="text-xs text-green-400 mt-2">0% interest</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-3 text-xs text-gray-300">
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    <span>No credit check required</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    <span>Start learning immediately</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    <span>Flexible payment schedule</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-check text-green-400 mr-2"></i>
+                                    <span>Same certification value</span>
+                                </div>
+                            </div>
+                        </div>
+
                         <!-- Mentorship CTA -->
                         <div class="bg-gradient-to-r from-purple-900 from-opacity-30 to-blue-900 to-opacity-30 p-6 rounded-xl border border-purple-500 border-opacity-30 mb-6">
                             <div class="flex items-center mb-4">

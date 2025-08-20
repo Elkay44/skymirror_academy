@@ -1,0 +1,47 @@
+<!-- Monthly Pricing Component Template -->
+<div class="pricing-card-template" style="display: none;">
+    <!-- Pricing Toggle -->
+    <div class="flex justify-center mb-4">
+        <div class="bg-gray-800 p-1 rounded-full border border-purple-400 border-opacity-30">
+            <button class="pricing-toggle-btn active px-4 py-2 rounded-full text-sm font-medium transition-all duration-300" data-type="monthly">
+                Monthly
+            </button>
+            <button class="pricing-toggle-btn px-4 py-2 rounded-full text-sm font-medium transition-all duration-300" data-type="full">
+                Full Price
+            </button>
+        </div>
+    </div>
+
+    <!-- Monthly Pricing Display -->
+    <div class="pricing-display monthly-pricing text-center mb-6">
+        <div class="relative">
+            <div class="text-4xl font-bold text-gradient hero-gradient mb-1 monthly-price">€149</div>
+            <div class="text-sm text-purple-300 font-medium">per month</div>
+            <div class="text-xs text-gray-400 mt-1 payment-info">20 monthly payments</div>
+            <div class="text-xs text-green-400 mt-2 bg-green-900 bg-opacity-20 px-2 py-1 rounded-full inline-block pricing-highlight">
+                <i class="fas fa-check-circle mr-1"></i>0% interest
+            </div>
+        </div>
+        <div class="mt-3 p-3 bg-purple-900 bg-opacity-20 rounded-lg border border-purple-400 border-opacity-30">
+            <div class="text-xs text-purple-200 total-info">Total: €2,990 • Early-bird: €2,590</div>
+            <div class="text-xs text-gray-400 mt-1 duration-info">20 weeks • Full certification</div>
+        </div>
+        <div class="mt-3 text-center">
+            <div class="text-xs text-yellow-400 bg-yellow-900 bg-opacity-20 px-2 py-1 rounded-full inline-block">
+                <i class="fas fa-star mr-1"></i>Most Popular Payment Option
+            </div>
+        </div>
+    </div>
+
+    <!-- Full Pricing Display -->
+    <div class="pricing-display full-pricing text-center mb-6 hidden">
+        <div class="text-3xl font-bold text-gradient hero-gradient mb-1 full-price">€2,990</div>
+        <div class="text-gray-400 text-sm early-bird-price">Early-bird: €2,590</div>
+        <div class="text-xs text-purple-300 mt-1 program-duration">20 weeks • Full certification</div>
+        <div class="mt-3 text-center">
+            <div class="text-xs text-blue-400 bg-blue-900 bg-opacity-20 px-2 py-1 rounded-full inline-block">
+                <i class="fas fa-bolt mr-1"></i>One-time Payment Discount
+            </div>
+        </div>
+    </div>
+</div>
