@@ -17,8 +17,29 @@ h1, h2, h3, h4, h5, h6 {
 
 .hero-title {
     font-size: clamp(2.5rem, 8vw, 5.5rem);
-    line-height: 1.1;
+    line-height: 1.05;
     letter-spacing: -0.03em;
+}
+
+/* Text Justification & Readability */
+p {
+    text-align: left;
+    hyphens: none;
+    word-spacing: 0.05em;
+}
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+/* Improved Line Heights */
+.leading-relaxed {
+    line-height: 1.75;
+}
+
+.leading-tight {
+    line-height: 1.15;
 }
 
 /* Enhanced Glass Morphism */
@@ -74,9 +95,10 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.875rem;
     font-weight: 500;
     margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     display: inline-block;
     transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .badge:hover {
@@ -190,15 +212,33 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Improved Section Spacing */
 .section-spacing {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
 }
 
 @media (max-width: 768px) {
     .section-spacing {
-        padding-top: 4rem;
-        padding-bottom: 4rem;
+        padding-top: 3rem;
+        padding-bottom: 3rem;
     }
+}
+
+/* Consistent Vertical Rhythm */
+.section-gap {
+    margin-bottom: 4rem;
+}
+
+.content-gap {
+    margin-bottom: 2rem;
+}
+
+/* Max Width for Optimal Reading */
+.prose {
+    max-width: 65ch;
+}
+
+.prose-lg {
+    max-width: 75ch;
 }
 
 /* Enhanced Stats/Numbers */
