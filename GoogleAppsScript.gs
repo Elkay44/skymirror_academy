@@ -130,9 +130,8 @@ function sendConfirmationEmail(data) {
     '✨ Welcome to Skymirror Academy - Application Received',
     '',
     {
-      from: 'noreply@skymirror.eu',
+      from: 'Academy <noreply@skymirror.eu>',
       replyTo: ADMIN_EMAIL,
-      name: 'Skymirror Academy',
       htmlBody: `
       <!DOCTYPE html>
       <html>
