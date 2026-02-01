@@ -125,12 +125,16 @@ function sendAdminNotification(data) {
 }
 
 function sendConfirmationEmail(data) {
-  const aliases = GmailApp.getAliases();
-  const noReplyAlias = aliases.find(alias => alias.includes('noreply@skymirror.eu'));
+  console.log('sendConfirmationEmail called with email:', data.email);
+  console.log('ADMIN_EMAIL constant:', ADMIN_EMAIL);
   
-  const emailOptions = {
-    replyTo: ADMIN_EMAIL,
-    htmlBody: `
+  try {
+    MailApp.sendEmail({
+      to: data.email,
+      subject: '✨ Welcome to Skymirror Academy - Application Received',
+      replyTo: ADMIN_EMAIL,
+      name: 'Skymirror Academy',
+      htmlBody: `
       <!DOCTYPE html>
       <html>
       <head>
@@ -252,16 +256,10 @@ function sendConfirmationEmail(data) {
       </body>
       </html>
     `
-  };
-  
-  if (noReplyAlias) {
-    emailOptions.from = noReplyAlias;
+    });
+    console.log('Email sent successfully to:', data.email);
+  } catch (error) {
+    console.log('Error in sendConfirmationEmail:', error.toString());
+    throw error;
   }
-  
-  GmailApp.sendEmail(
-    data.email,
-    '✨ Welcome to Skymirror Academy - Application Received',
-    '',
-    emailOptions
-  );
 }
