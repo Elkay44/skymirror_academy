@@ -128,25 +128,130 @@ function sendConfirmationEmail(data) {
   MailApp.sendEmail({
     to: data.email,
     replyTo: ADMIN_EMAIL,
-    name: 'Skymirror Academy Admin',
-    subject: 'Skymirror Academy Application Received',
+    name: 'Skymirror Academy',
+    noReply: true,
+    subject: '✨ Welcome to Skymirror Academy - Application Received',
     htmlBody: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-        <h1 style="color: #3b82f6; text-align: center;">Thank you for your application!</h1>
-        <p style="color: #1f2937; line-height: 1.6;">Dear ${data.firstName},</p>
-        <p style="color: #1f2937; line-height: 1.6;">We've received your application for Skymirror Academy's program. Here's what happens next:</p>
-        <ol style="color: #1f2937; line-height: 1.6;">
-          <li>Our team will review your application.</li>
-          <li>We'll contact you within 7-10 business days.</li>
-          <li>Next steps will be shared via email.</li>
-        </ol>
-        <p style="color: #1f2937; line-height: 1.6;">If you have any questions, please reply to this email or contact us at ${ADMIN_EMAIL}.</p>
-        <p style="color: #1f2937; line-height: 1.6;">Best regards,<br>The Skymirror Academy Team</p>
-        <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 30px;">
-          Website: https://skymirror.eu<br>
-          Contact: ${ADMIN_EMAIL}
-        </p>
-      </div>
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      </head>
+      <body style="margin: 0; padding: 0; background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;">
+        <table width="100%" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); padding: 40px 20px;">
+          <tr>
+            <td align="center">
+              <table width="600" cellpadding="0" cellspacing="0" style="background: linear-gradient(135deg, rgba(30, 41, 59, 0.95) 0%, rgba(15, 23, 42, 0.95) 100%); border-radius: 16px; border: 1px solid rgba(139, 92, 246, 0.2); box-shadow: 0 8px 32px rgba(139, 92, 246, 0.15); overflow: hidden;">
+                
+                <!-- Header with gradient -->
+                <tr>
+                  <td style="background: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 100%); padding: 40px 30px; text-align: center;">
+                    <div style="width: 60px; height: 60px; margin: 0 auto 20px; background: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                      <span style="font-size: 32px; font-weight: bold; color: white;">S</span>
+                    </div>
+                    <h1 style="margin: 0; color: white; font-size: 28px; font-weight: 800; letter-spacing: -0.5px;">Skymirror Academy</h1>
+                    <p style="margin: 10px 0 0; color: rgba(255, 255, 255, 0.9); font-size: 16px;">Application Received Successfully</p>
+                  </td>
+                </tr>
+                
+                <!-- Main content -->
+                <tr>
+                  <td style="padding: 40px 30px;">
+                    <h2 style="margin: 0 0 20px; color: #ffffff; font-size: 24px; font-weight: 700;">Dear ${data.firstName},</h2>
+                    
+                    <p style="margin: 0 0 20px; color: #e2e8f0; font-size: 16px; line-height: 1.6;">
+                      Thank you for applying to <strong style="color: #a78bfa;">Skymirror Academy</strong>! We're excited to review your application for the <strong style="color: #60a5fa;">${data.program}</strong> program.
+                    </p>
+                    
+                    <!-- Application summary box -->
+                    <div style="background: rgba(139, 92, 246, 0.1); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 20px; margin: 30px 0;">
+                      <h3 style="margin: 0 0 15px; color: #a78bfa; font-size: 18px; font-weight: 600;">📋 Application Summary</h3>
+                      <table width="100%" cellpadding="8" cellspacing="0">
+                        <tr>
+                          <td style="color: #94a3b8; font-size: 14px; padding: 8px 0;">Name:</td>
+                          <td style="color: #e2e8f0; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">${data.firstName} ${data.lastName}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: #94a3b8; font-size: 14px; padding: 8px 0;">Program:</td>
+                          <td style="color: #e2e8f0; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">${data.program}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: #94a3b8; font-size: 14px; padding: 8px 0;">Country:</td>
+                          <td style="color: #e2e8f0; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">${data.country}</td>
+                        </tr>
+                        <tr>
+                          <td style="color: #94a3b8; font-size: 14px; padding: 8px 0;">Submitted:</td>
+                          <td style="color: #e2e8f0; font-size: 14px; font-weight: 600; padding: 8px 0; text-align: right;">${new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</td>
+                        </tr>
+                      </table>
+                    </div>
+                    
+                    <!-- Next steps -->
+                    <h3 style="margin: 30px 0 20px; color: #ffffff; font-size: 20px; font-weight: 700;">🚀 What Happens Next?</h3>
+                    
+                    <div style="margin-bottom: 15px;">
+                      <div style="display: inline-block; width: 32px; height: 32px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%; text-align: center; line-height: 32px; color: white; font-weight: bold; margin-right: 12px; vertical-align: middle;">1</div>
+                      <div style="display: inline-block; vertical-align: middle; width: calc(100% - 50px);">
+                        <strong style="color: #e2e8f0; font-size: 16px;">Application Review</strong>
+                        <p style="margin: 5px 0 0; color: #94a3b8; font-size: 14px; line-height: 1.5;">Our admissions team will carefully review your application and background.</p>
+                      </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                      <div style="display: inline-block; width: 32px; height: 32px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%; text-align: center; line-height: 32px; color: white; font-weight: bold; margin-right: 12px; vertical-align: middle;">2</div>
+                      <div style="display: inline-block; vertical-align: middle; width: calc(100% - 50px);">
+                        <strong style="color: #e2e8f0; font-size: 16px;">Interview Invitation</strong>
+                        <p style="margin: 5px 0 0; color: #94a3b8; font-size: 14px; line-height: 1.5;">We'll contact you within 7-10 business days to schedule a brief interview.</p>
+                      </div>
+                    </div>
+                    
+                    <div style="margin-bottom: 15px;">
+                      <div style="display: inline-block; width: 32px; height: 32px; background: linear-gradient(135deg, #8b5cf6, #3b82f6); border-radius: 50%; text-align: center; line-height: 32px; color: white; font-weight: bold; margin-right: 12px; vertical-align: middle;">3</div>
+                      <div style="display: inline-block; vertical-align: middle; width: calc(100% - 50px);">
+                        <strong style="color: #e2e8f0; font-size: 16px;">Admission Decision</strong>
+                        <p style="margin: 5px 0 0; color: #94a3b8; font-size: 14px; line-height: 1.5;">You'll receive your admission decision and next steps via email.</p>
+                      </div>
+                    </div>
+                    
+                    <!-- CTA Box -->
+                    <div style="background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15)); border: 1px solid rgba(139, 92, 246, 0.3); border-radius: 12px; padding: 25px; margin: 30px 0; text-align: center;">
+                      <p style="margin: 0 0 15px; color: #e2e8f0; font-size: 15px; line-height: 1.6;">
+                        Have questions about your application?
+                      </p>
+                      <a href="mailto:${ADMIN_EMAIL}" style="display: inline-block; background: linear-gradient(135deg, #8b5cf6, #3b82f6); color: white; text-decoration: none; padding: 12px 30px; border-radius: 8px; font-weight: 600; font-size: 15px;">Contact Admissions</a>
+                    </div>
+                    
+                    <p style="margin: 30px 0 0; color: #94a3b8; font-size: 15px; line-height: 1.6;">
+                      Best regards,<br>
+                      <strong style="color: #e2e8f0;">The Skymirror Academy Team</strong>
+                    </p>
+                  </td>
+                </tr>
+                
+                <!-- Footer -->
+                <tr>
+                  <td style="background: rgba(15, 23, 42, 0.8); padding: 30px; text-align: center; border-top: 1px solid rgba(139, 92, 246, 0.2);">
+                    <p style="margin: 0 0 10px; color: #64748b; font-size: 13px;">
+                      <strong style="color: #94a3b8;">Skymirror Academy</strong><br>
+                      Transforming Lives Through Technology Education
+                    </p>
+                    <p style="margin: 10px 0; color: #64748b; font-size: 12px;">
+                      🌐 <a href="https://skymirror.eu" style="color: #60a5fa; text-decoration: none;">skymirror.eu</a> | 
+                      ✉️ <a href="mailto:${ADMIN_EMAIL}" style="color: #60a5fa; text-decoration: none;">${ADMIN_EMAIL}</a>
+                    </p>
+                    <p style="margin: 15px 0 0; color: #475569; font-size: 11px;">
+                      This is an automated message. Please do not reply directly to this email.<br>
+                      For inquiries, contact us at ${ADMIN_EMAIL}
+                    </p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </body>
+      </html>
     `
   });
 }

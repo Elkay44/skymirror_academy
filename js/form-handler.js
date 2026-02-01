@@ -4,7 +4,7 @@
  */
 
 // Replace this with your actual Google Apps Script Web App URL
-const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3ZSlFjqsNj96DJZSAN8qZGRb3pQktk3Hs4Bp874FciK7Jgxh6xqdHCL086gboscI-7Q/exec';
 
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('application-form');
