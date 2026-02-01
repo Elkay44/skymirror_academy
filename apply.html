@@ -271,31 +271,6 @@
                     
                     <!-- Right Column: Application Form -->
                     <div>
-                        <!-- Payment Plans -->
-                        <div class="bg-glass p-6 rounded-xl border border-slate-700 border-opacity-30 mb-6">
-                            <div class="flex items-center justify-between mb-5">
-                                <h3 class="text-lg font-semibold text-white">Payment Plans</h3>
-                                <span class="text-xs text-cyan-300 bg-slate-900 bg-opacity-30 px-3 py-1 rounded-full">0% Interest</span>
-                            </div>
-                            
-                            <div class="grid grid-cols-3 gap-3 mb-4">
-                                <div class="text-center p-3 bg-slate-900 bg-opacity-20 rounded-lg border border-slate-700 border-opacity-30">
-                                    <div class="text-2xl font-bold text-cyan-400">€149</div>
-                                    <div class="text-xs text-gray-400 mt-1">Fullstack/AI</div>
-                                </div>
-                                <div class="text-center p-3 bg-slate-900 bg-opacity-20 rounded-lg border border-slate-700 border-opacity-30">
-                                    <div class="text-2xl font-bold text-cyan-400">€124</div>
-                                    <div class="text-xs text-gray-400 mt-1">Data Programs</div>
-                                </div>
-                                <div class="text-center p-3 bg-slate-900 bg-opacity-20 rounded-lg border border-slate-700 border-opacity-30">
-                                    <div class="text-2xl font-bold text-cyan-400">€129</div>
-                                    <div class="text-xs text-gray-400 mt-1">Frontend</div>
-                                </div>
-                            </div>
-                            
-                            <p class="text-xs text-gray-400 text-center">No credit check • Flexible schedule • Start immediately</p>
-                        </div>
-
                         <!-- Scholarships -->
                         <div class="bg-glass p-6 rounded-xl border border-slate-700 border-opacity-30 mb-6">
                             <h3 class="text-lg font-semibold text-white mb-4">Global Access Scholarships</h3>
@@ -354,13 +329,7 @@
                         <div class="bg-glass p-8 rounded-xl border border-white border-opacity-5 shadow-lg">
                             <h2 class="text-2xl font-bold mb-6">Start Your Application</h2>
                             
-                            <form id="application-form" action="https://formsubmit.co/lukman.ibrahim@skymirror.eu" method="POST" class="space-y-6">
-                                <!-- FormSubmit Configuration -->
-                                <input type="hidden" name="_subject" value="New Application - Skymirror Academy">
-                                <input type="hidden" name="_next" value="https://skymirror.academy/apply.html?submission=success">
-                                <input type="hidden" name="_captcha" value="false">
-                                <input type="hidden" name="_template" value="table">
-                                <input type="hidden" name="_autoresponse" value="Thank you for your application to Skymirror Academy! We have received your submission and will review it shortly. If you have any questions, please contact lukman.ibrahim@skymirror.eu">
+                            <form id="application-form" class="space-y-6">
                                 <!-- Name -->
                                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div>
@@ -643,6 +612,7 @@
     
     <!-- Custom scripts -->
     <script src="js/script.js"></script>
+    <script src="js/form-handler.js"></script>
 
     <script>
         // Toggle scholarship section visibility

@@ -1,8 +1,6 @@
 const ADMIN_EMAIL = 'admissions@skymirror.eu';
+const SPREADSHEET_ID = '1lxgWj1OIh_0f3ut9PjTvG0JMamYr93lWwtzVE_XpEeI';
 
-/**
- * Handles CORS preflight requests
- */
 function doOptions(e) {
   return ContentService.createTextOutput(JSON.stringify({status: "success"}))
     .setMimeType(ContentService.MimeType.JSON)
@@ -11,19 +9,18 @@ function doOptions(e) {
     .setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
-/**
- * Main function that handles form submissions
- * @param {Object} e The event object containing the form data
- */
 function doPost(e) {
   try {
-    // Parse the JSON data
     const data = JSON.parse(e.postData.contents);
-    
-    // Log the parsed data
     console.log('Application received:', data);
     
-    // Send notification email to admin
+    try {
+      saveToSpreadsheet(data);
+      console.log('Data saved to spreadsheet successfully');
+    } catch (sheetError) {
+      console.log('Error saving to spreadsheet:', sheetError.toString());
+    }
+    
     try {
       sendAdminNotification(data);
       console.log('Admin notification sent successfully');
@@ -31,7 +28,6 @@ function doPost(e) {
       console.log('Error sending admin notification:', emailError.toString());
     }
     
-    // Send confirmation email to applicant
     try {
       sendConfirmationEmail(data);
       console.log('Confirmation email sent successfully');
@@ -39,7 +35,6 @@ function doPost(e) {
       console.log('Error sending confirmation email:', emailError.toString());
     }
     
-    // Return success response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       status: "success",
       message: "Application submitted successfully"
@@ -52,7 +47,6 @@ function doPost(e) {
   } catch (error) {
     console.log('Error in doPost:', error.toString());
     
-    // Return error response with CORS headers
     return ContentService.createTextOutput(JSON.stringify({
       status: "error",
       message: "Failed to process application"
@@ -64,13 +58,51 @@ function doPost(e) {
   }
 }
 
-/**
- * Sends notification email to admin about new application
- * @param {Object} data The parsed JSON data from the form.
- */
+function saveToSpreadsheet(data) {
+  const ss = SpreadsheetApp.openById(SPREADSHEET_ID);
+  const sheet = ss.getSheetByName('Applications') || ss.insertSheet('Applications');
+  
+  if (sheet.getLastRow() === 0) {
+    sheet.appendRow([
+      'Timestamp',
+      'First Name',
+      'Last Name',
+      'Email',
+      'Phone',
+      'Country',
+      'Program',
+      'Background',
+      'Why Interested',
+      'Global Field Labs Interest'
+    ]);
+    
+    const headerRange = sheet.getRange(1, 1, 1, 10);
+    headerRange.setFontWeight('bold');
+    headerRange.setBackground('#4285f4');
+    headerRange.setFontColor('#ffffff');
+  }
+  
+  sheet.appendRow([
+    new Date().toLocaleString(),
+    data.firstName || '',
+    data.lastName || '',
+    data.email || '',
+    data.phone || '',
+    data.country || '',
+    data.program || '',
+    data.background || '',
+    data.whyInterested || '',
+    data.VanguardCohortInterest ? 'Yes' : 'No'
+  ]);
+  
+  sheet.autoResizeColumns(1, 10);
+}
+
 function sendAdminNotification(data) {
   MailApp.sendEmail({
-    to: ADMIN_EMAIL,
+    to: 'lukman.ibrahim@skymirror.eu',
+    replyTo: ADMIN_EMAIL,
+    name: 'Skymirror Academy Admin',
     subject: 'New Skymirror Academy Application',
     htmlBody: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -92,13 +124,11 @@ function sendAdminNotification(data) {
   });
 }
 
-/**
- * Sends a templated confirmation email to the applicant.
- * @param {Object} data The parsed JSON data from the form.
- */
 function sendConfirmationEmail(data) {
   MailApp.sendEmail({
     to: data.email,
+    replyTo: ADMIN_EMAIL,
+    name: 'Skymirror Academy Admin',
     subject: 'Skymirror Academy Application Received',
     htmlBody: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
