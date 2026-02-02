@@ -48,6 +48,48 @@ document.addEventListener('DOMContentLoaded', function() {
             // Since we're using no-cors mode, we can't read the response
             // but if no error is thrown, we assume success
             
+            // Track conversion with Google Analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'G-72BT2KS8WV',
+                    'event_category': 'Application',
+                    'event_label': data.program,
+                    'value': 1
+                });
+                
+                gtag('event', 'generate_lead', {
+                    'currency': 'EUR',
+                    'value': 149,
+                    'program': data.program,
+                    'country': data.country
+                });
+            }
+            
+            // Track conversion with Meta Pixel
+            if (typeof fbq !== 'undefined') {
+                fbq('track', 'Lead', {
+                    content_name: data.program,
+                    content_category: 'Application',
+                    value: 149,
+                    currency: 'EUR'
+                });
+                
+                fbq('track', 'CompleteRegistration', {
+                    content_name: 'Application Form',
+                    status: 'completed'
+                });
+            }
+            
+            // Track with dataLayer for Google Tag Manager (if using GTM)
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'application_submitted',
+                'program': data.program,
+                'country': data.country,
+                'email': data.email,
+                'conversion_value': 149
+            });
+            
             // Hide form and show success message
             form.style.display = 'none';
             successMessage.classList.remove('hidden');
